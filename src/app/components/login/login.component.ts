@@ -40,7 +40,7 @@ export class LoginComponent {
   login(value: any) {
     let userName = value.userName;
     let password = value.password;
-    this.loginService.login(userName, password).subscribe(
+    this.loginService.logIn(userName, password).subscribe(
       data => {
         let responseBody = JSON.parse(JSON.stringify(data))._body;
         let response = JSON.parse(responseBody);
@@ -49,6 +49,7 @@ export class LoginComponent {
         this.loginService.verifyToken(accessToken).subscribe(
           data => {
             localStorage.setItem('currentUserName', userName);
+            localStorage.setItem('isLoggedIn', "true");
             console.log("Login successful");
           },
           error => console.log(error)

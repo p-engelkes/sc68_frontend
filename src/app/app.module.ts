@@ -5,10 +5,12 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {LoginComponent} from "./components/login/login.component";
 import {LoginService} from "./services/login.service";
+import {NavbarComponent} from "./components/navbar/navbar.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
     LoginComponent
   ],
   imports: [

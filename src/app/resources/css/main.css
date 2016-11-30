@@ -1,0 +1,17 @@
+.nav-bar {
+  /*border: 1px solid red;*/
+}
+
+.container {
+  margin-top: 5px;
+}
+
+.box {
+  border: 1px solid red;
+}
+
+.image-background {
+  background-color: #212124;
+  width: auto;
+  height: 500px;
+}

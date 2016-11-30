@@ -1,0 +1,12 @@
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo" routerLink="/home" routerLinkActive="active">Skiclub 68</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li *ngIf="!loginService.isLoggedIn()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+      <li><a routerLink="/login" routerLinkActive="active" (click)="logout()">
+        {{loginService.isLoggedIn() ? 'Logout' : 'Login'}}
+      </a></li>
+    </ul>
+  </div>
+</nav>
