@@ -6,12 +6,15 @@ import {AppComponent} from "./app.component";
 import {LoginComponent} from "./components/login/login.component";
 import {LoginService} from "./services/login.service";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {RegisterService} from "./services/register.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,8 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
     HttpModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })

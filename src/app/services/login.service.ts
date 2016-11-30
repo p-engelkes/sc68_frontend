@@ -20,7 +20,6 @@ export class LoginService {
     localStorage.setItem('token', '');
     localStorage.setItem('currentUserName', '');
     localStorage.setItem('isLoggedIn', "false");
-    console.log("Logout called");
   }
 
   verifyToken(token) {
@@ -30,7 +29,6 @@ export class LoginService {
   }
 
   isLoggedIn() {
-    console.log(localStorage.getItem('isLoggedIn'));
     return localStorage.getItem('isLoggedIn') === 'true';
   }
 }

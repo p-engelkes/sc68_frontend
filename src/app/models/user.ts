@@ -9,4 +9,14 @@ export class User {
   public password: string;
   public email: string;
   public created: Date;
+
+  create(firstName: string, lastName: string, email: string, userName: string, password: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.userName = userName;
+    this.password = password;
+
+    return this;
+  }
 }
