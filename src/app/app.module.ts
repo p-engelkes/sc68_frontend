@@ -10,6 +10,8 @@ import {RegisterComponent} from "./components/register/register.component";
 import {RegisterService} from "./services/register.service";
 import {HomeComponent} from "./components/home/home.component";
 import {routing} from "./app.routing";
+import {TeamComponent} from "./components/team/team.component";
+import {TeamService} from "./services/team.service";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import {routing} from "./app.routing";
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {routing} from "./app.routing";
   ],
   providers: [
     LoginService,
-    RegisterService
+    RegisterService,
+    TeamService
   ],
   bootstrap: [AppComponent]
 })
