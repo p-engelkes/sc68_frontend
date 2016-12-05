@@ -5,7 +5,7 @@
       <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
       <li *ngIf="!loginService.isLoggedIn()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
       <li *ngIf="loginService.isLoggedIn()"><a routerLink="/teams" routerLinkActive="active">Teams</a></li>
-      <li><a routerLink="/login" routerLinkActive="active" (click)="logout()">
+      <li><a routerLink="/logIn" routerLinkActive="active" (click)="logout()">
         {{loginService.isLoggedIn() ? 'Logout' : 'Login'}}
       </a></li>
     </ul>

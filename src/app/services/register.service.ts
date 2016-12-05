@@ -3,7 +3,8 @@
  */
 import {Injectable} from "@angular/core";
 import {User} from "../models/user";
-import {Headers, Http} from "@angular/http";
+import {Http} from "@angular/http";
+import {httpPost} from "./helper.service";
 @Injectable()
 export class RegisterService {
 
@@ -11,9 +12,6 @@ export class RegisterService {
   }
 
   register(user: User) {
-    let url = "http://localhost:8080/user/register";
-    let headers = new Headers({'Content-Type': 'application/json'});
-    console.log(JSON.stringify(user));
-    return this.http.post(url, JSON.stringify(user), {headers: headers})
+    return httpPost("/user/register", user, this.http);
   }
 }

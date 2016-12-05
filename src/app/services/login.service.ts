@@ -3,6 +3,7 @@
  */
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
+import {httpGet} from "./helper.service";
 @Injectable()
 export class LoginService {
   token: string;
@@ -23,9 +24,7 @@ export class LoginService {
   }
 
   verifyToken(token) {
-    let tokenUrl = "http://localhost:8080/api/security/verifyLogin";
-    let headers = new Headers({'Authorization': 'Bearer' + token});
-    return this.http.get(tokenUrl, {headers: headers});
+    return httpGet("/security/verifyLogin", this.http);
   }
 
   isLoggedIn() {

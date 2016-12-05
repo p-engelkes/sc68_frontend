@@ -5,7 +5,7 @@ import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 @Component({
-  selector: 'login',
+  selector: 'logIn',
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
