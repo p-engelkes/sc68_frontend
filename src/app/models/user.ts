@@ -10,6 +10,13 @@ export class User {
   public email: string;
   public created: Date;
 
+  registerUser(email: string, password: string) {
+    this.email = email;
+    this.password = password;
+
+    return this;
+  }
+
   create(firstName: string, lastName: string, email: string, userName: string, password: string) {
     this.firstName = firstName;
     this.lastName = lastName;
