@@ -1,0 +1,30 @@
+@import "../node_modules/materialize-css/sass/components/color";
+@import "../node_modules/materialize-css/sass/components/variables";
+
+.modal-footer a.disabled {
+  cursor: not-allowed !important;
+}
+
+a {
+  color: $navbar-font-color;
+}
+
+.above-navigation {
+  background-color: $primary-color;
+
+  a {
+    margin-right: 10px;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+
+  .divider {
+    background: transparent;
+    border-right: 1px solid $navbar-font-color;
+    padding-right: 15px;
+  }
+}
+
+

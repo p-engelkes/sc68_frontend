@@ -3,6 +3,7 @@
  */
 import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
+declare var jQuery: any;
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html'
@@ -15,5 +16,17 @@ export class NavbarComponent {
     if (this.loginService.isLoggedIn()) {
       this.loginService.logOut();
     }
+  }
+
+  openLoginModal() {
+    if (this.loginService.isLoggedIn()) {
+      this.loginService.logOut();
+    } else {
+      jQuery('#login_modal').openModal();
+    }
+  }
+
+  openRegisterModal() {
+    jQuery('#register_modal').openModal();
   }
 }

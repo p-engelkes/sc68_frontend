@@ -57,18 +57,20 @@ export class RegisterComponent {
   }
 
   register(value: any) {
-    let firstName = value.firstName;
-    let lastName = value.lastName;
-    let email = value.email;
-    let userName = value.userName;
-    let password = value.password;
-    let user = new User().create(firstName, lastName, email, userName, password);
-    this.registerService.register(user).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => console.log(error)
-    );
+    if (this.registerForm.valid) {
+      let firstName = value.firstName;
+      let lastName = value.lastName;
+      let email = value.email;
+      let userName = value.userName;
+      let password = value.password;
+      let user = new User().create(firstName, lastName, email, userName, password);
+      this.registerService.register(user).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => console.log(error)
+      );
+    }
   }
 
   getFirstNameError(): string {

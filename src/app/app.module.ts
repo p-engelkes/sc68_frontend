@@ -20,7 +20,7 @@ import {TeamService} from "./services/team.service";
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    TeamComponent
+    TeamComponent,
   ],
   imports: [
     BrowserModule,

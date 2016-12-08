@@ -3,7 +3,8 @@ import {Http, Headers} from "@angular/http";
  * Created by pengelkes on 02.12.2016.
  */
 let jsonHeaders = new Headers({'Content-Type': 'application/json'});
-let apiUrl = "http://localhost:8080/api";
+export let url = "http://localhost:8081";
+export let apiUrl = url + "/api";
 
 export function httpGet(url: string, http: Http) {
   url = apiUrl + url;

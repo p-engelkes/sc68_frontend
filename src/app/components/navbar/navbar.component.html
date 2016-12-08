@@ -1,11 +1,18 @@
+<logIn></logIn>
+<register></register>
 <nav>
   <div class="nav-wrapper">
-    <a class="brand-logo" routerLink="/home" routerLinkActive="active">Skiclub 68</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-      <li *ngIf="!loginService.isLoggedIn()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
-      <li *ngIf="loginService.isLoggedIn()"><a routerLink="/teams" routerLinkActive="active">Teams</a></li>
-      <li><a routerLink="/logIn" routerLinkActive="active" (click)="logout()">
+    <a class="brand-logo center" routerLink="/home" routerLinkActive="active">Skiclub 68</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+      <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()"><a routerLink="/teams">Teams</a></li>
+    </ul>
+    <ul class="right hide-on-med-and-down">
+      <li routerLinkActive="active"><a routerLink="/aboutUs">Über uns</a></li>
+      <li routerLinkActive="active"><a routerLink="/contact">Kontakt</a></li>
+      <li routerLinkActive="active" *ngIf="!loginService.isLoggedIn()"><a (click)="openRegisterModal()">Registrieren</a>
+      </li>
+      <li routerLinkActive="active"><a (click)="openLoginModal()">
         {{loginService.isLoggedIn() ? 'Logout' : 'Login'}}
       </a></li>
     </ul>
