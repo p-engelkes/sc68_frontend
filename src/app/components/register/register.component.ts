@@ -6,6 +6,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register.service";
 import {matchingPasswords, Field, FormValidators} from "../../validators";
 import {User} from "../../models/user";
+import {LoginService} from "../../services/login.service";
 declare var jQuery: any;
 @Component({
   selector: 'register',
@@ -17,6 +18,7 @@ export class RegisterComponent {
   passwordField: Field;
 
   constructor(private registerService: RegisterService,
+              private loginService: LoginService,
               formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({
       email: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
@@ -48,6 +50,22 @@ export class RegisterComponent {
       let user = new User().registerUser(email, password);
       this.registerService.register(user).subscribe(
         data => {
+          this.loginService.logIn(email, password).subscribe(
+            data => {
+              let responseBody = JSON.parse(JSON.stringify(data))._body;
+              let response = JSON.parse(responseBody);
+              let accessToken = response.access_token;
+              localStorage.setItem('token', accessToken);
+              this.loginService.verifyToken(accessToken).subscribe(
+                data => {
+                  localStorage.setItem('currentUserName', email);
+                  localStorage.setItem('isLoggedIn', "true");
+                },
+                error => console.log(error)
+              );
+            },
+            error => console.log(error)
+          );
           jQuery('#register_modal').closeModal();
         },
         error => console.log(error)

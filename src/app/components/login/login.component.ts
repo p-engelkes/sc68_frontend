@@ -52,7 +52,6 @@ export class LoginComponent {
             data => {
               localStorage.setItem('currentUserName', userName);
               localStorage.setItem('isLoggedIn', "true");
-              console.log("Login successful");
             },
             error => console.log(error)
           );
