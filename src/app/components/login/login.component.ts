@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+declare var jQuery: any;
 @Component({
   selector: 'logIn',
   templateUrl: './login.component.html'
@@ -52,6 +53,7 @@ export class LoginComponent {
             data => {
               localStorage.setItem('currentUserName', userName);
               localStorage.setItem('isLoggedIn', "true");
+              jQuery('#login_modal').closeModal();
             },
             error => console.log(error)
           );

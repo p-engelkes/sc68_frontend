@@ -27,6 +27,9 @@
   </div>
 
   <div class="modal-footer">
-    <a class="modal-close waves-effect waves-green btn-flat" (click)="login(loginForm.value)">Login</a>
+    <a class="waves-effect waves-green btn" (click)="login(loginForm.value)"
+       [ngClass]="{'disabled':!loginForm.valid}">
+      Login
+    </a>
   </div>
 </div>
