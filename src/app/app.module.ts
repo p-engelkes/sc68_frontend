@@ -12,6 +12,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {routing} from "./app.routing";
 import {TeamComponent} from "./components/team/team.component";
 import {TeamService} from "./services/team.service";
+import {FlashMessage} from "./flash_messages/flash.message";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {TeamService} from "./services/team.service";
   providers: [
     LoginService,
     RegisterService,
-    TeamService
+    TeamService,
+    FlashMessage
   ],
   bootstrap: [AppComponent]
 })

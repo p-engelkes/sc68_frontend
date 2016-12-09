@@ -4,6 +4,9 @@
 import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FlashMessage} from "../../flash_messages/flash.message";
+
+declare var Materialize: any;
 declare var jQuery: any;
 @Component({
   selector: 'logIn',
@@ -13,6 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
 
   constructor(private loginService: LoginService,
+              private flashMessage: FlashMessage,
               formBuilder: FormBuilder) {
     this.loginForm = formBuilder.group({
       userName: [null, Validators.required],
@@ -54,6 +58,7 @@ export class LoginComponent {
               localStorage.setItem('currentUserName', userName);
               localStorage.setItem('isLoggedIn', "true");
               jQuery('#login_modal').closeModal();
+              Materialize.toast("Login erfolgreich", 4000);
             },
             error => console.log(error)
           );

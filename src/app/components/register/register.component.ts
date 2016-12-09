@@ -8,6 +8,7 @@ import {matchingPasswords, Field, FormValidators} from "../../validators";
 import {User} from "../../models/user";
 import {LoginService} from "../../services/login.service";
 declare var jQuery: any;
+declare var Materialize: any;
 @Component({
   selector: 'register',
   templateUrl: './register.component.html'
@@ -60,6 +61,7 @@ export class RegisterComponent {
                 data => {
                   localStorage.setItem('currentUserName', email);
                   localStorage.setItem('isLoggedIn', "true");
+                  Materialize.toast("Registration erfolgreich", 4000);
                 },
                 error => console.log(error)
               );
