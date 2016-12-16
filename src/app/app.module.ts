@@ -12,6 +12,9 @@ import {HomeComponent} from "./components/home/home.component";
 import {routing} from "./app.routing";
 import {TeamComponent} from "./components/team/team.component";
 import {TeamService} from "./services/team.service";
+import {ChooseTeamComponent} from "./components/register/chooseTeam.component";
+import {RegisterParentComponent} from "./components/register/registerParent.component";
+import {MaterializeDropdown} from "./directives/SelectDirective";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {UserService} from "./services/user.service";
 
@@ -20,10 +23,14 @@ import {UserService} from "./services/user.service";
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    RegisterParentComponent,
     RegisterComponent,
     HomeComponent,
     TeamComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TeamComponent,
+    ChooseTeamComponent,
+    MaterializeDropdown
   ],
   imports: [
     BrowserModule,

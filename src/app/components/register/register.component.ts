@@ -6,7 +6,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register.service";
 import {matchingPasswords, Field, FormValidators} from "../../validators";
 import {User} from "../../models/user";
-import {LoginService} from "../../services/login.service";
+import {Router, ActivatedRoute} from "@angular/router";
 declare var jQuery: any;
 declare var Materialize: any;
 @Component({
@@ -19,7 +19,8 @@ export class RegisterComponent {
   passwordField: Field;
 
   constructor(private registerService: RegisterService,
-              private loginService: LoginService,
+              private route: ActivatedRoute,
+              private router: Router,
               formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({
       email: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
@@ -49,26 +50,13 @@ export class RegisterComponent {
       let email = value.email;
       let password = value.password;
       let user = new User().registerUser(email, password);
+
       this.registerService.register(user).subscribe(
         data => {
-          this.loginService.logIn(email, password).subscribe(
-            data => {
-              let responseBody = JSON.parse(JSON.stringify(data))._body;
-              let response = JSON.parse(responseBody);
-              let accessToken = response.access_token;
-              localStorage.setItem('token', accessToken);
-              this.loginService.verifyToken(accessToken).subscribe(
-                data => {
-                  localStorage.setItem('currentUserName', email);
-                  localStorage.setItem('isLoggedIn', "true");
-                  Materialize.toast("Registration erfolgreich", 4000);
-                },
-                error => console.log(error)
-              );
-            },
-            error => console.log(error)
-          );
+          let response = JSON.parse(JSON.stringify(data))._body;
+          localStorage.setItem('currentUserId', response);
           jQuery('#register_modal').closeModal();
+          this.router.navigate(['register/chooseTeam']);
         },
         error => console.log(error)
       );

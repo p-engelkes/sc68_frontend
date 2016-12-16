@@ -10,6 +10,7 @@ export class User {
   public password: string;
   public email: string;
   public team: Team;
+  public teamId: number;
   public position: string;
   public created: Date;
 
@@ -46,5 +47,26 @@ export class User {
     this.password = password;
 
     return this;
+  }
+}
+
+export class Position {
+  public name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+
+  static getPositionsFromJson(json): Position[] {
+    let positionsBody = JSON.parse(JSON.stringify(json))._body;
+    let positionsJson = JSON.parse(positionsBody);
+    let positions = [];
+    for (let i = 0; i < positionsJson.length; i++) {
+      let positionJson = positionsJson[i];
+      positions.push(new Position(positionJson));
+    }
+
+    return positions;
   }
 }

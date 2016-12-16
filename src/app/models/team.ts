@@ -22,6 +22,19 @@ export class Team {
 
     return this;
   }
+
+  static getTeamsFromJson(data: any): Team[] {
+    let teams: Team[] = [];
+    let teamResponses = JSON.parse(JSON.stringify(data))._body;
+    let teamsJson = JSON.parse(teamResponses);
+    for (let i = 0; i < teamsJson.length; i++) {
+      let teamJson = teamsJson[i];
+      let team = new Team().deserialize(teamJson);
+      teams.push(team);
+    }
+
+    return teams;
+  }
 }
 
 export class Training {

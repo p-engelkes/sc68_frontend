@@ -12,6 +12,11 @@ export function httpGet(url: string, http: Http) {
   return http.get(url, {headers: bearerHeaders});
 }
 
+export function httpGetWithoutAuthorization(url: string, http: Http) {
+  url = apiUrl + url;
+  return http.get(url);
+}
+
 export function httpPost(url: string, jsonObject: any, http: Http) {
   url = apiUrl + url;
   return http.post(url, JSON.stringify(jsonObject), {headers: jsonHeaders});

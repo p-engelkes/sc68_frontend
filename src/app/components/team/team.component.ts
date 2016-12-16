@@ -13,15 +13,7 @@ export class TeamComponent {
 
   constructor(private teamService: TeamService) {
     this.teamService.getAllTeams().subscribe(
-      data => {
-        let teamResponses = JSON.parse(JSON.stringify(data))._body;
-        let teams = JSON.parse(teamResponses);
-        for (let i = 0; i < teams.length; i++) {
-          let teamJson = teams[i];
-          let team = new Team().deserialize(teamJson);
-          this.teams.push(team);
-        }
-      },
+      data => this.teams = Team.getTeamsFromJson(data),
       error => console.log(error)
     )
   }
