@@ -4,8 +4,6 @@ import {LoginComponent} from "./components/login/login.component";
 import {HomeComponent} from "./components/home/home.component";
 import {ModuleWithProviders} from "@angular/core";
 import {TeamComponent} from "./components/team/team.component";
-import {ChooseTeamComponent} from "./components/register/chooseTeam.component";
-import {RegisterParentComponent} from "./components/register/registerParent.component";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 /**
  * Created by pengelkes on 30.11.2016.
@@ -22,17 +20,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterParentComponent,
-    children: [
-      {
-        path: '',
-        component: RegisterComponent
-      },
-      {
-        path: 'chooseTeam',
-        component: ChooseTeamComponent
-      }
-    ]
+    component: RegisterComponent,
   },
   {
     path: 'logIn',
