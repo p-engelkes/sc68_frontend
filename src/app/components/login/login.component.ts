@@ -20,14 +20,14 @@ export class LoginComponent {
               private router: Router,
               formBuilder: FormBuilder) {
     this.loginForm = formBuilder.group({
-      userName: [null, Validators.required],
+      email: [null, Validators.required],
       password: [null, Validators.required]
     })
   }
 
-  getUserNameError(): string {
+  getEmailError(): string {
     let error = "";
-    if (this.loginForm.controls['userName'].hasError('required')) {
+    if (this.loginForm.controls['email'].hasError('required')) {
       error += "Ein Benutzername muss eingegeben werden"
     }
 
@@ -46,24 +46,23 @@ export class LoginComponent {
 
   login(value: any) {
     if (this.loginForm.valid) {
-      let userName = value.userName;
+      let email = value.email;
       let password = value.password;
-      this.loginService.logIn(userName, password).subscribe(
+      this.loginService.logIn(email, password).subscribe(
         data => {
           let responseBody = JSON.parse(JSON.stringify(data))._body;
           let response = JSON.parse(responseBody);
           let accessToken = response.access_token;
           LocalStorage.setToken(accessToken);
-          this.loginService.verifyToken(userName).subscribe(
+          this.loginService.verifyToken(email).subscribe(
             data => {
               let response = JSON.parse(JSON.stringify(data))._body;
-              console.log(response);
               LocalStorage.setCurrentUserId(response);
-              LocalStorage.setCurrentUserName(userName);
+              LocalStorage.setCurrentEmail(email);
               LocalStorage.setLoggedIn(true);
               jQuery('#login_modal').closeModal();
               Materialize.toast("Login erfolgreich", 4000);
-              // this.router.navigateByUrl("/user/" + response);
+              this.router.navigateByUrl("/user/" + response);
             },
             error => console.log(error)
           );

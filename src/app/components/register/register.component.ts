@@ -76,7 +76,7 @@ export class RegisterComponent {
         LocalStorage.setToken(accessToken);
         this.loginService.verifyToken(accessToken).subscribe(
           data => {
-            LocalStorage.setCurrentUserName(email);
+            LocalStorage.setCurrentEmail(email);
             LocalStorage.setLoggedIn(true);
             Materialize.toast("Registration erfolgreich", 4000);
           },

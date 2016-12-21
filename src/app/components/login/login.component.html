@@ -6,11 +6,11 @@
       <form [formGroup]="loginForm" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input id="username" type="text" formControlName="userName" placeholder="Benutzername"
+            <input id="email" type="text" formControlName="email" placeholder="E-Mail"
                    class="validate"
-                   [ngClass]="{'invalid':loginForm.controls['userName'].invalid && loginForm.controls['userName'].touched, 'valid':loginForm.controls['userName'].valid && loginForm.controls['userName'].touched}"
+                   [ngClass]="{'invalid':loginForm.controls['email'].invalid && loginForm.controls['email'].touched, 'valid':loginForm.controls['email'].valid && loginForm.controls['email'].touched}"
             >
-            <label for="username" [attr.data-error]="getUserNameError()">Username</label>
+            <label for="email" [attr.data-error]="getEmailError()">E-Mail</label>
           </div>
         </div>
         <div class="row">

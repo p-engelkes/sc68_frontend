@@ -3,7 +3,7 @@
  */
 export class LocalStorage {
   private static currentUserId = 'currentUserId';
-  private static currentUserName = 'currentUserName';
+  private static currentEmail = 'currentEmail';
   private static token = 'token';
   private static loggedIn = 'loggedIn';
 
@@ -15,12 +15,12 @@ export class LocalStorage {
     localStorage.setItem(LocalStorage.currentUserId, value);
   }
 
-  static getCurrentUserName() {
-    return localStorage.getItem(LocalStorage.currentUserName);
+  static getCurrentEmail() {
+    return localStorage.getItem(LocalStorage.currentEmail);
   }
 
-  static setCurrentUserName(value: string) {
-    localStorage.setItem(LocalStorage.currentUserName, value)
+  static setCurrentEmail(value: string) {
+    localStorage.setItem(LocalStorage.currentEmail, value)
   }
 
   static getToken() {
