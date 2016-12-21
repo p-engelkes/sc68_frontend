@@ -11,6 +11,7 @@ export class User {
   public email: string;
   public team: Team;
   public teamId: number;
+  public backNumber: number;
   public position: string;
   public created: Date;
 
@@ -27,6 +28,7 @@ export class User {
     this.email = json.email;
     this.created = json.created;
     this.position = json.position;
+    this.backNumber = json.backNumber;
     this.team = new Team().deserialize(json.team);
 
     return this;

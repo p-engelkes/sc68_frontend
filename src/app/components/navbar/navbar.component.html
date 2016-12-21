@@ -10,7 +10,11 @@
     <ul class="right hide-on-med-and-down">
       <li routerLinkActive="active"><a routerLink="/aboutUs">Über uns</a></li>
       <li routerLinkActive="active"><a routerLink="/contact">Kontakt</a></li>
-      <li routerLinkActive="active" *ngIf="!loginService.isLoggedIn()"><a (click)="openRegisterModal()">Registrieren</a>
+      <li routerLinkActive="active" *ngIf="!loginService.isLoggedIn()">
+        <a (click)="openRegisterModal()">Registrieren</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
+        <a (click)="showUserProfile()">Profil</a>
       </li>
       <li routerLinkActive="active"><a (click)="openLoginModal()">
         {{loginService.isLoggedIn() ? 'Logout' : 'Login'}}

@@ -23,8 +23,8 @@ export class LoginService {
     localStorage.setItem('isLoggedIn', "false");
   }
 
-  verifyToken(token) {
-    return httpGet("/security/verifyLogin", this.http);
+  verifyToken(email) {
+    return httpGet("/security/verifyLogin/" + email, this.http);
   }
 
   isLoggedIn() {

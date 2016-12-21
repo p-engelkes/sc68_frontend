@@ -11,8 +11,8 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-  getUser() {
-    return httpGet("/user/profile", this.http);
+  getUser(userId) {
+    return httpGet("/user/" + userId, this.http);
   }
 
   getAllPositions() {

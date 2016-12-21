@@ -53,13 +53,16 @@ export class LoginComponent {
           let response = JSON.parse(responseBody);
           let accessToken = response.access_token;
           localStorage.setItem('token', accessToken);
-          this.loginService.verifyToken(accessToken).subscribe(
+          this.loginService.verifyToken(userName).subscribe(
             data => {
+              let response = JSON.parse(JSON.stringify(data))._body;
+              console.log(response);
+              localStorage.setItem('currentUserId', response);
               localStorage.setItem('currentUserName', userName);
               localStorage.setItem('isLoggedIn', "true");
               jQuery('#login_modal').closeModal();
               Materialize.toast("Login erfolgreich", 4000);
-              this.router.navigateByUrl("/user/profile");
+              // this.router.navigateByUrl("/user/" + response);
             },
             error => console.log(error)
           );

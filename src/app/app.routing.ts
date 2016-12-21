@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     component: TeamComponent
   },
   {
-    path: 'user/profile',
+    path: 'user/:id',
     component: UserProfileComponent
   }
 ];

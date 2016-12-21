@@ -3,13 +3,15 @@
  */
 import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
+import {Router} from "@angular/router";
 declare var jQuery: any;
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService,
+              private router: Router) {
   }
 
   logout() {
@@ -28,5 +30,10 @@ export class NavbarComponent {
 
   openRegisterModal() {
     jQuery('#register_modal').openModal();
+  }
+
+  showUserProfile() {
+    let currentUserId = localStorage.getItem('currentUserId');
+    this.router.navigate(['/user', +currentUserId])
   }
 }
