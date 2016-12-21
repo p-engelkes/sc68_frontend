@@ -6,6 +6,7 @@ import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
 import "rxjs/add/operator/switchMap";
 import {ActivatedRoute, Router} from "@angular/router";
+import {LocalStorage} from "../../helper/LocalStorage";
 @Component({
   selector: 'user-profile',
   templateUrl: 'user.profile.component.html'
@@ -32,6 +33,6 @@ export class UserProfileComponent extends OnInit {
   }
 
   isCurrentUser() {
-    return this.user.id == +localStorage.getItem('currentUserId');
+    return this.user.id == LocalStorage.getCurrentUserId();
   }
 }

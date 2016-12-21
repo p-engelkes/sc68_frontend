@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
+import {LocalStorage} from "../../helper/LocalStorage";
 declare var jQuery: any;
 @Component({
   selector: 'navbar',
@@ -33,7 +34,7 @@ export class NavbarComponent {
   }
 
   showUserProfile() {
-    let currentUserId = localStorage.getItem('currentUserId');
+    let currentUserId = LocalStorage.getCurrentUserId();
     this.router.navigate(['/user', +currentUserId])
   }
 }

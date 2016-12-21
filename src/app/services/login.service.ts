@@ -4,6 +4,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {httpGet, url} from "./helper.service";
+import {LocalStorage} from "../helper/LocalStorage";
 @Injectable()
 export class LoginService {
   token: string;
@@ -18,9 +19,10 @@ export class LoginService {
   }
 
   logOut() {
-    localStorage.setItem('token', '');
-    localStorage.setItem('currentUserName', '');
-    localStorage.setItem('isLoggedIn', "false");
+    LocalStorage.setToken('');
+    LocalStorage.setCurrentUserName('');
+    LocalStorage.setCurrentUserId('');
+    LocalStorage.setLoggedIn(false);
   }
 
   verifyToken(email) {
@@ -28,6 +30,6 @@ export class LoginService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('isLoggedIn') === 'true';
+    return LocalStorage.isLoggedIn();
   }
 }

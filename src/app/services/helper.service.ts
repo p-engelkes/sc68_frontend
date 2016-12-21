@@ -1,4 +1,5 @@
 import {Http, Headers} from "@angular/http";
+import {LocalStorage} from "../helper/LocalStorage";
 /**
  * Created by pengelkes on 02.12.2016.
  */
@@ -8,7 +9,7 @@ export let apiUrl = url + "/api";
 
 export function httpGet(url: string, http: Http) {
   url = apiUrl + url;
-  let bearerHeaders = new Headers({'Authorization': 'Bearer' + localStorage.getItem('token')});
+  let bearerHeaders = new Headers({'Authorization': 'Bearer' + LocalStorage.getToken()});
   return http.get(url, {headers: bearerHeaders});
 }
 

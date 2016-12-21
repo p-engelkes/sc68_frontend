@@ -8,6 +8,7 @@ import {matchingPasswords, Field, FormValidators} from "../../validators";
 import {User} from "../../models/user";
 import {Router, ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../services/login.service";
+import {LocalStorage} from "../../helper/LocalStorage";
 declare var jQuery: any;
 declare var Materialize: any;
 @Component({
@@ -56,7 +57,7 @@ export class RegisterComponent {
       this.registerService.register(user).subscribe(
         data => {
           let response = JSON.parse(JSON.stringify(data))._body;
-          localStorage.setItem('currentUserId', response);
+          LocalStorage.setCurrentUserId(response);
           this.logIn(email, password);
           jQuery('#register_modal').closeModal();
           this.router.navigate(["/home"]);
@@ -72,11 +73,11 @@ export class RegisterComponent {
         let responseBody = JSON.parse(JSON.stringify(data))._body;
         let response = JSON.parse(responseBody);
         let accessToken = response.access_token;
-        localStorage.setItem('token', accessToken);
+        LocalStorage.setToken(accessToken);
         this.loginService.verifyToken(accessToken).subscribe(
           data => {
-            localStorage.setItem('currentUserName', email);
-            localStorage.setItem('isLoggedIn', "true");
+            LocalStorage.setCurrentUserName(email);
+            LocalStorage.setLoggedIn(true);
             Materialize.toast("Registration erfolgreich", 4000);
           },
           error => console.log(error)

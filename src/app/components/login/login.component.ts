@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {LocalStorage} from "../../helper/LocalStorage";
 
 declare var Materialize: any;
 declare var jQuery: any;
@@ -52,14 +53,14 @@ export class LoginComponent {
           let responseBody = JSON.parse(JSON.stringify(data))._body;
           let response = JSON.parse(responseBody);
           let accessToken = response.access_token;
-          localStorage.setItem('token', accessToken);
+          LocalStorage.setToken(accessToken);
           this.loginService.verifyToken(userName).subscribe(
             data => {
               let response = JSON.parse(JSON.stringify(data))._body;
               console.log(response);
-              localStorage.setItem('currentUserId', response);
-              localStorage.setItem('currentUserName', userName);
-              localStorage.setItem('isLoggedIn', "true");
+              LocalStorage.setCurrentUserId(response);
+              LocalStorage.setCurrentUserName(userName);
+              LocalStorage.setLoggedIn(true);
               jQuery('#login_modal').closeModal();
               Materialize.toast("Login erfolgreich", 4000);
               // this.router.navigateByUrl("/user/" + response);
