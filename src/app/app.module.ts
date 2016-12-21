@@ -15,6 +15,7 @@ import {TeamService} from "./services/team.service";
 import {MaterializeDropdown} from "./directives/SelectDirective";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {UserService} from "./services/user.service";
+import {ProfilePropertyComponent} from "./components/user/profile.property.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {UserService} from "./services/user.service";
     TeamComponent,
     UserProfileComponent,
     TeamComponent,
+    ProfilePropertyComponent,
     MaterializeDropdown
   ],
   imports: [

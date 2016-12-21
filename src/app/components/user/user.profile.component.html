@@ -9,36 +9,17 @@
   </div>
   <div class="row">
     <div class="col s5 offset-s3">
-      <div class="row" *ngIf="user.firstName">
-        <div class="col s4">Vorname:</div>
-        <div class="col s4">{{user.firstName}}</div>
-      </div>
+      <property [propertyValue]="user.firstName" propertyLabel="Vorname"></property>
       <div class="divider"></div>
-      <div class="row" *ngIf="user.lastName">
-        <div class="col s4">Nachname:</div>
-        <div class="col s4">{{user.lastName}}</div>
-      </div>
+      <property [propertyValue]="user.lastName" propertyLabel="Nachname"></property>
       <div class="divider"></div>
-      <div class="row" *ngIf="user.email">
-        <div class="col s4">E-Mail:</div>
-        <div class="col s4">{{user.email}}</div>
-      </div>
+      <property [propertyValue]="user.email" propertyLabel="E-Mail"></property>
       <div class="divider"></div>
-      <div class="row" *ngIf="user.position">
-        <div class="col s4">Position:</div>
-        <div class="col s4">{{user.position}}</div>
-      </div>
+      <property [propertyValue]="user.position" propertyLabel="Position"></property>
       <div class="divider"></div>
-      <div class="row" *ngIf="user.backNumber">
-        <div class="col s4">Rückennummer:</div>
-        <div class="col s4">{{user.backNumber}}</div>
-      </div>
+      <property [propertyValue]="user.backNumber" propertyLabel="Rückennummer"></property>
       <div class="divider"></div>
-      <div class="row" *ngIf="user.team">
-        <div class="col s4">Team:</div>
-        <div class="col s4">{{user.team.name}}</div>
-      </div>
-      <div class="divider"></div>
+      <property [propertyValue]="user.team.name" propertyLabel="Mannschaft"></property>
     </div>
   </div>
   <div class="row" *ngIf="isCurrentUser()">
