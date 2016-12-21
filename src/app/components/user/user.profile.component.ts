@@ -11,6 +11,8 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: 'user.profile.component.html'
 })
 export class UserProfileComponent extends OnInit {
+  private user: User;
+
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
     this.userService.getUser(id).subscribe(
@@ -23,11 +25,13 @@ export class UserProfileComponent extends OnInit {
     )
   }
 
-  private user: User;
-
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private router: Router) {
     super()
+  }
+
+  isCurrentUser() {
+    return this.user.id == +localStorage.getItem('currentUserId');
   }
 }

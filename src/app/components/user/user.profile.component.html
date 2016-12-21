@@ -1,23 +1,49 @@
-<div *ngIf="user">
-  <div class="row">
-    <div class="profile  z-depth-4">
-      <div class="row">
-        <div class="col l12 center-align">
-          <img class="circle responsive-img" src="../../../assets/img/user-account.jpg">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col l12 center-align">
-          <h5>{{user.getFullName()}}</h5>
-          <h6>Ski Club {{user.team.name}}</h6>
-          <h6>{{user.position}}</h6>
-        </div>
-      </div>
+<div *ngIf="user" class="user-profile">
+  <div class="row banner">
+    <div class="col s8 offset-s1 secondary-background z-depth-3">
+      <h3 class="center-align">{{user.getFullName()}} #{{user.backNumber}}</h3>
+    </div>
+    <div class="col s3">
+      <img class="circle responsive-img z-depth-5" src="../../../assets/img/user-account.jpg">
     </div>
   </div>
   <div class="row">
-    <div class="games">
-
+    <div class="col s5 offset-s3">
+      <div class="row" *ngIf="user.firstName">
+        <div class="col s4">Vorname:</div>
+        <div class="col s4">{{user.firstName}}</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" *ngIf="user.lastName">
+        <div class="col s4">Nachname:</div>
+        <div class="col s4">{{user.lastName}}</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" *ngIf="user.email">
+        <div class="col s4">E-Mail:</div>
+        <div class="col s4">{{user.email}}</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" *ngIf="user.position">
+        <div class="col s4">Position:</div>
+        <div class="col s4">{{user.position}}</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" *ngIf="user.backNumber">
+        <div class="col s4">Rückennummer:</div>
+        <div class="col s4">{{user.backNumber}}</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" *ngIf="user.team">
+        <div class="col s4">Team:</div>
+        <div class="col s4">{{user.team.name}}</div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="row" *ngIf="isCurrentUser()">
+    <div class="right-align">
+      <a class="waves-effect waves-light btn"><i class="material-icons right">mode_edit</i>Bearbeiten</a>
     </div>
   </div>
 </div>

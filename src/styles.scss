@@ -1,6 +1,10 @@
 @import "../node_modules/materialize-css/sass/components/color";
 @import "../node_modules/materialize-css/sass/components/variables";
 
+.container {
+  padding-top: 20px;
+}
+
 .modal-footer a.disabled {
   cursor: not-allowed !important;
 }
@@ -27,20 +31,21 @@ a {
   }
 }
 
-.profile {
-  position: absolute;
-  top: 8%;
-  left: 16% !important;
-  height: 50%;
-  width: 14%;
-  background-color: $secondary-color;
+.user-profile {
+  .banner {
+    .secondary-background {
+      background: $secondary-color;
+    }
 
-  img {
-    margin-top: 50px;
-    width: 70%;
+    h3 {
+      color: $navbar-font-color;
+    }
+
+    img {
+      margin-left: -5rem;
+      width: 9rem;
+    }
   }
 
-  h5, h6 {
-    color: $navbar-font-color;
-  }
+  font-size: 1.3rem;
 }
