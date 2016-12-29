@@ -20,6 +20,7 @@ export class User {
   }
 
   deserialize(json): User {
+    console.log(json);
     this.id = json.id;
     this.firstName = json.firstName;
     this.lastName = json.lastName;
@@ -29,7 +30,9 @@ export class User {
     this.created = json.created;
     this.position = json.position;
     this.backNumber = json.backNumber;
-    this.team = new Team().deserialize(json.team);
+    if (json.teamId > 0) {
+      this.team = new Team().deserialize(json.team);
+    }
 
     return this;
   }

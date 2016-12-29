@@ -1,7 +1,9 @@
 <div *ngIf="user" class="user-profile">
   <div class="row banner">
     <div class="col s8 offset-s1 secondary-background z-depth-3">
-      <h3 class="center-align">{{user.getFullName()}} #{{user.backNumber}}</h3>
+      <div *ngIf="user.firstName && user.backNumber">
+        <h3 class="center-align">{{user.getFullName()}} #{{user.backNumber}}</h3>
+      </div>
     </div>
     <div class="col s3">
       <img class="circle responsive-img z-depth-5" src="../../../assets/img/user-account.jpg">
@@ -18,8 +20,10 @@
       <property [propertyValue]="user.position" propertyLabel="Position"></property>
       <div class="divider"></div>
       <property [propertyValue]="user.backNumber" propertyLabel="Rückennummer"></property>
-      <div class="divider"></div>
-      <property [propertyValue]="user.team.name" propertyLabel="Mannschaft"></property>
+      <div *ngIf="user.team">
+        <div class="divider"></div>
+        <property [propertyValue]="user.team.name" propertyLabel="Mannschaft"></property>
+      </div>
     </div>
   </div>
   <div class="row" *ngIf="isCurrentUser()">
