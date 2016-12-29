@@ -17,9 +17,9 @@
       <div class="divider"></div>
       <property [propertyValue]="user.email" propertyLabel="E-Mail"></property>
       <div class="divider"></div>
-      <property [propertyValue]="user.position" propertyLabel="Position"></property>
-      <div class="divider"></div>
       <property [propertyValue]="user.backNumber" propertyLabel="Rückennummer"></property>
+      <div class="divider"></div>
+      <property [propertyValue]="user.position" propertyLabel="Position"></property>
       <div *ngIf="user.team">
         <div class="divider"></div>
         <property [propertyValue]="user.team.name" propertyLabel="Mannschaft"></property>

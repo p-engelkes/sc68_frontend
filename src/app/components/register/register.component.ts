@@ -39,7 +39,7 @@ export class RegisterComponent {
         "Die E-Mail Adresse muss mindestens 3 Zeichen lang sein",
         "Die E-Mail Adresse darf nicht länger als 30 Zeichen lang sein"
       ])
-      .setId('email').setType('email').setFormControlName('email').setPlaceHolder('E-Mail');
+      .setId('email').setType('email').setFormControlName('email').setPlaceHolder('E-Mail').setShouldValidate(true);
 
     this.passwordField = Field.create()
       .setControl(this.registerForm.controls['password'])
@@ -48,7 +48,7 @@ export class RegisterComponent {
         "Ein Passwort muss angegeben werden",
         "Das Passwort muss mindestens 6 Zeichen lang sein"
       ])
-      .setId('password').setType('password').setFormControlName('password').setPlaceHolder('password');
+      .setId('password').setType('password').setFormControlName('password').setPlaceHolder('password').setShouldValidate(true);
   }
 
   register(value: any) {

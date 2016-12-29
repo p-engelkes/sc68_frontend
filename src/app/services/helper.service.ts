@@ -18,7 +18,11 @@ export function httpGetWithoutAuthorization(url: string, http: Http) {
   return http.get(url);
 }
 
-export function httpPost(url: string, jsonObject: any, http: Http) {
+export function httpPostWithoutAuthorization(url: string, jsonObject: any, http: Http) {
   url = apiUrl + url;
-  return http.post(url, JSON.stringify(jsonObject), {headers: jsonHeaders});
+  let bearerHeaders = new Headers({
+    'Authorization': 'Bearer' + LocalStorage.getToken(),
+    'Content-Type': 'application/json'
+  });
+  return http.post(url, JSON.stringify(jsonObject), {headers: bearerHeaders});
 }

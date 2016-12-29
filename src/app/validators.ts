@@ -22,13 +22,14 @@ export enum FormValidators {
 }
 
 export class Field {
-  public control: AbstractControl
-  public validators: FormValidators[];
-  public messages: string[];
+  public control: AbstractControl;
+  public validators: FormValidators[] = [];
+  public messages: string[] = [];
   public id: string;
   public type: string;
   public formControlName: string;
   public placeHolder: string;
+  public shouldValidate: boolean = false;
 
   public static create(): Field {
     return new Field();
@@ -67,6 +68,19 @@ export class Field {
   public setPlaceHolder(placeHolder: string): Field {
     this.placeHolder = placeHolder;
     return this;
+  }
+
+  public setShouldValidate(shouldValidate: boolean): Field {
+    this.shouldValidate = shouldValidate;
+    return this;
+  }
+
+  getDefaultClass(): string {
+    if (this.shouldValidate) {
+      return 'validate';
+    }
+
+    return '';
   }
 
   getError(): string {
