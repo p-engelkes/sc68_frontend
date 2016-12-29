@@ -15,7 +15,11 @@ import {TeamService} from "./services/team.service";
 import {MaterializeDropdown} from "./directives/SelectDirective";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {UserService} from "./services/user.service";
-import {ProfilePropertyComponent} from "./components/user/profile.property.component";
+import {PropertyComponent} from "./components/user/property.component";
+import {EditUserProfileComponent} from "./components/user/edit.user.profile.component";
+import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
+import {DataService} from "./services/data.service";
+import {EditPropertyComponent} from "./components/user/edit.property.component";
 
 @NgModule({
   declarations: [
@@ -25,9 +29,12 @@ import {ProfilePropertyComponent} from "./components/user/profile.property.compo
     RegisterComponent,
     HomeComponent,
     TeamComponent,
+    UserProfileParentComponent,
     UserProfileComponent,
+    EditUserProfileComponent,
     TeamComponent,
-    ProfilePropertyComponent,
+    PropertyComponent,
+    EditPropertyComponent,
     MaterializeDropdown
   ],
   imports: [
@@ -41,7 +48,8 @@ import {ProfilePropertyComponent} from "./components/user/profile.property.compo
     LoginService,
     RegisterService,
     TeamService,
-    UserService
+    UserService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

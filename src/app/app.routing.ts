@@ -5,6 +5,8 @@ import {HomeComponent} from "./components/home/home.component";
 import {ModuleWithProviders} from "@angular/core";
 import {TeamComponent} from "./components/team/team.component";
 import {UserProfileComponent} from "./components/user/user.profile.component";
+import {EditUserProfileComponent} from "./components/user/edit.user.profile.component";
+import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -32,7 +34,17 @@ const appRoutes: Routes = [
   },
   {
     path: 'user/:id',
-    component: UserProfileComponent
+    component: UserProfileParentComponent,
+    children: [
+      {
+        path: '',
+        component: UserProfileComponent
+      },
+      {
+        path: 'edit',
+        component: EditUserProfileComponent
+      }
+    ]
   }
 ];
 

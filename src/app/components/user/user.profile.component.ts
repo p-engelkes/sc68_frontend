@@ -7,6 +7,7 @@ import {UserService} from "../../services/user.service";
 import "rxjs/add/operator/switchMap";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocalStorage} from "../../helper/LocalStorage";
+import {DataService} from "../../services/data.service";
 @Component({
   selector: 'user-profile',
   templateUrl: 'user.profile.component.html'
@@ -21,6 +22,7 @@ export class UserProfileComponent extends OnInit {
         let userResponse = JSON.parse(JSON.stringify(data))._body;
         let userJson = JSON.parse(userResponse);
         this.user = new User().deserialize(userJson);
+        this.dataService.user = this.user;
       },
       error => console.log(error)
     )
@@ -28,11 +30,17 @@ export class UserProfileComponent extends OnInit {
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private dataService: DataService) {
     super()
   }
 
   isCurrentUser() {
     return this.user.id == LocalStorage.getCurrentUserId();
+  }
+
+  editUserProfile() {
+    let currentUserId = LocalStorage.getCurrentUserId();
+    this.router.navigate(['/user', +currentUserId, 'edit'])
   }
 }

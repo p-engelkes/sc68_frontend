@@ -11,7 +11,7 @@ import {Component, Input} from "@angular/core";
       </div>
 `
 })
-export class ProfilePropertyComponent {
+export class PropertyComponent {
   @Input() propertyValue: string;
   @Input() propertyLabel: string;
 }

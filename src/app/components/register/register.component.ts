@@ -31,21 +31,24 @@ export class RegisterComponent {
       passwordConfirmation: [null, Validators.required]
     }, {validator: matchingPasswords('password', 'passwordConfirmation')});
 
-    this.emailField = new Field(this.registerForm.controls['email'],
-      [FormValidators.REQUIRED, FormValidators.MIN_LENGTH, FormValidators.MAX_LENGTH],
-      [
+    this.emailField = Field.create()
+      .setControl(this.registerForm.controls['email'])
+      .setValidators([FormValidators.REQUIRED, FormValidators.MIN_LENGTH, FormValidators.MAX_LENGTH])
+      .setMessages([
         "Eine E-Mail Adresse muss angegeben werden",
         "Die E-Mail Adresse muss mindestens 3 Zeichen lang sein",
         "Die E-Mail Adresse darf nicht länger als 30 Zeichen lang sein"
-      ]
-    );
-    this.passwordField = new Field(this.registerForm.controls['password'],
-      [FormValidators.REQUIRED, FormValidators.MIN_LENGTH],
-      [
+      ])
+      .setId('email').setType('email').setFormControlName('email').setPlaceHolder('E-Mail');
+
+    this.passwordField = Field.create()
+      .setControl(this.registerForm.controls['password'])
+      .setValidators([FormValidators.REQUIRED, FormValidators.MIN_LENGTH])
+      .setMessages([
         "Ein Passwort muss angegeben werden",
         "Das Passwort muss mindestens 6 Zeichen lang sein"
-      ]
-    );
+      ])
+      .setId('password').setType('password').setFormControlName('password').setPlaceHolder('password');
   }
 
   register(value: any) {
@@ -74,7 +77,7 @@ export class RegisterComponent {
         let response = JSON.parse(responseBody);
         let accessToken = response.access_token;
         LocalStorage.setToken(accessToken);
-        this.loginService.verifyToken(accessToken).subscribe(
+        this.loginService.verifyToken(email).subscribe(
           data => {
             LocalStorage.setCurrentEmail(email);
             LocalStorage.setLoggedIn(true);
@@ -85,14 +88,6 @@ export class RegisterComponent {
       },
       error => console.log(error)
     );
-  }
-
-  getEmailError(): string {
-    return this.emailField.getError();
-  }
-
-  getPasswordError(): string {
-    return this.passwordField.getError();
   }
 
   getPasswordConfirmationError(): string {

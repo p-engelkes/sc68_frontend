@@ -1,0 +1,8 @@
+<div [formGroup]="formGroup">
+  <input id="{{propertyField.id}}" type="{{propertyField.type}}" formControlName="{{propertyField.formControlName}}"
+         placeholder="{{propertyField.placeHolder}}" class="validate"
+         [ngClass]="propertyField.getValidationClass()">
+  <label [attr.for]="propertyField.id" [attr.data-error]="propertyField.getError()">
+    {{propertyField.placeHolder}}
+  </label>
+</div>

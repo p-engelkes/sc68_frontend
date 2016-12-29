@@ -6,20 +6,12 @@
       <form class="col s12" [formGroup]="registerForm">
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" formControlName="email" placeholder="E-Mail"
-                   class="validate"
-                   [ngClass]="{'invalid':registerForm.controls['email'].invalid && registerForm.controls['email'].touched, 'valid':registerForm.controls['email'].valid && registerForm.controls['email'].touched}"
-            >
-            <label for="email" [attr.data-error]="getEmailError()">E-Mail</label>
+            <edit-property [formGroup]="registerForm" [propertyField]="emailField"></edit-property>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="password" type="password" class="validate" placeholder="Passwort"
-                   formControlName="password"
-                   [ngClass]="{'invalid':registerForm.controls['password'].invalid && registerForm.controls['password'].touched, 'valid':registerForm.controls['password'].valid && registerForm.controls['password'].touched}"
-            >
-            <label for="password" [attr.data-error]="getPasswordError()">Password</label>
+            <edit-property [formGroup]="registerForm" [propertyField]="passwordField"></edit-property>
           </div>
         </div>
         <div class="row">
@@ -27,7 +19,7 @@
             <input id="passwordConfirmation" type="password" formControlName="passwordConfirmation"
                    placeholder="Passwort bestätigen"
                    class="validate"
-                   [ngClass]="{'invalid':(registerForm.controls['passwordConfirmation'].invalid || registerForm.hasError('mismatchedPasswords')) && registerForm.controls['passwordConfirmation'].touched, 'valid':registerForm.controls['passwordConfirmation'].valid && !registerForm.hasError('mismatchedPasswords') && registerForm.controls['passwordConfirmation'].touched}"
+                   [ngClass]="{'invalid':(registerForm.hasError('passwordConfirmation') || registerForm.hasError('mismatchedPasswords')) && registerForm.controls['passwordConfirmation'].touched, 'valid':!registerForm.hasError('passwordConfirmation') && !registerForm.hasError('mismatchedPasswords') && registerForm.controls['passwordConfirmation'].touched}"
             >
             <label for="passwordConfirmation" [attr.data-error]="getPasswordConfirmationError()">Password
               Confirmation</label>

@@ -25,11 +25,48 @@ export class Field {
   public control: AbstractControl
   public validators: FormValidators[];
   public messages: string[];
+  public id: string;
+  public type: string;
+  public formControlName: string;
+  public placeHolder: string;
 
-  constructor(control: AbstractControl, validators: FormValidators[], messages: string[]) {
+  public static create(): Field {
+    return new Field();
+  }
+
+  public setControl(control: AbstractControl): Field {
     this.control = control;
+    return this;
+  }
+
+  public setValidators(validators: FormValidators[]): Field {
     this.validators = validators;
+    return this;
+  }
+
+  public setMessages(messages: string[]): Field {
     this.messages = messages;
+    return this;
+  }
+
+  public setId(id: string): Field {
+    this.id = id;
+    return this;
+  }
+
+  public setType(type: string): Field {
+    this.type = type;
+    return this;
+  }
+
+  public setFormControlName(formControlName: string): Field {
+    this.formControlName = formControlName;
+    return this;
+  }
+
+  public setPlaceHolder(placeHolder: string): Field {
+    this.placeHolder = placeHolder;
+    return this;
   }
 
   getError(): string {
@@ -40,6 +77,25 @@ export class Field {
     }
 
     return error;
+  }
+
+  getValidationClass(): string {
+    if (this.control.touched == false) {
+      return "";
+    } else {
+      let valid = true;
+      for (let i = 0; i < this.validators.length; i++) {
+        if (this.control.hasError(this.validators[i].toString())) {
+          valid = false;
+        }
+      }
+
+      if (valid) {
+        return 'valid';
+      } else {
+        return 'invalid';
+      }
+    }
   }
 
   static computeError(error: string, message: string, hasError: boolean): string {
