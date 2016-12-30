@@ -55,7 +55,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       let email = value.email;
       let password = value.password;
-      let user = new User().registerUser(email, password);
+      let user = User.registerUser(email, password);
 
       this.registerService.register(user).subscribe(
         data => {

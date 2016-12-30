@@ -1,4 +1,5 @@
 import {Team} from "./team";
+import {DataService} from "../services/data.service";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -84,7 +85,7 @@ export class User {
     return this.firstName + " " + this.lastName;
   }
 
-  deserialize(json): User {
+  static deserialize(json): User {
     let user = User.create()
       .setId(json.id)
       .setFirstName(json.firstName)
@@ -96,14 +97,22 @@ export class User {
       .setBackNumber(json.backNumber)
       .setProfilePicture(json.profilePicture);
     if (json.teamId > 0) {
-      user.setTeam(new Team().deserialize(json.team))
+      user.setTeam(new Team().deserialize(json.team));
       user.setTeamId(json.teamId);
     }
 
     return user;
   }
 
-  registerUser(email: string, password: string): User {
+  static getUserFromJsonResponse(data: any, dataService: DataService): User {
+    let userResponse = JSON.parse(JSON.stringify(data))._body;
+    let userJson = JSON.parse(userResponse);
+    let user = User.deserialize(userJson);
+    dataService.user = user;
+    return user;
+  }
+
+  static registerUser(email: string, password: string): User {
     return User.create()
       .setEmail(email)
       .setPassword(password);

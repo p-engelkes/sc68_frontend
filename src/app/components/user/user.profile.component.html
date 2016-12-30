@@ -5,7 +5,7 @@
         <h3 class="center-align">{{user.getFullName()}} #{{user.backNumber}}</h3>
       </div>
     </div>
-    <div class="col s3">
+    <div *ngIf="user.profilePicture" class="col s3">
       <img class="circle responsive-img z-depth-5" [profile-image]="user">
     </div>
   </div>

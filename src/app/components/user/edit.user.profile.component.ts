@@ -12,6 +12,7 @@ import {TeamService} from "../../services/team.service";
 import {LocalStorage} from "../../helper/LocalStorage";
 import {Router} from "@angular/router";
 import {NgUploaderOptions} from "ngx-uploader";
+import {apiUrl} from "../../services/helper.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -43,6 +44,12 @@ export class EditUserProfileComponent extends OnInit {
 
   ngOnInit(): void {
     this.user = this.dataService.user;
+    if (!this.user) {
+      this.userService.getUser(LocalStorage.getCurrentUserId()).subscribe(
+        data => this.user = User.getUserFromJsonResponse(data, this.dataService),
+        error => console.log(error)
+      )
+    }
     this.userService.getAllPositions().subscribe(
       data => this.positions = Position.getPositionsFromJson(data),
       error => console.log(error)
@@ -84,12 +91,9 @@ export class EditUserProfileComponent extends OnInit {
 
     this.zone = new NgZone({enableLongStackTrace: false});
     this.options = {
-      url: 'http://localhost:8081/api/upload',
+      url: apiUrl + '/user/' + LocalStorage.getCurrentUserId() + '/uploadProfilePicture',
       authToken: LocalStorage.getToken(),
       authTokenPrefix: 'Bearer',
-      data: {
-        userId: LocalStorage.getCurrentUserId()
-      }
     }
   }
 
@@ -101,15 +105,10 @@ export class EditUserProfileComponent extends OnInit {
   }
 
   beforeUpload(uploadingFile): void {
-    console.log("Before upload is called");
     if (uploadingFile.size > this.sizeLimit) {
       uploadingFile.setAbort();
       alert('File is too large');
     }
-  }
-
-  afterUpload(uploadedFile): void {
-
   }
 
   updateUserProfile(value: any) {
