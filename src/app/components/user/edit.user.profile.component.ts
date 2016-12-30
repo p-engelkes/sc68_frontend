@@ -91,7 +91,7 @@ export class EditUserProfileComponent extends OnInit {
 
     this.zone = new NgZone({enableLongStackTrace: false});
     this.options = {
-      url: apiUrl + '/user/' + LocalStorage.getCurrentUserId() + '/uploadProfilePicture',
+      url: apiUrl + '/users/' + LocalStorage.getCurrentUserId() + '/uploadProfilePicture',
       authToken: LocalStorage.getToken(),
       authTokenPrefix: 'Bearer',
     }
