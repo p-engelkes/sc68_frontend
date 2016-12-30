@@ -12,6 +12,6 @@ export class RegisterService {
   }
 
   register(user: User) {
-    return httpPostWithoutAuthorization("/user/register", user, this.http);
+    return httpPostWithoutAuthorization("/users/register", user, this.http);
   }
 }

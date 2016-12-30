@@ -2,7 +2,7 @@
  * Created by pengelkes on 09.12.2016.
  */
 import {Injectable} from "@angular/core";
-import {httpGet, httpGetWithoutAuthorization, httpPost} from "./helper.service";
+import {httpGet, httpPost} from "./helper.service";
 import {Http} from "@angular/http";
 import {User} from "../models/user";
 @Injectable()
@@ -12,7 +12,7 @@ export class UserService {
   }
 
   getUser(userId) {
-    return httpGet("/user/" + userId, this.http);
+    return httpGet("/users/" + userId, this.http);
   }
 
   getAllPositions() {
@@ -20,6 +20,6 @@ export class UserService {
   }
 
   update(currentUserId: number, user: User) {
-    return httpPost("/user/" + currentUserId, user, this.http);
+    return httpPost("/users/" + currentUserId, user, this.http);
   }
 }
