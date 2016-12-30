@@ -20,6 +20,8 @@ import {EditUserProfileComponent} from "./components/user/edit.user.profile.comp
 import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
 import {DataService} from "./services/data.service";
 import {EditPropertyComponent} from "./components/user/edit.property.component";
+import {NgFileSelectDirective, NgUploaderService} from "ngx-uploader";
+import {ProfileImageDirective} from "./directives/image.directive";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import {EditPropertyComponent} from "./components/user/edit.property.component";
     TeamComponent,
     PropertyComponent,
     EditPropertyComponent,
-    MaterializeDropdown
+    MaterializeDropdown,
+    ProfileImageDirective,
+    NgFileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import {EditPropertyComponent} from "./components/user/edit.property.component";
     RegisterService,
     TeamService,
     UserService,
-    DataService
+    DataService,
+    NgUploaderService
   ],
   bootstrap: [AppComponent]
 })

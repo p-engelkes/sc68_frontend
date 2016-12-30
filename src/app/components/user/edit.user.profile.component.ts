@@ -1,7 +1,7 @@
 /**
  * Created by pengelkes on 29.12.2016.
  */
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, NgZone} from "@angular/core";
 import {UserService} from "../../services/user.service";
 import {DataService} from "../../services/data.service";
 import {User, Position} from "../../models/user";
@@ -11,6 +11,7 @@ import {Team} from "../../models/team";
 import {TeamService} from "../../services/team.service";
 import {LocalStorage} from "../../helper/LocalStorage";
 import {Router} from "@angular/router";
+import {NgUploaderOptions} from "ngx-uploader";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -18,6 +19,7 @@ declare var jQuery: any;
   templateUrl: './edit.user.profile.component.html'
 })
 export class EditUserProfileComponent extends OnInit {
+  uploadFile: any;
   editUserForm: FormGroup;
   firstNameField: Field;
   lastNameField: Field;
@@ -26,6 +28,10 @@ export class EditUserProfileComponent extends OnInit {
   private user: User;
   private positions: Position[];
   private teams: Team[];
+  private zone: NgZone;
+  private options: NgUploaderOptions;
+  private sizeLimit = 2000000;
+  private progress = 0;
 
   constructor(private userService: UserService,
               private dataService: DataService,
@@ -75,6 +81,35 @@ export class EditUserProfileComponent extends OnInit {
     this.backNumberField = Field.create()
       .setControl(this.editUserForm.controls['backNumber'])
       .setId('backNumber').setType('number').setFormControlName('backNumber').setPlaceHolder('Rückennummer');
+
+    this.zone = new NgZone({enableLongStackTrace: false});
+    this.options = {
+      url: 'http://localhost:8081/api/upload',
+      authToken: LocalStorage.getToken(),
+      authTokenPrefix: 'Bearer',
+      data: {
+        userId: LocalStorage.getCurrentUserId()
+      }
+    }
+  }
+
+  handleUpload(data): void {
+    if (data && data.response) {
+      data = JSON.parse(data.response);
+      this.uploadFile = data;
+    }
+  }
+
+  beforeUpload(uploadingFile): void {
+    console.log("Before upload is called");
+    if (uploadingFile.size > this.sizeLimit) {
+      uploadingFile.setAbort();
+      alert('File is too large');
+    }
+  }
+
+  afterUpload(uploadedFile): void {
+
   }
 
   updateUserProfile(value: any) {

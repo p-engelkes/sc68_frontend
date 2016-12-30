@@ -13,6 +13,7 @@ export class User {
   public teamId: number;
   public backNumber: number;
   public position: string;
+  public profilePicture: string;
   public created: Date;
 
   static create(): User {
@@ -74,6 +75,11 @@ export class User {
     return this;
   }
 
+  public setProfilePicture(profilePicture: string): User {
+    this.profilePicture = profilePicture;
+    return this;
+  }
+
   getFullName(): string {
     return this.firstName + " " + this.lastName;
   }
@@ -87,7 +93,8 @@ export class User {
       .setEmail(json.email)
       .setCreated(json.created)
       .setPosition(json.position)
-      .setBackNumber(json.backNumber);
+      .setBackNumber(json.backNumber)
+      .setProfilePicture(json.profilePicture);
     if (json.teamId > 0) {
       user.setTeam(new Team().deserialize(json.team))
       user.setTeamId(json.teamId);
