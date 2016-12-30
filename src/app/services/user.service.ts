@@ -16,7 +16,7 @@ export class UserService {
   }
 
   getAllPositions() {
-    return httpGetWithoutAuthorization("/positions", this.http);
+    return httpGet("/positions", this.http);
   }
 
   update(currentUserId: number, user: User) {

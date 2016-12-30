@@ -54,7 +54,7 @@ export class EditUserProfileComponent extends OnInit {
       data => this.positions = Position.getPositionsFromJson(data),
       error => console.log(error)
     );
-    this.teamService.getAllTeamsWithoutAuthorization().subscribe(
+    this.teamService.getAllTeams().subscribe(
       data => this.teams = Team.getTeamsFromJson(data),
       error => console.log(error)
     );

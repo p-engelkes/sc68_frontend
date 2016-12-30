@@ -13,8 +13,4 @@ export class TeamService {
   getAllTeams() {
     return httpGet("/teams", this.http);
   }
-
-  getAllTeamsWithoutAuthorization() {
-    return httpGetWithoutAuthorization("/teams", this.http);
-  }
 }
