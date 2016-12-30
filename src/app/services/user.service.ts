@@ -2,7 +2,7 @@
  * Created by pengelkes on 09.12.2016.
  */
 import {Injectable} from "@angular/core";
-import {httpGet, httpGetWithoutAuthorization, httpPostWithoutAuthorization} from "./helper.service";
+import {httpGet, httpGetWithoutAuthorization, httpPost} from "./helper.service";
 import {Http} from "@angular/http";
 import {User} from "../models/user";
 @Injectable()
@@ -20,6 +20,6 @@ export class UserService {
   }
 
   update(currentUserId: number, user: User) {
-    return httpPostWithoutAuthorization("/user/" + currentUserId, user, this.http);
+    return httpPost("/user/" + currentUserId, user, this.http);
   }
 }

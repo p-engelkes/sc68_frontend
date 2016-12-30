@@ -22,6 +22,8 @@ import {DataService} from "./services/data.service";
 import {EditInputFieldComponent} from "./components/ui/edit.input.field.component";
 import {NgFileSelectDirective, NgUploaderService} from "ngx-uploader";
 import {ProfileImageDirective} from "./directives/image.directive";
+import {ArticleService} from "./services/article.service";
+import {LatestArticlesComponent} from "./components/article/latest.articles.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import {ProfileImageDirective} from "./directives/image.directive";
     EditInputFieldComponent,
     MaterializeDropdown,
     ProfileImageDirective,
+    LatestArticlesComponent,
     NgFileSelectDirective
   ],
   imports: [
@@ -53,6 +56,7 @@ import {ProfileImageDirective} from "./directives/image.directive";
     RegisterService,
     TeamService,
     UserService,
+    ArticleService,
     DataService,
     NgUploaderService
   ],

@@ -4,7 +4,7 @@
 import {Injectable} from "@angular/core";
 import {User} from "../models/user";
 import {Http} from "@angular/http";
-import {httpPostWithoutAuthorization} from "./helper.service";
+import {httpPost} from "./helper.service";
 @Injectable()
 export class RegisterService {
 
@@ -12,6 +12,6 @@ export class RegisterService {
   }
 
   register(user: User) {
-    return httpPostWithoutAuthorization("/user/register", user, this.http);
+    return httpPost("/user/register", user, this.http);
   }
 }

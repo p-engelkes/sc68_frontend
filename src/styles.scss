@@ -13,24 +13,6 @@ a {
   color: $navbar-font-color;
 }
 
-.above-navigation {
-  background-color: $primary-color;
-
-  a {
-    margin-right: 10px;
-  }
-
-  a:hover {
-    cursor: pointer;
-  }
-
-  .divider {
-    background: transparent;
-    border-right: 1px solid $navbar-font-color;
-    padding-right: 15px;
-  }
-}
-
 .user-profile {
   .banner {
     .secondary-background {
@@ -48,4 +30,17 @@ a {
   }
 
   font-size: 1.3rem;
+}
+
+.article-card {
+  border: 1px solid $secondary-color;
+
+  .chip {
+    margin-left: 1rem;
+  }
+
+  //can not nest because the pointer is not applied to the whole chip
+  .chip:hover {
+    cursor: pointer;
+  }
 }
