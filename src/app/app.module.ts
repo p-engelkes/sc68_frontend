@@ -15,11 +15,11 @@ import {TeamService} from "./services/team.service";
 import {MaterializeDropdown} from "./directives/SelectDirective";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {UserService} from "./services/user.service";
-import {PropertyComponent} from "./components/user/property.component";
+import {PropertyComponent} from "./components/ui/property.component";
 import {EditUserProfileComponent} from "./components/user/edit.user.profile.component";
 import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
 import {DataService} from "./services/data.service";
-import {EditPropertyComponent} from "./components/user/edit.property.component";
+import {EditInputFieldComponent} from "./components/ui/edit.input.field.component";
 import {NgFileSelectDirective, NgUploaderService} from "ngx-uploader";
 import {ProfileImageDirective} from "./directives/image.directive";
 
@@ -36,7 +36,7 @@ import {ProfileImageDirective} from "./directives/image.directive";
     EditUserProfileComponent,
     TeamComponent,
     PropertyComponent,
-    EditPropertyComponent,
+    EditInputFieldComponent,
     MaterializeDropdown,
     ProfileImageDirective,
     NgFileSelectDirective
