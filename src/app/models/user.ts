@@ -1,5 +1,6 @@
 import {Team} from "./team";
 import {DataService} from "../services/data.service";
+import {ProfilePicture} from "./profile.picture";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -14,7 +15,7 @@ export class User {
   public teamId: number;
   public backNumber: number;
   public position: string;
-  public profilePicture: string;
+  public profilePicture: ProfilePicture;
   public created: Date;
 
   static create(): User {
@@ -76,7 +77,7 @@ export class User {
     return this;
   }
 
-  public setProfilePicture(profilePicture: string): User {
+  public setProfilePicture(profilePicture: ProfilePicture): User {
     this.profilePicture = profilePicture;
     return this;
   }
@@ -86,6 +87,7 @@ export class User {
   }
 
   static deserialize(json): User {
+    console.log(json);
     let user = User.create()
       .setId(json.id)
       .setFirstName(json.firstName)
@@ -99,6 +101,9 @@ export class User {
     if (json.teamId > 0) {
       user.setTeam(new Team().deserialize(json.team));
       user.setTeamId(json.teamId);
+    }
+    if (user.profilePicture) {
+      user.setProfilePicture(ProfilePicture.deserialize(json.profilePicture))
     }
 
     return user;
