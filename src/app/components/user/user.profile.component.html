@@ -6,7 +6,8 @@
       </div>
     </div>
     <div *ngIf="user.profilePicture" class="col s3">
-      <img class="circle responsive-img z-depth-5" [profile-image]="user">
+      <img class="circle responsive-img z-depth-5" [style.width]="user.profilePicture.ratio * 100 + '%'"
+           [profile-image]="user">
     </div>
   </div>
   <div class="row">

@@ -17,6 +17,6 @@ export class ProfileImageDirective extends OnInit {
   }
 
   ngOnInit() {
-    this.element.nativeElement.src = 'data:image/png;base64,' + this.user.profilePicture;
+    this.element.nativeElement.src = 'data:image/png;base64,' + this.user.profilePicture.picture;
   }
 }
