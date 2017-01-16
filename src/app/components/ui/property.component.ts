@@ -6,8 +6,8 @@ import {Component, Input} from "@angular/core";
   selector: 'property',
   template: `
     <div class="row" *ngIf=propertyValue>
-        <div class="col s4">{{propertyLabel}}:</div>
-        <div class="col s4">{{propertyValue}}</div>
+        <div class="col s4 propertyLabel">{{propertyLabel}}:</div>
+        <div class="col s4 propertyValue">{{propertyValue}}</div>
       </div>
 `
 })
