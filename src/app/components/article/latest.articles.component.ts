@@ -10,14 +10,11 @@ import {Router} from "@angular/router";
   templateUrl: './latest.articles.component.html'
 })
 export class LatestArticlesComponent {
-  private articles: Article[];
+  articles: Article[];
 
   constructor(private articleService: ArticleService,
               private router: Router) {
-    articleService.findAll().subscribe(
-      data => this.articles = Article.getArticleFromRestResponse(data),
-      error => console.log(error)
-    )
+    this.articles = articleService.findAll();
   }
 
   showAuthorProfile(authorId: number) {

@@ -76,7 +76,7 @@ export class Article {
     return article;
   }
 
-  static getArticleFromRestResponse(data: any): Article[] {
+  static getArticlesFromRestResponse(data: any): Article[] {
     let articles: Article[] = [];
     let articleResponses = JSON.parse(JSON.stringify(data))._body;
     let articlesJson = JSON.parse(articleResponses);
