@@ -1,10 +1,11 @@
 import {Http, Headers} from "@angular/http";
 import {LocalStorage} from "../helper/LocalStorage";
+import {environment} from "../../environments/environment";
 /**
  * Created by pengelkes on 02.12.2016.
  */
 let jsonHeaders = new Headers({'Content-Type': 'application/json'});
-export let url = "http://localhost:8081";
+export let url = environment.url;
 export let apiUrl = url + "/api";
 
 export function httpGet(url: string, http: Http) {
