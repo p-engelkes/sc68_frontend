@@ -4,11 +4,12 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve",
+    "start": "node server.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +21,9 @@
     "@angular/platform-browser": "~2.0.0",
     "@angular/platform-browser-dynamic": "~2.0.0",
     "@angular/router": "~3.0.0",
+    "angular-cli": "1.0.0-beta.17",
     "core-js": "^2.4.1",
+    "express": "^4.14.0",
     "ngx-uploader": "^2.0.3",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
@@ -44,5 +47,9 @@
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "2.0.2"
+  },
+  "engines": {
+    "node": "6.2.0",
+    "npm": "3.8.9"
   }
 }
