@@ -20,7 +20,7 @@ import {EditUserProfileComponent} from "./components/user/edit.user.profile.comp
 import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
 import {DataService} from "./services/data.service";
 import {EditInputFieldComponent} from "./components/ui/edit.input.field.component";
-import {NgFileSelectDirective, NgUploaderService} from "ngx-uploader";
+import {NgUploaderModule} from "ngx-uploader";
 import {ProfileImageDirective} from "./directives/image.directive";
 import {ArticleService} from "./services/article.service";
 import {LatestArticlesComponent} from "./components/article/latest.articles.component";
@@ -42,9 +42,9 @@ import {LatestArticlesComponent} from "./components/article/latest.articles.comp
     MaterializeDropdown,
     ProfileImageDirective,
     LatestArticlesComponent,
-    NgFileSelectDirective
   ],
   imports: [
+    NgUploaderModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -57,8 +57,7 @@ import {LatestArticlesComponent} from "./components/article/latest.articles.comp
     TeamService,
     UserService,
     ArticleService,
-    DataService,
-    NgUploaderService
+    DataService
   ],
   bootstrap: [AppComponent]
 })
