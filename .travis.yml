@@ -25,3 +25,11 @@ before_script:
 - ng build
 
 script: karma start karma.conf.js --single-run
+
+deploy:
+  provider: heroku
+  app: sc68
+  on:
+    repo: p-engelkes/sc68_frontend
+    branch: travis-ci
+  api_key: 2e82ac0c-5af0-41d6-baa7-dcd16e298fea
