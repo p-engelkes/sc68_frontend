@@ -2,34 +2,30 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - '6'
-
+- '6'
 addons:
 apt:
   sources:
-    - google-chrome
+  - google-chrome
   packages:
-    - google-chrome-stable
-    - google-chrome-beta
-
+  - google-chrome-stable
+  - google-chrome-beta
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
 - npm install -g angular-cli
 - npm install -g karma
 - npm install -g npm@4.1.2
 - npm install
 - ng build
-
 script: karma start karma.conf.js --single-run
-
 deploy:
   provider: heroku
   app: sc68
   on:
     repo: p-engelkes/sc68_frontend
-    branch: travis-ci
-  api_key: 2e82ac0c-5af0-41d6-baa7-dcd16e298fea
+    all_branches: true
+  api_key:
+    secure: obo2CsINlrwHmgk6b8Zdv2CroTlpziv0uhWWMkOtr4yHjJwmhMulwoCXp8SyRNlHvTG58YEAI0xHiVpEBc6LazBezZc1Mb4uO2l/4PSCOuxzkKB5FUWIzcUuU13vN+PznQdndhr7F2csYluF4Oqx7oj5eqmX4qpn1hoDwjU7cgaeaX3dVtxgeP+AwuUxml0Y2XtYyZqEjWxO/P6S1SQ26tVeGIOpbinQ0bDuCcqgh0xvCxghOO5/6jviNOPQcMPEnbb0tQU/QfI9T2/CoYy3rW0JadaNCHyjnd8eYyMDlviRV8pJoPQU9wsdBFxlETNMGXIdm+ArJQ5zQzp0nzEQ6IfkYZ7PXrCiwgJxDa7HdvROL36AQyPkaeZJ+bkf+hLWeWaLFD+9e6Qt4pAM1OXJKprCX9M5lKVtjltLy4bmm9pBG7YspmP3Nvy6hab9SuekytMFYZ83KPI1RELDCpksj8WE2SPmsbPAD0aZwIeWJyVFWdzTsJ/cdk48+Z1lGnslUGp6Fad7Srf13ldQCjMM9V3z2wdduOqk7+FAo4neA3yah7NqAlKeatVburTPUj+fM7fS3eCTPABgsHmYMFomfMBDozzTZ6ja77wiOsH3PQ3x4nfNMWeRP9BtIQN8MXwQLaxdtmmKGHjtjIEbmNMKBnMxG3pvmBVIkOS46M2N5ZE=
