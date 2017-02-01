@@ -1,12 +1,12 @@
 import {LoginComponent} from "../../../components/login/login.component";
-import {ComponentFixture, async, TestBed} from "@angular/core/testing";
+import {ComponentFixture, async, TestBed, fakeAsync} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {ReactiveFormsModule} from "@angular/forms";
 import {LoginService} from "../../../services/login.service";
-import {FakeLoginService, FakeRouter} from "../ServiceFaker";
+import {FakeLoginService, FakeRouter, setInputValue} from "../spec.utils";
 import {Router} from "@angular/router";
-import {DebugElement} from "@angular/core";
 import Any = jasmine.Any;
+
 describe('Login Component', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>
@@ -44,24 +44,24 @@ describe('Login Component', () => {
     expect(labels.length).toBe(2);
   });
 
-  it('should call the login action on Login-Button click', async(() => {
-    spyOn(component, 'login');
+  it('should call the login action on Login-Button click with the value inside the email and password field',
+    fakeAsync(() => {
+      spyOn(component, 'login');
 
-    let passwordDebugElement = fixture.debugElement.query(By.css('#password'));
-    sendInput(passwordDebugElement, "password");
+      let passwordDebugElement = fixture.debugElement.query(By.css('#password'));
+      setInputValue(passwordDebugElement, 'password', fixture);
 
-    let button = fixture.debugElement.query(By.css('.btn'));
-    button.triggerEventHandler('click', null);
+      let emailDebugElement = fixture.debugElement.query(By.css('#email'));
+      setInputValue(emailDebugElement, 'email', fixture);
 
-    fixture.whenStable().then(() => {
-      expect(component.login).toHaveBeenCalled();
-    })
-  }));
+      let button = fixture.debugElement.query(By.css('.btn'));
+      button.triggerEventHandler('click', null);
 
-  function sendInput(inputElement: DebugElement, text: string) {
-    inputElement.nativeElement.value = text;
-    inputElement.nativeElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-    return fixture.whenStable();
-  }
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.loginForm.value.email).toBe('email');
+        expect(component.loginForm.value.password).toBe('password');
+        expect(component.login).toHaveBeenCalledWith(component.loginForm.value);
+      })
+    }));
 });

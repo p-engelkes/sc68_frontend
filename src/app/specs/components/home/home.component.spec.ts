@@ -5,7 +5,7 @@ import {LatestArticlesComponent} from "../../../components/article/latest.articl
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {ArticleService} from "../../../services/article.service";
 import {Router} from "@angular/router";
-import {FakeArticleService, FakeRouter} from "../ServiceFaker";
+import {FakeArticleService, FakeRouter} from "../spec.utils";
 describe('Home Component', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;

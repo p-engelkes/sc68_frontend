@@ -4,7 +4,7 @@ import {ArticleService} from "../../../services/article.service";
 import {By} from "@angular/platform-browser";
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {Router} from "@angular/router";
-import {FakeArticleService, FakeRouter, fakeArticleOne, fakeArticleTwo} from "../ServiceFaker";
+import {FakeArticleService, FakeRouter, fakeArticleOne, fakeArticleTwo} from "../spec.utils";
 import Spy = jasmine.Spy;
 describe('Latest Articles Component', () => {
   let comp: LatestArticlesComponent;
