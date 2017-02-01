@@ -3,28 +3,14 @@ import {ComponentFixture, async, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {LatestArticlesComponent} from "../../../components/article/latest.articles.component";
 import {ProfileImageDirective} from "../../../directives/image.directive";
-import {Article} from "../../../models/Article";
-import {Observable} from "rxjs";
 import {ArticleService} from "../../../services/article.service";
 import {Router} from "@angular/router";
+import {FakeArticleService, FakeRouter} from "../ServiceFaker";
 describe('Home Component', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1');
-  let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
 
-  class FakeArticleService {
-    findAll() {
-      return [fakeArticleOne, fakeArticleTwo];
-    }
-  }
-
-  class FakeRouter {
-    navigate(commands: any[]) {
-      return Observable.of(true)
-    }
-  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
