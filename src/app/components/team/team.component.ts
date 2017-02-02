@@ -12,9 +12,6 @@ export class TeamComponent {
   private teams: Team[] = [];
 
   constructor(private teamService: TeamService) {
-    this.teamService.getAllTeams().subscribe(
-      data => this.teams = Team.getTeamsFromJson(data),
-      error => console.log(error)
-    )
+    this.teams = teamService.getAllTeams();
   }
 }

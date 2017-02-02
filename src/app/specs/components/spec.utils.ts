@@ -4,9 +4,16 @@ import {DebugElement} from "@angular/core";
 import {tick} from "@angular/core/testing";
 import {User} from "../../models/user";
 import {By} from "@angular/platform-browser";
+import {Team, TrainingTimes} from "../../models/team";
 
 export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1');
 export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
+
+let trainingTimesOne = new TrainingTimes("Friday", "19:00");
+let trainginTimesTwo = new TrainingTimes("Wednesday", "19:00");
+let trainingTimes = [trainingTimesOne, trainginTimesTwo];
+export let teamOne = Team.create().setId(1).setName("1. Mannschaft").setTrainingTimes(trainingTimes);
+export let teamTwo = Team.create().setId(2).setName("2. Mannschaft").setTrainingTimes(trainingTimes);
 
 export class FakeLoginService {
   logIn(email, password) {
@@ -25,6 +32,12 @@ export class FakeLoginService {
 export class FakeRegisterService {
   register(user: User) {
     return Observable.of(JSON.stringify(user));
+  }
+}
+
+export class FakeTeamService {
+  getAllTeams(): Team[] {
+    return [teamOne, teamTwo];
   }
 }
 

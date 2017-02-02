@@ -4,23 +4,37 @@
 export class Team {
   public id: number;
   public name: string;
-  public trainingTimes: Training[] = [];
+  public trainingTimes: TrainingTimes[] = [];
 
-  create(name: string, trainingTimes: Training[]) {
+  static create(): Team {
+    return new Team();
+  }
+
+  public setId(id: number): Team {
+    this.id = id;
+    return this;
+  }
+
+  public setName(name: string): Team {
     this.name = name;
-    this.trainingTimes = trainingTimes;
+    return this;
+  }
 
+  public setTrainingTimes(trainingTimes: TrainingTimes[]) {
+    this.trainingTimes = trainingTimes;
     return this;
   }
 
   deserialize(json) {
-    this.id = json.id;
-    this.name = json.name;
+    var team = Team.create()
+      .setId(json.id)
+      .setName(json.name);
+
     for (let trainingTime in json.trainingTimes) {
-      this.trainingTimes.push(new Training(trainingTime, json.trainingTimes[trainingTime]));
+      team.trainingTimes.push(new TrainingTimes(trainingTime, json.trainingTimes[trainingTime]));
     }
 
-    return this;
+    return team;
   }
 
   static getTeamsFromJson(data: any): Team[] {
@@ -37,7 +51,7 @@ export class Team {
   }
 }
 
-export class Training {
+export class TrainingTimes {
   public day: string;
   public time: string;
 
