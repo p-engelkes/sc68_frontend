@@ -6,7 +6,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register.service";
 import {matchingPasswords, Field, FormValidators} from "../../validators";
 import {User} from "../../models/user";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 import {LocalStorage} from "../../helper/LocalStorage";
 declare var jQuery: any;
@@ -22,7 +22,6 @@ export class RegisterComponent {
 
   constructor(private registerService: RegisterService,
               private loginService: LoginService,
-              private route: ActivatedRoute,
               private router: Router,
               formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({

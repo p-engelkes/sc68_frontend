@@ -2,6 +2,7 @@ import {Observable} from "rxjs";
 import {Article} from "../../models/Article";
 import {DebugElement} from "@angular/core";
 import {tick} from "@angular/core/testing";
+import {User} from "../../models/user";
 
 export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1');
 export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
@@ -14,7 +15,18 @@ export class FakeLoginService {
   verifyToken(email) {
     return Observable.of(JSON.stringify(email));
   }
+
+  isLoggedIn() {
+    return true;
+  }
 }
+
+export class FakeRegisterService {
+  register(user: User) {
+    return Observable.of(JSON.stringify(user));
+  }
+}
+
 export class FakeArticleService {
   findAll() {
     return [fakeArticleOne, fakeArticleTwo];
