@@ -45,19 +45,13 @@ export class EditUserProfileComponent extends OnInit {
   ngOnInit(): void {
     this.user = this.dataService.user;
     if (!this.user) {
-      this.userService.getUser(LocalStorage.getCurrentUserId()).subscribe(
-        data => this.user = User.getUserFromJsonResponse(data, this.dataService),
-        error => console.log(error)
-      )
+      this.user = this.userService.getUser(LocalStorage.getCurrentUserId());
     }
     this.userService.getAllPositions().subscribe(
       data => this.positions = Position.getPositionsFromJson(data),
       error => console.log(error)
     );
-    this.teamService.getAllTeams().subscribe(
-      data => this.teams = Team.getTeamsFromJson(data),
-      error => console.log(error)
-    );
+    this.teams = this.teamService.getAllTeams();
     this.editUserForm = this.formBuilder.group({
       firstName: [this.user.firstName],
       lastName: [this.user.lastName],

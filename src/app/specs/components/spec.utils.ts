@@ -5,15 +5,21 @@ import {tick} from "@angular/core/testing";
 import {User} from "../../models/user";
 import {By} from "@angular/platform-browser";
 import {Team, TrainingTimes} from "../../models/team";
+import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
 
 export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1');
 export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
 
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
-let trainginTimesTwo = new TrainingTimes("Wednesday", "19:00");
-let trainingTimes = [trainingTimesOne, trainginTimesTwo];
+let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
+let trainingTimes = [trainingTimesOne, trainingTimes2];
 export let teamOne = Team.create().setId(1).setName("1. Mannschaft").setTrainingTimes(trainingTimes);
 export let teamTwo = Team.create().setId(2).setName("2. Mannschaft").setTrainingTimes(trainingTimes);
+
+export let user = User.create().setId(1).setUserName('pengelkes')
+  .setFirstName('Patrick')
+  .setLastName('Engelkes')
+  .setBackNumber(8);
 
 export class FakeLoginService {
   logIn(email, password) {
@@ -38,6 +44,20 @@ export class FakeRegisterService {
 export class FakeTeamService {
   getAllTeams(): Team[] {
     return [teamOne, teamTwo];
+  }
+}
+
+export class FakeUserService {
+  getUser(id) {
+    return user;
+  }
+}
+
+export class FakeActivatedRoute extends ActivatedRoute {
+  constructor() {
+    super();
+    this.snapshot = new ActivatedRouteSnapshot();
+    this.snapshot.params = Observable.of({id: "1"});
   }
 }
 
