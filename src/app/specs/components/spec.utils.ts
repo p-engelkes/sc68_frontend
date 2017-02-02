@@ -3,6 +3,7 @@ import {Article} from "../../models/Article";
 import {DebugElement} from "@angular/core";
 import {tick} from "@angular/core/testing";
 import {User} from "../../models/user";
+import {By} from "@angular/platform-browser";
 
 export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1');
 export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
@@ -47,4 +48,8 @@ export function setInputValue(debugElement: DebugElement, value: string, fixture
   input.value = value;
   input.dispatchEvent(new Event('input'));
   tick();
+}
+
+export function queryElement(css, fixture) {
+  return fixture.debugElement.query(By.css(css));
 }
