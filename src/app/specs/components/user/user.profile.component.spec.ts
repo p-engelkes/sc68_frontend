@@ -34,10 +34,10 @@ describe('User Component', () => {
     expect(userProfileDebugElement).not.toBeNull();
   });
 
-  it('should display 3 properties', () => {
+  it('should display 6 properties', () => {
     fixture.detectChanges();
     let properties = fixture.debugElement.queryAll(By.css('property'));
-    expect(properties.length).toBe(5);
+    expect(properties.length).toBe(6);
   });
 
   describe('edit button', () => {

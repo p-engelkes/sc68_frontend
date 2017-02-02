@@ -32,7 +32,6 @@ export class EditUserProfileComponent extends OnInit {
   private zone: NgZone;
   private options: NgUploaderOptions;
   private sizeLimit = 2000000;
-  private progress = 0;
 
   constructor(private userService: UserService,
               private dataService: DataService,
@@ -47,10 +46,7 @@ export class EditUserProfileComponent extends OnInit {
     if (!this.user) {
       this.user = this.userService.getUser(LocalStorage.getCurrentUserId());
     }
-    this.userService.getAllPositions().subscribe(
-      data => this.positions = Position.getPositionsFromJson(data),
-      error => console.log(error)
-    );
+    this.positions = this.userService.getAllPositions();
     this.teams = this.teamService.getAllTeams();
     this.editUserForm = this.formBuilder.group({
       firstName: [this.user.firstName],

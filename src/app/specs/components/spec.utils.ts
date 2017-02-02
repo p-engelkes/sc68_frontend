@@ -2,10 +2,11 @@ import {Observable} from "rxjs";
 import {Article} from "../../models/Article";
 import {DebugElement} from "@angular/core";
 import {tick} from "@angular/core/testing";
-import {User} from "../../models/user";
+import {User, Position} from "../../models/user";
 import {By} from "@angular/platform-browser";
 import {Team, TrainingTimes} from "../../models/team";
 import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
+import {DataService} from "../../services/data.service";
 
 export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1');
 export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
@@ -16,10 +17,17 @@ let trainingTimes = [trainingTimesOne, trainingTimes2];
 export let teamOne = Team.create().setId(1).setName("1. Mannschaft").setTrainingTimes(trainingTimes);
 export let teamTwo = Team.create().setId(2).setName("2. Mannschaft").setTrainingTimes(trainingTimes);
 
-export let user = User.create().setId(1).setUserName('pengelkes')
+export let user = User.create()
+  .setId(1)
+  .setUserName('pengelkes')
+  .setTeam(teamOne)
   .setFirstName('Patrick')
   .setLastName('Engelkes')
   .setBackNumber(8);
+
+let positionOne = new Position('test1');
+let positionTwo = new Position('test2');
+let positions = [positionOne, positionTwo];
 
 export class FakeLoginService {
   logIn(email, password) {
@@ -51,13 +59,9 @@ export class FakeUserService {
   getUser(id) {
     return user;
   }
-}
 
-export class FakeActivatedRoute extends ActivatedRoute {
-  constructor() {
-    super();
-    this.snapshot = new ActivatedRouteSnapshot();
-    this.snapshot.params = Observable.of({id: "1"});
+  getAllPositions() {
+    return positions;
   }
 }
 
@@ -66,9 +70,22 @@ export class FakeArticleService {
     return [fakeArticleOne, fakeArticleTwo];
   }
 }
+
+export class FakeDataService extends DataService {
+  user = user;
+}
+
 export class FakeRouter {
   navigate(commands: any[]) {
     return Observable.of(true)
+  }
+}
+
+export class FakeActivatedRoute extends ActivatedRoute {
+  constructor() {
+    super();
+    this.snapshot = new ActivatedRouteSnapshot();
+    this.snapshot.params = Observable.of({id: "1"});
   }
 }
 
