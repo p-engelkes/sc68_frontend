@@ -44,23 +44,29 @@ describe('Login Component', () => {
     expect(labels.length).toBe(2);
   });
 
+  it('should set the loginFormvalues according to the input fields', fakeAsync(() => {
+    let passwordDebugElement = fixture.debugElement.query(By.css('#password'));
+    setInputValue(passwordDebugElement, 'password', fixture);
+
+    let emailDebugElement = fixture.debugElement.query(By.css('#email'));
+    setInputValue(emailDebugElement, 'email', fixture);
+
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.loginForm.value.email).toBe('email');
+      expect(component.loginForm.value.password).toBe('password');
+    })
+  }));
+
   it('should call the login action on Login-Button click with the value inside the email and password field',
     fakeAsync(() => {
       spyOn(component, 'login');
-
-      let passwordDebugElement = fixture.debugElement.query(By.css('#password'));
-      setInputValue(passwordDebugElement, 'password', fixture);
-
-      let emailDebugElement = fixture.debugElement.query(By.css('#email'));
-      setInputValue(emailDebugElement, 'email', fixture);
 
       let button = fixture.debugElement.query(By.css('.btn'));
       button.triggerEventHandler('click', null);
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(component.loginForm.value.email).toBe('email');
-        expect(component.loginForm.value.password).toBe('password');
         expect(component.login).toHaveBeenCalledWith(component.loginForm.value);
       })
     }));
