@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {LocalStorage} from "../../helper/LocalStorage";
+import {RouterService} from "../../services/router.service";
 declare var jQuery: any;
 @Component({
   selector: 'navbar',
@@ -12,6 +13,7 @@ declare var jQuery: any;
 })
 export class NavbarComponent {
   constructor(private loginService: LoginService,
+              private routerService: RouterService,
               private router: Router) {
   }
 

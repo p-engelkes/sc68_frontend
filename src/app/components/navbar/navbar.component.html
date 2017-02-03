@@ -4,21 +4,36 @@
   <div class="nav-wrapper">
     <a class="brand-logo center" routerLink="/home" routerLinkActive="active">Skiclub 68</a>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
-      <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
-      <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()"><a routerLink="/teams">Teams</a></li>
+      <li routerLinkActive="active">
+        <a id="home" (click)="routerService.navigate('/home')">Home</a>
+      </li>
+
+      <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
+        <a id="teams" (click)="routerService.navigate('/teams')">Teams</a>
+      </li>
     </ul>
     <ul class="right hide-on-med-and-down">
-      <li routerLinkActive="active"><a routerLink="/aboutUs">Über uns</a></li>
-      <li routerLinkActive="active"><a routerLink="/contact">Kontakt</a></li>
+      <li routerLinkActive="active">
+        <a id="about-us" (click)="routerService.navigate('/aboutUs')">Über uns</a>
+      </li>
+
+      <li routerLinkActive="active">
+        <a id="contact" (click)="routerService.navigate('/contact')">Kontakt</a>
+      </li>
+
       <li routerLinkActive="active" *ngIf="!loginService.isLoggedIn()">
-        <a (click)="openRegisterModal()">Registrieren</a>
+        <a id="register" (click)="openRegisterModal()">Registrieren</a>
       </li>
+
       <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
-        <a (click)="showUserProfile()">Profil</a>
+        <a id="user-profile" (click)="showUserProfile()">Profil</a>
       </li>
-      <li routerLinkActive="active"><a (click)="openLoginModal()">
-        {{loginService.isLoggedIn() ? 'Logout' : 'Login'}}
-      </a></li>
+
+      <li routerLinkActive="active">
+        <a id="login-or-logout" (click)="openLoginModal()">
+          {{loginService.isLoggedIn() ? 'Logout' : 'Login'}}
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

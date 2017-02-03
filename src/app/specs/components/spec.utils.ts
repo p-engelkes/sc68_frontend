@@ -86,6 +86,12 @@ export class FakeRouter {
   }
 }
 
+export class FakeRouterService {
+  navigate(url) {
+    return Observable.of(true);
+  }
+}
+
 export class FakeActivatedRoute extends ActivatedRoute {
   constructor() {
     super();
@@ -107,4 +113,18 @@ export function setInputValue(debugElement: DebugElement, value: string, fixture
 
 export function queryElement(css, fixture) {
   return fixture.debugElement.query(By.css(css));
+}
+
+export function clickOnElement(css, fixture) {
+  let debugElement = queryElement(css, fixture);
+  debugElement.triggerEventHandler('click', null);
+}
+
+export function checkRouterNavigation(fixture, fakeRouterService, css, url) {
+  clickOnElement(css, fixture);
+
+  fixture.detectChanges();
+  fixture.whenStable().then(() => {
+    expect(fakeRouterService.navigate).toHaveBeenCalledWith(url);
+  })
 }

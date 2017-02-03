@@ -1,7 +1,13 @@
 import {NavbarComponent} from "../../../components/navbar/navbar.component";
 import {ComponentFixture, async, TestBed, fakeAsync} from "@angular/core/testing";
 import {LoginService} from "../../../services/login.service";
-import {FakeLoginService, FakeRouter, FakeRegisterService} from "../spec.utils";
+import {
+  FakeLoginService,
+  FakeRouter,
+  FakeRegisterService,
+  FakeRouterService,
+  checkRouterNavigation
+} from "../spec.utils";
 import {By} from "@angular/platform-browser";
 import {LoginComponent} from "../../../components/login/login.component";
 import {RegisterComponent} from "../../../components/register/register.component";
@@ -10,10 +16,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
 import {RegisterService} from "../../../services/register.service";
 import {DebugElement} from "@angular/core";
+import {RouterService} from "../../../services/router.service";
 describe('Navbar Component', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
   let fakeLoginService: FakeLoginService;
+  let fakeRouterService: FakeRouterService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,6 +31,7 @@ describe('Navbar Component', () => {
         {provide: LoginService, useClass: FakeLoginService},
         {provide: RegisterService, useClass: FakeRegisterService},
         {provide: Router, useClass: FakeRouter},
+        {provide: RouterService, useClass: FakeRouterService}
       ]
     })
       .compileComponents();
@@ -31,6 +40,7 @@ describe('Navbar Component', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     fakeLoginService = fixture.debugElement.injector.get(LoginService);
+    fakeRouterService = fixture.debugElement.injector.get(RouterService);
     component = fixture.componentInstance;
   });
 
@@ -88,10 +98,33 @@ describe('Navbar Component', () => {
     });
 
     it('should have four links', () => {
-      fixture.detectChanges()
+      fixture.detectChanges();
       fixture.whenStable().then(() => {
         expect(rightNavDebugElement.children.length).toBe(4);
       });
     })
+  });
+
+  describe('routing', () => {
+    beforeEach(() => {
+      spyOn(fakeRouterService, 'navigate');
+    });
+
+    it('should navigate to the home component', () => {
+      checkRouterNavigation(fixture, fakeRouterService, '#home', '/home');
+    });
+
+    it('should navigate to the teams component', () => {
+      fixture.detectChanges(); //call since teams element is created with an ngIf
+      checkRouterNavigation(fixture, fakeRouterService, '#teams', '/teams');
+    });
+
+    it('should navigate to the aboutUs component', () => {
+      checkRouterNavigation(fixture, fakeRouterService, '#about-us', '/aboutUs');
+    });
+
+    it('should navigate to the contact component', () => {
+      checkRouterNavigation(fixture, fakeRouterService, '#contact', '/contact');
+    });
   })
 });
