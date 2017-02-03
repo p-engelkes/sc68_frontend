@@ -23,10 +23,11 @@ export let user = User.create()
   .setTeam(teamOne)
   .setFirstName('Patrick')
   .setLastName('Engelkes')
-  .setBackNumber(8);
+  .setBackNumber(8)
+  .setPassword('password');
 
-let positionOne = new Position('test1');
-let positionTwo = new Position('test2');
+let positionOne = new Position('position1');
+let positionTwo = new Position('position2');
 let positions = [positionOne, positionTwo];
 
 export class FakeLoginService {
@@ -62,6 +63,10 @@ export class FakeUserService {
 
   getAllPositions() {
     return positions;
+  }
+
+  update(id, user) {
+    return Observable.of(JSON.stringify(user));
   }
 }
 

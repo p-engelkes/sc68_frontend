@@ -102,6 +102,7 @@ export class EditUserProfileComponent extends OnInit {
   }
 
   updateUserProfile(value: any) {
+    this.dataService.user;
     let firstName = value.firstName;
     let lastName = value.lastName;
     let email = value.email;
