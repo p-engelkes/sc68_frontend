@@ -8,4 +8,8 @@ export class RouterService {
   navigateTo(url) {
     this.router.navigate([url])
   }
+
+  navigateToWithParameter(url, id) {
+    this.router.navigate([url, id]);
+  }
 }

@@ -8,9 +8,6 @@ import {Team, TrainingTimes} from "../../models/team";
 import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
 import {DataService} from "../../services/data.service";
 
-export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1');
-export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
-
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
 let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
 let trainingTimes = [trainingTimesOne, trainingTimes2];
@@ -29,6 +26,9 @@ export let user = User.create()
 let positionOne = new Position('position1');
 let positionTwo = new Position('position2');
 let positions = [positionOne, positionTwo];
+
+export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1').setAuthor(user);
+export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
 
 export class FakeLoginService {
   logIn(email, password) {

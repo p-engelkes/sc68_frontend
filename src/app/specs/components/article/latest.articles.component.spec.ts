@@ -3,8 +3,10 @@ import {ComponentFixture, TestBed, fakeAsync, tick, async} from "@angular/core/t
 import {ArticleService} from "../../../services/article.service";
 import {By} from "@angular/platform-browser";
 import {ProfileImageDirective} from "../../../directives/image.directive";
-import {Router} from "@angular/router";
-import {FakeArticleService, FakeRouter, fakeArticleOne, fakeArticleTwo} from "../spec.utils";
+import {FakeArticleService, fakeArticleOne, fakeArticleTwo, FakeRouterService} from "../spec.utils";
+import {ArticleComponent} from "../../../components/article/article.component";
+import {RouterService} from "../../../services/router.service";
+import {UserChipComponent} from "../../../components/user/user.chip.component";
 import Spy = jasmine.Spy;
 describe('Latest Articles Component', () => {
   let comp: LatestArticlesComponent;
@@ -12,10 +14,10 @@ describe('Latest Articles Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LatestArticlesComponent, ProfileImageDirective],
+      declarations: [LatestArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent],
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
-        {provide: Router, useClass: FakeRouter}
+        {provide: RouterService, useClass: FakeRouterService}
       ],
     })
       .compileComponents();
@@ -31,19 +33,8 @@ describe('Latest Articles Component', () => {
     tick();
     fixture.detectChanges();
 
-    let articleElements = fixture.debugElement.queryAll(By.css('.article'));
+    let articleElements = fixture.debugElement.queryAll(By.css('article'));
 
     expect(articleElements.length).toBe(2);
   }));
-
-  it('should not show a card-action if there is no author for the article', fakeAsync(() => {
-    comp.articles = [fakeArticleOne, fakeArticleTwo];
-    tick();
-    fixture.detectChanges();
-
-    let cardActionElement = fixture.debugElement.query(By.css('.card-action'));
-
-    expect(cardActionElement).toBeNull();
-  }));
-
 });

@@ -1,0 +1,6 @@
+<div *ngIf="user">
+  <div class="chip" (click)="showUserProfile(user.id)">
+    <img *ngIf="user.profilePicture" [profile-image]="user">
+    {{user.getFullName()}}
+  </div>
+</div>

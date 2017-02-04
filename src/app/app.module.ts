@@ -24,6 +24,8 @@ import {NgUploaderModule} from "ngx-uploader";
 import {ProfileImageDirective} from "./directives/image.directive";
 import {ArticleService} from "./services/article.service";
 import {LatestArticlesComponent} from "./components/article/latest.articles.component";
+import {ArticleComponent} from "./components/article/article.component";
+import {UserChipComponent} from "./components/user/user.chip.component";
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import {LatestArticlesComponent} from "./components/article/latest.articles.comp
     MaterializeDropdown,
     ProfileImageDirective,
     LatestArticlesComponent,
+    ArticleComponent,
+    UserChipComponent
   ],
   imports: [
     NgUploaderModule,
