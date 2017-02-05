@@ -26,6 +26,7 @@ import {ArticleService} from "./services/article.service";
 import {LatestArticlesComponent} from "./components/article/latest.articles.component";
 import {ArticleComponent} from "./components/article/article.component";
 import {UserChipComponent} from "./components/user/user.chip.component";
+import {RouterService} from "./services/router.service";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {UserChipComponent} from "./components/user/user.chip.component";
     TeamService,
     UserService,
     ArticleService,
-    DataService
+    DataService,
+    RouterService
   ],
   bootstrap: [AppComponent]
 })
