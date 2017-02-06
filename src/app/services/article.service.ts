@@ -14,17 +14,8 @@ export class ArticleService {
     return httpPost("/articles", article, this.http);
   }
 
-  findAll(): Article[] {
-    httpGetWithoutAuthorization("/articles", this.http).subscribe(
-      data => {
-        return Article.getArticlesFromRestResponse(data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
-    return [];
+  findAll(): any {
+    return httpGetWithoutAuthorization("/articles", this.http);
   }
 
   findAllByAuthor(authorId: number) {

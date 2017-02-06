@@ -7,6 +7,7 @@ import {By} from "@angular/platform-browser";
 import {Team, TrainingTimes} from "../../models/team";
 import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
 import {DataService} from "../../services/data.service";
+import {Response, ResponseOptions} from "@angular/http";
 
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
 let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
@@ -51,18 +52,18 @@ export class FakeRegisterService {
 }
 
 export class FakeTeamService {
-  getAllTeams(): Team[] {
-    return [teamOne, teamTwo];
+  getAllTeams() {
+    return Observable.of(getResponse([teamOne, teamTwo]));
   }
 }
 
 export class FakeUserService {
   getUser(id) {
-    return user;
+    return Observable.of(getResponse(user));
   }
 
   getAllPositions() {
-    return positions;
+    return Observable.of(getResponse(positions));
   }
 
   update(id, user) {
@@ -72,7 +73,7 @@ export class FakeUserService {
 
 export class FakeArticleService {
   findAll() {
-    return [fakeArticleOne, fakeArticleTwo];
+    return Observable.of(getResponse([fakeArticleOne, fakeArticleTwo]));
   }
 }
 
@@ -127,4 +128,10 @@ export function checkRouterNavigation(fixture, fakeRouterService, css, url) {
   fixture.whenStable().then(() => {
     expect(fakeRouterService.navigate).toHaveBeenCalledWith(url);
   })
+}
+
+function getResponse(object): Response {
+  let options = new ResponseOptions();
+  options.body = JSON.stringify(object);
+  return new Response(options);
 }

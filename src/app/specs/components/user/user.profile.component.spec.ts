@@ -2,10 +2,11 @@ import {UserProfileComponent} from "../../../components/user/user.profile.compon
 import {ComponentFixture, async, TestBed} from "@angular/core/testing";
 import {PropertyComponent} from "../../../components/ui/property.component";
 import {UserService} from "../../../services/user.service";
-import {FakeUserService, FakeRouter, queryElement, FakeActivatedRoute} from "../spec.utils";
+import {FakeUserService, FakeRouter, queryElement, FakeActivatedRoute, FakeDataService} from "../spec.utils";
 import {Router, ActivatedRoute} from "@angular/router";
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {By} from "@angular/platform-browser";
+import {DataService} from "../../../services/data.service";
 describe('User Component', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
@@ -16,9 +17,8 @@ describe('User Component', () => {
       providers: [
         {provide: UserService, useClass: FakeUserService},
         {provide: Router, useClass: FakeRouter},
-        {
-          provide: ActivatedRoute, useClass: FakeActivatedRoute
-        }
+        {provide: ActivatedRoute, useClass: FakeActivatedRoute},
+        {provide: DataService, useClass: FakeDataService}
       ]
     })
   }));
@@ -37,7 +37,7 @@ describe('User Component', () => {
   it('should display 6 properties', () => {
     fixture.detectChanges();
     let properties = fixture.debugElement.queryAll(By.css('property'));
-    expect(properties.length).toBe(6);
+    expect(properties.length).toBe(5);
   });
 
   describe('edit button', () => {
