@@ -3,6 +3,7 @@ import {UserChipComponent} from "../../../components/user/user.chip.component";
 import {RouterService} from "../../../services/router.service";
 import {FakeRouterService, queryElement, user, clickOnElement} from "../spec.utils";
 import {ProfileImageDirective} from "../../../directives/image.directive";
+import {User} from "../../../models/user";
 describe('User Chip Component', () => {
   let fixture: ComponentFixture<UserChipComponent>;
   let component: UserChipComponent;
@@ -23,6 +24,18 @@ describe('User Chip Component', () => {
   });
 
   it('should not display the chip if the user was not set', () => {
+    let chipDebugElement = queryElement('.chip', fixture);
+    expect(chipDebugElement).toBeNull();
+  });
+
+  it('should not display the chip if the user has no firstName, lastName or profilePicture', () => {
+    let userWithoutAnyDisplayProperties = User.clone(user);
+    userWithoutAnyDisplayProperties.setFirstName("");
+    userWithoutAnyDisplayProperties.setLastName("");
+    userWithoutAnyDisplayProperties.setProfilePicture(null);
+    component.user = userWithoutAnyDisplayProperties;
+    fixture.detectChanges();
+
     let chipDebugElement = queryElement('.chip', fixture);
     expect(chipDebugElement).toBeNull();
   });
@@ -53,6 +66,6 @@ describe('User Chip Component', () => {
     fixture.detectChanges();
 
     let chipDebugElement = queryElement('.chip', fixture);
-    expect(chipDebugElement.nativeElement.innerText).toBe('Patrick Engelkes');
-  })
+    expect(chipDebugElement.nativeElement.innerText).toBe('Autor: Patrick Engelkes');
+  });
 });

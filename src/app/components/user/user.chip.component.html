@@ -1,6 +1,6 @@
-<div *ngIf="user">
+<div *ngIf="user && ((user.firstName || user.lastName) || user.profilePicture)">
   <div class="chip" (click)="showUserProfile(user.id)">
     <img *ngIf="user.profilePicture" [profile-image]="user">
-    {{user.getFullName()}}
+    Autor: {{user.getFullName()}}
   </div>
 </div>

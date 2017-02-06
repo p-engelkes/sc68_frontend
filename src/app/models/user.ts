@@ -83,7 +83,30 @@ export class User {
   }
 
   getFullName(): string {
-    return this.firstName + " " + this.lastName;
+    let fullName = "";
+    if (this.firstName) {
+      fullName += this.firstName;
+    }
+    if (this.lastName) {
+      fullName += " " + this.lastName;
+    }
+
+    return fullName;
+  }
+
+  static clone(user: User) {
+    return User.create()
+      .setId(user.id)
+      .setFirstName(user.firstName)
+      .setLastName(user.lastName)
+      .setPassword(user.password)
+      .setEmail(user.email)
+      .setCreated(user.created)
+      .setPosition(user.position)
+      .setBackNumber(user.backNumber)
+      .setProfilePicture(user.profilePicture)
+      .setTeam(user.team)
+      .setTeamId(user.teamId)
   }
 
   static deserialize(json): User {

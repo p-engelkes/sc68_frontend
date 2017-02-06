@@ -8,7 +8,6 @@
         </div>
         <div *ngIf="article.author">
           <div class="card-action">
-            Autor:
             <user-chip [user]="article.author"></user-chip>
             <div class="right-align">
               Verfasst am: {{article.created | date: 'dd.MM.yyyy'}}
