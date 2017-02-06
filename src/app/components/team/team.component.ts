@@ -13,12 +13,8 @@ export class TeamComponent {
 
   constructor(private teamService: TeamService) {
     teamService.getAllTeams().subscribe(
-      data => {
-        this.teams = Team.getTeamsFromJson(data);
-      },
-      error => {
-        console.log(error);
-      }
+      data => this.teams = Team.getTeamsFromJson(data),
+      error => console.log(error)
     );
   }
 }

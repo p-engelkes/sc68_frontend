@@ -21,9 +21,13 @@
       <property [propertyValue]="user.backNumber" propertyLabel="Rückennummer"></property>
       <div class="divider"></div>
       <property [propertyValue]="user.position" propertyLabel="Position"></property>
-      <div *ngIf="user.team">
+      <div *ngIf="user.team != null">
         <div class="divider"></div>
         <property [propertyValue]="user.team.name" propertyLabel="Mannschaft"></property>
+      </div>
+      <div *ngIf="user.team == null">
+        <div class="divider"></div>
+        <property [propertyValue]="" propertyLabel="Mannschaft"></property>
       </div>
     </div>
   </div>

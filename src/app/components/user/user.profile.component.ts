@@ -18,12 +18,8 @@ export class UserProfileComponent extends OnInit {
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
     this.userService.getUser(id).subscribe(
-      data => {
-        this.user = User.getUserFromJsonResponse(data, this.dataService)
-      },
-      error => {
-        console.log(error);
-      }
+      data => this.user = User.getUserFromJsonResponse(data, this.dataService),
+      error => console.log(error)
     );
   }
 

@@ -33,13 +33,14 @@ describe('Property Component', () => {
   });
 
   it('should not show a label and property if the given value is empty', () => {
+    comp.propertyLabel = "Test Label:";
     comp.propertyValue = '';
     fixture.detectChanges();
 
     let labelDebugElement = fixture.debugElement.query(By.css('.propertyLabel'));
     let valueDebugElement = fixture.debugElement.query(By.css('.propertyValue'));
 
-    expect(labelDebugElement).toBeNull();
+    expect(labelDebugElement).not.toBeNull();
     expect(valueDebugElement).toBeNull();
-  })
+  });
 });

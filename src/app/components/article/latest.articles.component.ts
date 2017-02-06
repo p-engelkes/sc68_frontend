@@ -13,13 +13,8 @@ export class LatestArticlesComponent extends OnInit {
 
   ngOnInit(): void {
     this.articleService.findAll().subscribe(
-      data => {
-        this.articles = Article.getArticlesFromRestResponse(data);
-        console.log(this.articles.length);
-      },
-      error => {
-        console.log(error);
-      }
+      data => this.articles = Article.getArticlesFromRestResponse(data),
+      error => console.log(error)
     );
   }
 

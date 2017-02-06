@@ -45,12 +45,8 @@ export class EditUserProfileComponent extends OnInit {
     this.user = this.dataService.user;
     if (!this.user) {
       this.userService.getUser(LocalStorage.getCurrentUserId()).subscribe(
-        data => {
-          this.user = User.getUserFromJsonResponse(data, this.dataService)
-        },
-        error => {
-          console.log(error);
-        }
+        data => this.user = User.getUserFromJsonResponse(data, this.dataService),
+        error => console.log(error)
       );
     }
     this.userService.getAllPositions().subscribe(
@@ -60,12 +56,8 @@ export class EditUserProfileComponent extends OnInit {
       error => console.log(error)
     );
     this.teamService.getAllTeams().subscribe(
-      data => {
-        this.teams = Team.getTeamsFromJson(data);
-      },
-      error => {
-        console.log(error);
-      }
+      data => this.teams = Team.getTeamsFromJson(data),
+      error => console.log(error)
     );
     this.editUserForm = this.formBuilder.group({
       firstName: [this.user.firstName],
