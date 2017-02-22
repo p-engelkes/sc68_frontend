@@ -6,6 +6,7 @@ import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LocalStorage} from "../../helper/LocalStorage";
+import {User} from "../../models/user";
 
 declare var Materialize: any;
 declare var jQuery: any;
@@ -57,7 +58,9 @@ export class LoginComponent {
           this.loginService.verifyToken(email).subscribe(
             data => {
               let response = JSON.parse(JSON.stringify(data))._body;
-              LocalStorage.setCurrentUserId(response);
+              let user = User.deserialize(JSON.parse(response));
+              LocalStorage.setCurrentUserId(user.id + "");
+              LocalStorage.setCurrentUserName(user.getFullName());
               LocalStorage.setCurrentEmail(email);
               LocalStorage.setLoggedIn(true);
               jQuery('#login_modal').closeModal();

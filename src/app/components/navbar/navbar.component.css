@@ -1,0 +1,89 @@
+a.button-collapse.top-nav.full {
+  line-height: 122px;
+}
+
+a.button-collapse.top-nav {
+  position: absolute;
+  text-align: center;
+  height: 48px;
+  width: 48px;
+  margin-left: 1.5rem;
+  top: 0;
+  float: none;
+  color: #fff;
+  font-size: 27px;
+  z-index: 2;
+}
+
+main .pageContainer {
+  overflow: visible;
+  position: relative;
+}
+
+main .container {
+  position: relative;
+}
+
+nav.top-nav {
+  height: 120px;
+  box-shadow: none;
+}
+
+nav.top-nav a.page-title {
+  line-height: 80px;
+  font-size: 50px;
+  padding-left: 50px;
+}
+
+nav i {
+  line-height: 60px !important;
+  font-size: 20px !important;
+}
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+
+  nav .nav-wrapper {
+    text-align: center;
+  }
+}
+
+.first-side-nav-link {
+  border-top: 1px solid #bdbdbd;
+}
+
+#logo-container {
+  padding-bottom: 125px;
+  padding-top: 20px;
+  background-color: white;
+}
+
+#sidenav-logo {
+  width: 150px;
+  margin-top: -25px;
+  margin-left: 32px;
+}
+
+#nav-mobile {
+  background: #f5f5f5;
+}
+
+.top-nav .container {
+  margin: 0;
+  max-width: initial;
+  width: 100% !important;
+}
+
+.nav-wrapper {
+  width: 100% !important;
+}
+
+header a:hover {
+  cursor: pointer;
+}

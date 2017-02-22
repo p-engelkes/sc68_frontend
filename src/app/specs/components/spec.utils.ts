@@ -1,6 +1,6 @@
 import {Observable} from "rxjs";
 import {Article} from "../../models/Article";
-import {DebugElement} from "@angular/core";
+import {DebugElement, EventEmitter} from "@angular/core";
 import {tick} from "@angular/core/testing";
 import {User, Position} from "../../models/user";
 import {By} from "@angular/platform-browser";
@@ -98,6 +98,16 @@ export class FakeActivatedRoute extends ActivatedRoute {
     super();
     this.snapshot = new ActivatedRouteSnapshot();
     this.snapshot.params = Observable.of({id: "1"});
+  }
+}
+
+export class FakeNavBarService {
+  changeTitle(newTitle: string) {
+    return null;
+  }
+
+  getEmittedValue() {
+    return new EventEmitter<any>()
   }
 }
 

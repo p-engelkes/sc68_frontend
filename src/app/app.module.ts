@@ -12,7 +12,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {routing} from "./app.routing";
 import {TeamComponent} from "./components/team/team.component";
 import {TeamService} from "./services/team.service";
-import {MaterializeDropdown} from "./directives/SelectDirective";
+import {MaterializeDropdown} from "./directives/select.directive";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {UserService} from "./services/user.service";
 import {PropertyComponent} from "./components/ui/property.component";
@@ -27,6 +27,8 @@ import {LatestArticlesComponent} from "./components/article/latest.articles.comp
 import {ArticleComponent} from "./components/article/article.component";
 import {UserChipComponent} from "./components/user/user.chip.component";
 import {RouterService} from "./services/router.service";
+import {SideNavDirective} from "./directives/navbar.directive";
+import {NavBarService} from "./services/navbar.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import {RouterService} from "./services/router.service";
     ProfileImageDirective,
     LatestArticlesComponent,
     ArticleComponent,
-    UserChipComponent
+    UserChipComponent,
+    SideNavDirective
   ],
   imports: [
     NgUploaderModule,
@@ -63,7 +66,8 @@ import {RouterService} from "./services/router.service";
     UserService,
     ArticleService,
     DataService,
-    RouterService
+    RouterService,
+    NavBarService
   ],
   bootstrap: [AppComponent]
 })

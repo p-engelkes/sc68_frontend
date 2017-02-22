@@ -4,22 +4,22 @@ import {By} from "@angular/platform-browser";
 import {LatestArticlesComponent} from "../../../components/article/latest.articles.component";
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {ArticleService} from "../../../services/article.service";
-import {FakeArticleService, FakeRouterService} from "../spec.utils";
+import {FakeArticleService, FakeRouterService, FakeNavBarService} from "../spec.utils";
 import {ArticleComponent} from "../../../components/article/article.component";
 import {RouterService} from "../../../services/router.service";
 import {UserChipComponent} from "../../../components/user/user.chip.component";
+import {NavBarService} from "../../../services/navbar.service";
 describe('Home Component', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent, LatestArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent],
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
-        {provide: RouterService, useClass: FakeRouterService}
+        {provide: RouterService, useClass: FakeRouterService},
+        {provide: NavBarService, useClass: FakeNavBarService}
       ]
     })
       .compileComponents();

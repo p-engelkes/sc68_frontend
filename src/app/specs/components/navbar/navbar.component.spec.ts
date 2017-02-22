@@ -1,12 +1,15 @@
 import {NavbarComponent} from "../../../components/navbar/navbar.component";
-import {ComponentFixture, async, TestBed, fakeAsync} from "@angular/core/testing";
+import {ComponentFixture, async, TestBed} from "@angular/core/testing";
 import {LoginService} from "../../../services/login.service";
 import {
   FakeLoginService,
   FakeRouter,
   FakeRegisterService,
   FakeRouterService,
-  checkRouterNavigation
+  checkRouterNavigation,
+  FakeNavBarService,
+  queryElement,
+  clickOnElement
 } from "../spec.utils";
 import {By} from "@angular/platform-browser";
 import {LoginComponent} from "../../../components/login/login.component";
@@ -15,8 +18,8 @@ import {Router} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
 import {RegisterService} from "../../../services/register.service";
-import {DebugElement} from "@angular/core";
 import {RouterService} from "../../../services/router.service";
+import {NavBarService} from "../../../services/navbar.service";
 describe('Navbar Component', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
@@ -30,6 +33,7 @@ describe('Navbar Component', () => {
       providers: [
         {provide: LoginService, useClass: FakeLoginService},
         {provide: RegisterService, useClass: FakeRegisterService},
+        {provide: NavBarService, useClass: FakeNavBarService},
         {provide: Router, useClass: FakeRouter},
         {provide: RouterService, useClass: FakeRouterService}
       ]
@@ -52,57 +56,66 @@ describe('Navbar Component', () => {
     expect(registerDebugElement).not.toBeNull();
   });
 
-  it('should have a centered brand logo', () => {
-    let brandLogoDebugElement = fixture.debugElement.query(By.css('.brand-logo'));
-    expect(brandLogoDebugElement.attributes['class']).toContain('center');
-    expect(brandLogoDebugElement.nativeElement.innerText).toBe('Skiclub 68');
+  it('should have a sidenav logo', () => {
+    let sideNavLogoDebugElement = fixture.debugElement.query(By.css('#sidenav-logo'));
+    expect(sideNavLogoDebugElement).not.toBeNull();
   });
 
-  describe('left navigation', () => {
-    let leftNavDebugElement: DebugElement;
-
+  describe('user is logged in', () => {
     beforeEach(() => {
-      leftNavDebugElement = fixture.debugElement.query(By.css('.left'));
-    });
-
-    it('should have a left aligned navigation', () => {
-      expect(leftNavDebugElement).not.toBeNull();
-    });
-
-    it('should have two links if the user is logged in', () => {
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(leftNavDebugElement.children.length).toBe(2);
-      });
     });
 
-    it('should have one link if the user is not logged in', fakeAsync(() => {
+    it('should have a link to all teams', () => {
+      let teamDebugElement = queryElement('#teams', fixture);
+      expect(teamDebugElement).not.toBeNull();
+    });
+
+    describe('user menu', () => {
+      it('should have a user menu if the user is logged in', () => {
+        let userMenuDebugElement = queryElement('#user-menu', fixture);
+        expect(userMenuDebugElement).not.toBeNull();
+      });
+
+      it('should have a link to the user profile', () => {
+        let userProfileDebugElement = queryElement('#user-profile', fixture);
+        expect(userProfileDebugElement).not.toBeNull();
+      });
+
+      it('should have a logout link', () => {
+        let logoutDebugElement = queryElement('#logout', fixture);
+        expect(logoutDebugElement).not.toBeNull();
+      })
+    });
+  });
+
+  describe('user is not logged in', () => {
+    beforeEach(() => {
       spyOn(fakeLoginService, 'isLoggedIn').and.returnValue(false);
-
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(leftNavDebugElement.children.length).toBe(1);
-      });
-    }));
+    });
+
+    it('should have a login link', () => {
+      let loginDebugElement = queryElement('#login', fixture);
+      expect(loginDebugElement).not.toBeNull();
+    });
+
+    it('should have a register link', () => {
+      let registerDebugElement = queryElement('#register', fixture);
+      expect(registerDebugElement).not.toBeNull();
+    });
   });
 
-  describe('right navigation', () => {
-    let rightNavDebugElement: DebugElement;
-
-    beforeEach(() => {
-      rightNavDebugElement = fixture.debugElement.query(By.css('.right'));
+  describe('general menu', () => {
+    it('should have an about us link', () => {
+      let aboutUsDebugElement = queryElement('#about-us', fixture);
+      expect(aboutUsDebugElement).not.toBeNull();
     });
 
-    it('should have a right aligned navigation', () => {
-      expect(rightNavDebugElement).not.toBeNull();
+    it('should have a contact link', () => {
+      let contactDebugElement = queryElement('#contact', fixture);
+      expect(contactDebugElement).not.toBeNull();
     });
-
-    it('should have four links', () => {
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(rightNavDebugElement.children.length).toBe(4);
-      });
-    })
   });
 
   describe('routing', () => {
@@ -110,8 +123,32 @@ describe('Navbar Component', () => {
       spyOn(fakeRouterService, 'navigate');
     });
 
+    it('should logout the user', () => {
+      spyOn(component, 'logout');
+
+      fixture.detectChanges();
+      clickOnElement('#logout', fixture);
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.logout).toHaveBeenCalled();
+      })
+    });
+
+    it('should navigate to the user profile', () => {
+      spyOn(component, 'showUserProfile');
+
+      fixture.detectChanges();
+      clickOnElement('#user-profile', fixture);
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.showUserProfile).toHaveBeenCalled();
+      })
+    });
+
     it('should navigate to the home component', () => {
-      checkRouterNavigation(fixture, fakeRouterService, '#home', '/home');
+      checkRouterNavigation(fixture, fakeRouterService, '#sidenav-logo', '/home');
     });
 
     it('should navigate to the teams component', () => {

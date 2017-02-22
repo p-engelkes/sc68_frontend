@@ -1,39 +1,59 @@
 <logIn></logIn>
 <register></register>
-<nav>
-  <div class="nav-wrapper">
-    <a class="brand-logo center" routerLink="/home" routerLinkActive="active">Skiclub 68</a>
-    <ul id="nav-mobile" class="left hide-on-med-and-down">
-      <li routerLinkActive="active">
-        <a id="home" (click)="routerService.navigate('/home')">Home</a>
-      </li>
-
-      <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
-        <a id="teams" (click)="routerService.navigate('/teams')">Teams</a>
-      </li>
-    </ul>
-    <ul class="right hide-on-med-and-down">
-      <li routerLinkActive="active">
-        <a id="about-us" (click)="routerService.navigate('/aboutUs')">Über uns</a>
-      </li>
-
-      <li routerLinkActive="active">
-        <a id="contact" (click)="routerService.navigate('/contact')">Kontakt</a>
-      </li>
-
-      <li routerLinkActive="active" *ngIf="!loginService.isLoggedIn()">
-        <a id="register" (click)="openRegisterModal()">Registrieren</a>
-      </li>
-
-      <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
-        <a id="user-profile" (click)="showUserProfile()">Profil</a>
-      </li>
-
-      <li routerLinkActive="active">
-        <a id="login-or-logout" (click)="openLoginModal()">
-          {{loginService.isLoggedIn() ? 'Logout' : 'Login'}}
-        </a>
-      </li>
-    </ul>
+<header>
+  <nav class="top-nav">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a class="page-title">{{title}}</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only" side-nav><i
+      class="material-icons">menu</i></a>
   </div>
-</nav>
+  <ul id="nav-mobile" class="side-nav fixed">
+    <li>
+      <a id="logo-container" href="#">
+        <img class="center-align" id="sidenav-logo" src="../../../assets/img/logo.jpg"
+             (click)="routerService.navigate('/home')">
+      </a>
+    </li>
+
+    <li class="no-padding" *ngIf="loginService.isLoggedIn()" id="user-menu">
+      <ul class="collapsible collapsible-accordion">
+        <li routerLinkActive="active" class="bold">
+          <a class="collapsible-header waves-effect waves-teal" id="user">{{currentUserName()}}</a>
+          <div class="collapsible-body" style="display: block;">
+            <ul>
+              <li routerLinkActive="active" class="bold">
+                <a id="user-profile" (click)="showUserProfile()">Profil</a>
+              </li>
+              <li>
+                <a id="logout" (click)="logout()" *ngIf="loginService.isLoggedIn()">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+
+    <li routerLinkActive="active">
+      <a id="login" (click)="openLoginModal()" *ngIf="!loginService.isLoggedIn()">Login</a>
+    </li>
+
+    <li routerLinkActive="active" *ngIf="!loginService.isLoggedIn()">
+      <a id="register" (click)="openRegisterModal()">Registrieren</a>
+    </li>
+
+    <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
+      <a id="teams" (click)="routerService.navigate('/teams')">Teams</a>
+    </li>
+    <li routerLinkActive="active">
+      <a id="about-us" (click)="routerService.navigate('/aboutUs')">Über uns</a>
+    </li>
+    <li routerLinkActive="active">
+      <a id="contact" (click)="routerService.navigate('/contact')">Kontakt</a>
+    </li>
+  </ul>
+</header>

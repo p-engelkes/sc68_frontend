@@ -4,6 +4,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../models/Article";
+import {NavBarService} from "../../services/navbar.service";
 @Component({
   selector: 'latest-articles',
   templateUrl: './latest.articles.component.html'
@@ -18,7 +19,9 @@ export class LatestArticlesComponent extends OnInit {
     );
   }
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService,
+              private navBarService: NavBarService) {
     super();
+    this.navBarService.changeTitle("News");
   }
 }

@@ -22,6 +22,7 @@ export class LoginService {
     LocalStorage.setToken('');
     LocalStorage.setCurrentEmail('');
     LocalStorage.setCurrentUserId('');
+    LocalStorage.setCurrentUserName('');
     LocalStorage.setLoggedIn(false);
   }
 

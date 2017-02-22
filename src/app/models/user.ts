@@ -110,6 +110,8 @@ export class User {
   }
 
   static deserialize(json): User {
+    console.log(json);
+    console.log(json.id);
     let user = User.create()
       .setId(json.id)
       .setFirstName(json.firstName)
