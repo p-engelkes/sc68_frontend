@@ -7,6 +7,8 @@ import {Router} from "@angular/router";
 import {LocalStorage} from "../../helper/LocalStorage";
 import {RouterService} from "../../services/router.service";
 import {NavBarService} from "../../services/navbar.service";
+import {ArticleService} from "../../services/article.service";
+import {Team} from "../../models/team";
 declare var jQuery: any;
 @Component({
   selector: 'navbar',
@@ -15,12 +17,21 @@ declare var jQuery: any;
 })
 export class NavbarComponent implements OnInit {
   title: string;
+  teamsWithAnArticle: Team[];
 
 
   constructor(private loginService: LoginService,
               private routerService: RouterService,
               private router: Router,
-              private navBarService: NavBarService) {
+              private navBarService: NavBarService,
+              private articleService: ArticleService) {
+    this.articleService.getAllTeamsWithAnArticle().subscribe(
+      data => {
+        this.teamsWithAnArticle = Team.getTeamsFromJson(data);
+        console.log(this.teamsWithAnArticle.length);
+      },
+      error => console.log(error)
+    );
   }
 
   ngOnInit(): void {
@@ -53,5 +64,9 @@ export class NavbarComponent implements OnInit {
   showUserProfile() {
     let currentUserId = LocalStorage.getCurrentUserId();
     this.router.navigate(['/user', +currentUserId])
+  }
+
+  clickArticle() {
+    this.router.navigate(['/home']);
   }
 }

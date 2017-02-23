@@ -14,6 +14,10 @@ export class ArticleService {
     return httpPost("/articles", article, this.http);
   }
 
+  getAllTeamsWithAnArticle() {
+    return httpGetWithoutAuthorization("/articles/distinct/team", this.http)
+  }
+
   findAll(): any {
     return httpGetWithoutAuthorization("/articles", this.http);
   }
