@@ -40,12 +40,12 @@ nav i {
   font-size: 20px !important;
 }
 
-header, main, footer {
-  padding-left: 300px;
+header {
+  padding-left: 200px;
 }
 
 @media only screen and (max-width: 992px) {
-  header, main, footer {
+  header {
     padding-left: 0;
   }
 
