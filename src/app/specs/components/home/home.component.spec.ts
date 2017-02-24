@@ -1,7 +1,7 @@
 import {HomeComponent} from "../../../components/home/home.component";
 import {ComponentFixture, async, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
-import {LatestArticlesComponent} from "../../../components/article/latest.articles.component";
+import {ArticlesComponent} from "../../../components/article/articles.component";
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {ArticleService} from "../../../services/article.service";
 import {FakeArticleService, FakeRouterService, FakeNavBarService} from "../spec.utils";
@@ -15,7 +15,7 @@ describe('Home Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, LatestArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent],
+      declarations: [HomeComponent, ArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent],
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
         {provide: RouterService, useClass: FakeRouterService},

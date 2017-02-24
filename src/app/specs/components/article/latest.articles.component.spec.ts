@@ -1,4 +1,4 @@
-import {LatestArticlesComponent} from "../../../components/article/latest.articles.component";
+import {ArticlesComponent} from "../../../components/article/articles.component";
 import {ComponentFixture, TestBed, fakeAsync, tick, async} from "@angular/core/testing";
 import {ArticleService} from "../../../services/article.service";
 import {By} from "@angular/platform-browser";
@@ -10,12 +10,12 @@ import {UserChipComponent} from "../../../components/user/user.chip.component";
 import {NavBarService} from "../../../services/navbar.service";
 import Spy = jasmine.Spy;
 describe('Latest Articles Component', () => {
-  let comp: LatestArticlesComponent;
-  let fixture: ComponentFixture<LatestArticlesComponent>;
+  let comp: ArticlesComponent;
+  let fixture: ComponentFixture<ArticlesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LatestArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent],
+      declarations: [ArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent],
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
         {provide: RouterService, useClass: FakeRouterService},
@@ -26,7 +26,7 @@ describe('Latest Articles Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LatestArticlesComponent);
+    fixture = TestBed.createComponent(ArticlesComponent);
     comp = fixture.componentInstance;
   });
 

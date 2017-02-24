@@ -23,12 +23,13 @@ import {EditInputFieldComponent} from "./components/ui/edit.input.field.componen
 import {NgUploaderModule} from "ngx-uploader";
 import {ProfileImageDirective} from "./directives/image.directive";
 import {ArticleService} from "./services/article.service";
-import {LatestArticlesComponent} from "./components/article/latest.articles.component";
+import {ArticlesComponent} from "./components/article/articles.component";
 import {ArticleComponent} from "./components/article/article.component";
 import {UserChipComponent} from "./components/user/user.chip.component";
 import {RouterService} from "./services/router.service";
 import {SideNavDirective} from "./directives/navbar.directive";
 import {NavBarService} from "./services/navbar.service";
+import {ArticlesParentComponent} from "./components/article/articles.parent.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {NavBarService} from "./services/navbar.service";
     EditInputFieldComponent,
     MaterializeDropdown,
     ProfileImageDirective,
-    LatestArticlesComponent,
+    ArticlesParentComponent,
+    ArticlesComponent,
     ArticleComponent,
     UserChipComponent,
     SideNavDirective

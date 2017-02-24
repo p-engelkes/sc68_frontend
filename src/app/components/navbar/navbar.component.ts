@@ -26,10 +26,7 @@ export class NavbarComponent implements OnInit {
               private navBarService: NavBarService,
               private articleService: ArticleService) {
     this.articleService.getAllTeamsWithAnArticle().subscribe(
-      data => {
-        this.teamsWithAnArticle = Team.getTeamsFromJson(data);
-        console.log(this.teamsWithAnArticle.length);
-      },
+      data => this.teamsWithAnArticle = Team.getTeamsFromJson(data),
       error => console.log(error)
     );
   }
@@ -67,6 +64,10 @@ export class NavbarComponent implements OnInit {
   }
 
   clickArticle() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/articles']);
+  }
+
+  showArticlesForTeam(teamId: number) {
+    this.router.navigate(['/articles/team', +teamId])
   }
 }

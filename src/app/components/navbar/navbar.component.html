@@ -49,11 +49,14 @@
     <li class="no-padding" id="articles">
       <ul class="collapsible collapsible-accordion">
         <li class="bold">
-          <a class="collapsible-header waves-effect waves-teal" id="article" (click)="clickArticle()">Artikel</a>
+          <a class="collapsible-header waves-effect waves-teal" id="article">Artikel</a>
           <div class="collapsible-body" style="display: block;">
             <ul>
+              <li>
+                <a id="all-articles" (click)="clickArticle()">Alle Artikel</a>
+              </li>
               <li *ngFor="let team of teamsWithAnArticle" class="bold">
-                <a id="{{team.id}}">{{team.name}}</a>
+                <a id="{{team.id}}" (click)="showArticlesForTeam(team.id)">{{team.name}}</a>
               </li>
             </ul>
           </div>

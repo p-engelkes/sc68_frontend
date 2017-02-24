@@ -7,6 +7,8 @@ import {TeamComponent} from "./components/team/team.component";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {EditUserProfileComponent} from "./components/user/edit.user.profile.component";
 import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
+import {ArticlesComponent} from "./components/article/articles.component";
+import {ArticlesParentComponent} from "./components/article/articles.parent.component";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -43,6 +45,24 @@ const appRoutes: Routes = [
       {
         path: 'edit',
         component: EditUserProfileComponent
+      }
+    ]
+  },
+  {
+    path: 'articles',
+    component: ArticlesParentComponent,
+    children: [
+      {
+        path: '',
+        component: ArticlesComponent
+      },
+      {
+        path: 'team/:id',
+        component: ArticlesComponent
+      },
+      {
+        path: 'author/:id',
+        component: ArticlesComponent
       }
     ]
   }
