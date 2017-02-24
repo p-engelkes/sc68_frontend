@@ -53,7 +53,7 @@
           <div class="collapsible-body" style="display: block;">
             <ul>
               <li>
-                <a id="all-articles" (click)="clickArticle()">Alle Artikel</a>
+                <a id="all-articles" (click)="showAllArticles()">Alle Artikel</a>
               </li>
               <li *ngFor="let team of teamsWithAnArticle" class="bold">
                 <a id="{{team.id}}" (click)="showArticlesForTeam(team.id)">{{team.name}}</a>

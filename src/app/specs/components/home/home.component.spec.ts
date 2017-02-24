@@ -31,7 +31,7 @@ describe('Home Component', () => {
   });
 
   it('should show the latest articles component', () => {
-    let latestArticlesDebugElement = fixture.debugElement.query(By.css('latest-articles'));
+    let latestArticlesDebugElement = fixture.debugElement.query(By.css('articles-component'));
 
     expect(latestArticlesDebugElement).not.toBeNull();
   });

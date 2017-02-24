@@ -63,7 +63,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/user', +currentUserId])
   }
 
-  clickArticle() {
+  showAllArticles() {
     this.router.navigate(['/articles']);
   }
 

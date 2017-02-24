@@ -8,7 +8,7 @@ import {NavBarService} from "../../services/navbar.service";
 import {ActivatedRoute, Router, NavigationStart} from "@angular/router";
 import {Subscription} from "rxjs";
 @Component({
-  selector: 'latest-articles',
+  selector: 'articles-component',
   templateUrl: 'articles.component.html'
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
@@ -52,7 +52,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   }
 
   private findArticles(id: number, path: string) {
-    if (!id && !path) {
+    if ((!id && !path) || path === 'home') {
       this.articleService.findAll().subscribe(
         data => this.articles = Article.getArticlesFromRestResponse(data),
         error => console.log(error)
