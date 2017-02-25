@@ -9,7 +9,8 @@ import {
   checkRouterNavigation,
   FakeNavBarService,
   queryElement,
-  clickOnElement
+  clickOnElement,
+  FakeArticleService
 } from "../spec.utils";
 import {By} from "@angular/platform-browser";
 import {LoginComponent} from "../../../components/login/login.component";
@@ -20,6 +21,7 @@ import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.c
 import {RegisterService} from "../../../services/register.service";
 import {RouterService} from "../../../services/router.service";
 import {NavBarService} from "../../../services/navbar.service";
+import {ArticleService} from "../../../services/article.service";
 describe('Navbar Component', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
@@ -35,7 +37,8 @@ describe('Navbar Component', () => {
         {provide: RegisterService, useClass: FakeRegisterService},
         {provide: NavBarService, useClass: FakeNavBarService},
         {provide: Router, useClass: FakeRouter},
-        {provide: RouterService, useClass: FakeRouterService}
+        {provide: RouterService, useClass: FakeRouterService},
+        {provide: ArticleService, useClass: FakeArticleService}
       ]
     })
       .compileComponents();
@@ -120,7 +123,7 @@ describe('Navbar Component', () => {
 
   describe('routing', () => {
     beforeEach(() => {
-      spyOn(fakeRouterService, 'navigate');
+      spyOn(fakeRouterService, 'navigateTo');
     });
 
     it('should logout the user', () => {

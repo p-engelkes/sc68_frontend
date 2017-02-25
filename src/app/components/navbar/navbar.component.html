@@ -14,9 +14,9 @@
   </div>
   <ul id="nav-mobile" class="side-nav fixed">
     <li>
-      <a id="logo-container" href="#">
+      <a id="logo-container">
         <img class="center-align" id="sidenav-logo" src="../../../assets/img/logo.jpg"
-             (click)="routerService.navigate('/home')">
+             (click)="routerService.navigateTo('/home')">
       </a>
     </li>
 
@@ -56,7 +56,7 @@
                 <a id="all-articles" (click)="showAllArticles()">Alle Artikel</a>
               </li>
               <li *ngFor="let team of teamsWithAnArticle" class="bold">
-                <a id="{{team.id}}" (click)="showArticlesForTeam(team.id)">{{team.name}}</a>
+                <a id="{{team.id}}" (click)="showArticlesForTeam(team)">{{team.name}}</a>
               </li>
             </ul>
           </div>
@@ -65,13 +65,13 @@
     </li>
 
     <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
-      <a id="teams" (click)="routerService.navigate('/teams')">Teams</a>
+      <a id="teams" (click)="routerService.navigateTo('/teams')">Teams</a>
     </li>
     <li routerLinkActive="active">
-      <a id="about-us" (click)="routerService.navigate('/aboutUs')">Über uns</a>
+      <a id="about-us" (click)="routerService.navigateTo('/aboutUs')">Über uns</a>
     </li>
     <li routerLinkActive="active">
-      <a id="contact" (click)="routerService.navigate('/contact')">Kontakt</a>
+      <a id="contact" (click)="routerService.navigateTo('/contact')">Kontakt</a>
     </li>
   </ul>
 </header>

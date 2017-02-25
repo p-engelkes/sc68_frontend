@@ -1,13 +1,13 @@
 import {Observable} from "rxjs";
 import {Article} from "../../models/Article";
 import {DebugElement, EventEmitter} from "@angular/core";
-import {tick} from "@angular/core/testing";
 import {User, Position} from "../../models/user";
 import {By} from "@angular/platform-browser";
 import {Team, TrainingTimes} from "../../models/team";
-import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
+import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {Response, ResponseOptions} from "@angular/http";
+import {tick} from "@angular/core/testing";
 
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
 let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
@@ -75,6 +75,10 @@ export class FakeArticleService {
   findAll() {
     return Observable.of(getResponse([fakeArticleOne, fakeArticleTwo]));
   }
+
+  getAllTeamsWithAnArticle() {
+    return Observable.of(getResponse([teamOne, teamTwo]))
+  }
 }
 
 export class FakeDataService extends DataService {
@@ -82,13 +86,19 @@ export class FakeDataService extends DataService {
 }
 
 export class FakeRouter {
+  public ne = new NavigationEnd(0, 'http://localhost:4200/login', 'http://localhost:4200/login');
+  public events = new Observable(observer => {
+    observer.next(this.ne);
+    observer.complete();
+  });
+
   navigate(commands: any[]) {
     return Observable.of(true)
   }
 }
 
 export class FakeRouterService {
-  navigate(url) {
+  navigateTo(url) {
     return Observable.of(true);
   }
 }
@@ -98,6 +108,7 @@ export class FakeActivatedRoute extends ActivatedRoute {
     super();
     this.snapshot = new ActivatedRouteSnapshot();
     this.snapshot.params = Observable.of({id: "1"});
+    this.snapshot.url = [];
   }
 }
 
@@ -136,7 +147,7 @@ export function checkRouterNavigation(fixture, fakeRouterService, css, url) {
 
   fixture.detectChanges();
   fixture.whenStable().then(() => {
-    expect(fakeRouterService.navigate).toHaveBeenCalledWith(url);
+    expect(fakeRouterService.navigateTo).toHaveBeenCalledWith(url);
   })
 }
 

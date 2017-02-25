@@ -3,13 +3,22 @@ import {ComponentFixture, TestBed, fakeAsync, tick, async} from "@angular/core/t
 import {ArticleService} from "../../../services/article.service";
 import {By} from "@angular/platform-browser";
 import {ProfileImageDirective} from "../../../directives/image.directive";
-import {FakeArticleService, fakeArticleOne, fakeArticleTwo, FakeRouterService, FakeNavBarService} from "../spec.utils";
+import {
+  FakeArticleService,
+  fakeArticleOne,
+  fakeArticleTwo,
+  FakeRouterService,
+  FakeNavBarService,
+  FakeActivatedRoute,
+  FakeRouter
+} from "../spec.utils";
 import {ArticleComponent} from "../../../components/article/article.component";
 import {RouterService} from "../../../services/router.service";
 import {UserChipComponent} from "../../../components/user/user.chip.component";
 import {NavBarService} from "../../../services/navbar.service";
+import {ActivatedRoute, Router} from "@angular/router";
 import Spy = jasmine.Spy;
-describe('Latest Articles Component', () => {
+describe('Articles Component', () => {
   let comp: ArticlesComponent;
   let fixture: ComponentFixture<ArticlesComponent>;
 
@@ -19,7 +28,9 @@ describe('Latest Articles Component', () => {
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
         {provide: RouterService, useClass: FakeRouterService},
-        {provide: NavBarService, useClass: FakeNavBarService}
+        {provide: NavBarService, useClass: FakeNavBarService},
+        {provide: ActivatedRoute, useClass: FakeActivatedRoute},
+        {provide: Router, useClass: FakeRouter}
       ],
     })
       .compileComponents();

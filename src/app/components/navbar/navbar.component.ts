@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
   title: string;
   teamsWithAnArticle: Team[];
 
-
   constructor(private loginService: LoginService,
               private routerService: RouterService,
               private router: Router,
@@ -67,7 +66,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/articles']);
   }
 
-  showArticlesForTeam(teamId: number) {
-    this.router.navigate(['/articles/team', +teamId])
+  showArticlesForTeam(team: Team) {
+    this.router.navigate(['/articles/team', team.id])
   }
 }
