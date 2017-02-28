@@ -121,7 +121,7 @@ export class User {
       .setBackNumber(json.backNumber)
       .setProfilePicture(json.profilePicture);
     if (json.teamId > 0) {
-      user.setTeam(new Team().deserialize(json.team));
+      user.setTeam(Team.deserialize(json.team));
       user.setTeamId(json.teamId);
     }
     if (user.profilePicture) {

@@ -7,6 +7,8 @@ import {Article} from "../../models/Article";
 import {NavBarService} from "../../services/navbar.service";
 import {ActivatedRoute, Router, NavigationStart} from "@angular/router";
 import {Subscription} from "rxjs";
+import {TeamService} from "../../services/team.service";
+import {Team} from "../../models/team";
 @Component({
   selector: 'articles-component',
   templateUrl: 'articles.component.html'
@@ -15,6 +17,14 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   articles: Article[];
   routerSubscription = false;
   subscription: Subscription;
+
+  constructor(private articleService: ArticleService,
+              private navBarService: NavBarService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private teamService: TeamService) {
+    this.navBarService.changeTitle("News");
+  }
 
   ngOnInit(): void {
     if (!this.routerSubscription) {
@@ -59,6 +69,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
         data => this.articles = Article.getArticlesFromRestResponse(data),
         error => console.log(error)
       );
+      this.navBarService.changeTitle('News');
     }
 
     if (id && path === 'team') {
@@ -67,7 +78,13 @@ export class ArticlesComponent implements OnInit, OnDestroy {
           this.articles = Article.getArticlesFromRestResponse(data);
         },
         error => console.log(error)
-      )
+      );
+      this.teamService.findById(id).subscribe(
+        data => {
+          this.navBarService.changeTitle('News - ' + Team.deserialize(JSON.parse(JSON.parse(JSON.stringify(data))._body)).name);
+        },
+        error => console.log(error)
+      );
     }
 
     if (id && path === 'author') {
@@ -76,12 +93,5 @@ export class ArticlesComponent implements OnInit, OnDestroy {
         error => console.log(error)
       )
     }
-  }
-
-  constructor(private articleService: ArticleService,
-              private navBarService: NavBarService,
-              private route: ActivatedRoute,
-              private router: Router) {
-    this.navBarService.changeTitle("News");
   }
 }

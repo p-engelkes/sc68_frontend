@@ -25,14 +25,15 @@ export class Team {
     return this;
   }
 
-  deserialize(json) {
-    var team = Team.create()
+  static deserialize(json) {
+    let team = Team.create()
       .setId(json.id)
       .setName(json.name);
 
     for (let trainingTime in json.trainingTimes) {
       team.trainingTimes.push(new TrainingTimes(trainingTime, json.trainingTimes[trainingTime]));
     }
+
 
     return team;
   }
@@ -43,7 +44,7 @@ export class Team {
     let teamsJson = JSON.parse(teamResponses);
     for (let i = 0; i < teamsJson.length; i++) {
       let teamJson = teamsJson[i];
-      let team = new Team().deserialize(teamJson);
+      let team = Team.deserialize(teamJson);
       teams.push(team);
     }
 

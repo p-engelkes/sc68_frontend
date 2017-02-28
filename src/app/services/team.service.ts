@@ -13,4 +13,8 @@ export class TeamService {
   getAllTeams() {
     return httpGet("/teams", this.http);
   }
+
+  findById(id: number) {
+    return httpGet("/teams/" + id, this.http)
+  }
 }
