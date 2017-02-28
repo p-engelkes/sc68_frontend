@@ -28,8 +28,10 @@ let positionOne = new Position('position1');
 let positionTwo = new Position('position2');
 let positions = [positionOne, positionTwo];
 
-export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1').setAuthor(user);
-export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2');
+export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1').setAuthor(user).setTeam(teamOne);
+export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2').setTeam(teamOne);
+export let fakeArticleThree = Article.create().setTitle('3').setContent('Content 3').setTeam(teamOne);
+export let fakeArticleFour = Article.create().setTitle('4').setContent('Content 4').setTeam(teamTwo);
 
 export class FakeLoginService {
   logIn(email, password) {
@@ -79,6 +81,10 @@ export class FakeArticleService {
   getAllTeamsWithAnArticle() {
     return Observable.of(getResponse([teamOne, teamTwo]))
   }
+
+  findAllByTeam(teamId: number) {
+    return Observable.of(getResponse([fakeArticleOne, fakeArticleTwo, fakeArticleThree]))
+  }
 }
 
 export class FakeDataService extends DataService {
@@ -107,8 +113,7 @@ export class FakeActivatedRoute extends ActivatedRoute {
   constructor() {
     super();
     this.snapshot = new ActivatedRouteSnapshot();
-    this.snapshot.params = Observable.of({id: "1"});
-    this.snapshot.url = [];
+    this.snapshot.params = {id: 1};
   }
 }
 

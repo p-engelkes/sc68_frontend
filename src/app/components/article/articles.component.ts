@@ -40,7 +40,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     let id = +snapshot.params['id'];
     let urlSegment = this.route.snapshot.url;
     let path = "";
-    if (urlSegment[0]) {
+    if (urlSegment && urlSegment[0]) {
       path = this.route.snapshot.url[0].path;
     }
 
