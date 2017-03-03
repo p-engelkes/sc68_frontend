@@ -75,6 +75,4 @@ export class NewArticleComponent {
       error => Materialize.toast("Fehler beim Erstellen des Artikels", 4000)
     );
   }
-
-
 }
