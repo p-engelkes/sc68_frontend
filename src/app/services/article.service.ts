@@ -1,12 +1,14 @@
 /**
  * Created by pengelkes on 30.12.2016.
  */
-import {Injectable} from "@angular/core";
+import {Injectable, Output, EventEmitter} from "@angular/core";
 import {Http} from "@angular/http";
 import {httpGetWithParameters, Parameter, httpPost, httpGetWithoutAuthorization} from "./helper.service";
 import {Article} from "../models/Article";
 @Injectable()
 export class ArticleService {
+  @Output() addArticleEvent: EventEmitter<Article> = new EventEmitter();
+
   constructor(private http: Http) {
   }
 
@@ -32,5 +34,13 @@ export class ArticleService {
 
   update(articleId: number, article: Article) {
     return httpPost("/articles/" + articleId, article, this.http);
+  }
+
+  addArticle(article: Article) {
+    this.addArticleEvent.emit(article);
+  }
+
+  getAddArticleEvent() {
+    return this.addArticleEvent;
   }
 }

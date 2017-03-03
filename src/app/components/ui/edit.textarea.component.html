@@ -1,0 +1,8 @@
+<div [formGroup]="formGroup">
+  <textarea [id]="propertyField.id" [formControlName]="propertyField.formControlName"
+            placeholder=" " [class]="propertyField.getDefaultClass()" class="materialize-textarea"
+            [ngClass]="propertyField.getValidationClass()"></textarea>
+  <label [attr.for]="propertyField.id" [attr.data-error]="propertyField.getError()">
+    {{propertyField.placeHolder}}
+  </label>
+</div>

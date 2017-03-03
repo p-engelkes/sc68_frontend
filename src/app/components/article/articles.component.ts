@@ -27,6 +27,9 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.articleService.getAddArticleEvent()
+      .subscribe(newArticle => this.articles.unshift(newArticle));
+
     if (!this.routerSubscription) {
       this.subscription = this.router.events.subscribe(event => {
         if (event instanceof NavigationStart) {

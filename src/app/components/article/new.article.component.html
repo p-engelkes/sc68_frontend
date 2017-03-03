@@ -1,0 +1,22 @@
+<div class="row center-align">
+  <a (click)="showCreateArticleForm()" class="waves-effect waves-light btn">Neuen Artikel erstellen</a>
+</div>
+
+<div class="row" *ngIf="showForm">
+  <form class="col s12" [formGroup]="newArticleForm">
+    <div class="row">
+      <div class="input-field col s12">
+        <edit-input-field [formGroup]="newArticleForm" [propertyField]="titleField"></edit-input-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <edit-text-area [formGroup]="newArticleForm" [propertyField]="contentField"></edit-text-area>
+      </div>
+    </div>
+    <div class="row right-align">
+      <a (click)="createArticle(newArticleForm.value)"
+         class="waves-effect waves-light btn submit-btn">Veröffentlichen</a>
+    </div>
+  </form>
+</div>

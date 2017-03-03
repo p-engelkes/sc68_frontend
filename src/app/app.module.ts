@@ -30,6 +30,8 @@ import {RouterService} from "./services/router.service";
 import {SideNavDirective} from "./directives/navbar.directive";
 import {NavBarService} from "./services/navbar.service";
 import {ArticlesParentComponent} from "./components/article/articles.parent.component";
+import {EditTextAreaComponent} from "./components/ui/edit.textarea.component";
+import {NewArticleComponent} from "./components/article/new.article.component";
 
 @NgModule({
   declarations: [
@@ -45,9 +47,11 @@ import {ArticlesParentComponent} from "./components/article/articles.parent.comp
     TeamComponent,
     PropertyComponent,
     EditInputFieldComponent,
+    EditTextAreaComponent,
     MaterializeDropdown,
     ProfileImageDirective,
     ArticlesParentComponent,
+    NewArticleComponent,
     ArticlesComponent,
     ArticleComponent,
     UserChipComponent,

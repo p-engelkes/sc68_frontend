@@ -138,9 +138,7 @@ export class EditUserProfileComponent extends OnInit {
         Materialize.toast("Erfolgreich aktualisiert", 4000);
         this.router.navigate(['/user', currentUserId])
       },
-      error => {
-        Materialize.toast("Fehler bei der Aktualisierung");
-      }
+      error => Materialize.toast("Fehler bei der Aktualisierung")
     )
   }
 }
