@@ -3,6 +3,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../models/Article";
+import {LocalStorage} from "../../helper/LocalStorage";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -49,7 +50,9 @@ export class NewArticleComponent {
 
     let article = Article.create()
       .setTitle(title)
-      .setContent(content);
+      .setContent(content)
+      .setAuthorId(LocalStorage.getCurrentUserId())
+      .setCreated(new Date());
 
     this.articleService.create(article).subscribe(
       data => {

@@ -6,14 +6,15 @@
           <span class="card-title">{{article.title}}</span>
           <p>{{article.content}}</p>
         </div>
-        <div *ngIf="article.author">
+        <div *ngIf="article.author || article.authorId">
           <div class="card-action">
             <user-chip [user]="article.author"></user-chip>
             <div class="right-align">
-              Verfasst am: {{article.created | date: 'dd.MM.yyyy'}}
+              Verfasst am: {{article.created | date: 'dd.MM.yyyy HH:mm:ss'}}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

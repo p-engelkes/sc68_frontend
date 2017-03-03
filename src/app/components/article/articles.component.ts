@@ -69,7 +69,9 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   private findArticles(id: number, path: string) {
     if ((!id && !path) || path === 'home') {
       this.articleService.findAll().subscribe(
-        data => this.articles = Article.getArticlesFromRestResponse(data),
+        data => {
+          this.articles = Article.getArticlesFromRestResponse(data);
+        },
         error => console.log(error)
       );
       this.navBarService.changeTitle('News');
