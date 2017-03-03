@@ -54,7 +54,11 @@ export class NavbarComponent implements OnInit {
   }
 
   currentUserName() {
-    return LocalStorage.getCurrentUserName();
+    if (LocalStorage.getCurrentUserName()) {
+      return LocalStorage.getCurrentUserName();
+    } else {
+      return LocalStorage.getCurrentEmail();
+    }
   }
 
   showUserProfile() {
