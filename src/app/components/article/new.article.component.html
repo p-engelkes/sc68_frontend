@@ -14,6 +14,14 @@
         <edit-text-area [formGroup]="newArticleForm" [propertyField]="contentField"></edit-text-area>
       </div>
     </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <select id="team" formControlName="team" materialize-dropdown>
+          <option value="" disabled selected>Wähle eine Mannschaft aus</option>
+          <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
+        </select>
+      </div>
+    </div>
     <div class="row right-align">
       <a (click)="createArticle(newArticleForm.value)"
          class="waves-effect waves-light btn submit-btn">Veröffentlichen</a>

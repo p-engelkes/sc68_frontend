@@ -4,6 +4,8 @@ import {Field, FormValidators} from "../../validators";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../models/Article";
 import {LocalStorage} from "../../helper/LocalStorage";
+import {TeamService} from "../../services/team.service";
+import {Team} from "../../models/team";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -15,12 +17,20 @@ export class NewArticleComponent {
   titleField: Field;
   contentField: Field;
   showForm: boolean = false;
+  teams: Team[];
 
   constructor(private formBuilder: FormBuilder,
-              private articleService: ArticleService) {
+              private articleService: ArticleService,
+              private teamService: TeamService) {
+    this.teamService.getAllTeams().subscribe(
+      data => this.teams = Team.getTeamsFromJson(data),
+      error => console.log(error)
+    );
+
     this.newArticleForm = this.formBuilder.group({
       title: [null, Validators.required],
-      content: [null, Validators.required]
+      content: [null, Validators.required],
+      team: []
     });
 
     this.titleField = Field.create()
@@ -47,11 +57,13 @@ export class NewArticleComponent {
   createArticle(value: any) {
     let title = value.title;
     let content = value.content;
+    let teamId = jQuery('#team').val();
 
     let article = Article.create()
       .setTitle(title)
       .setContent(content)
       .setAuthorId(LocalStorage.getCurrentUserId())
+      .setTeamId(teamId)
       .setCreated(new Date());
 
     this.articleService.create(article).subscribe(
