@@ -32,6 +32,8 @@ import {NavBarService} from "./services/navbar.service";
 import {ArticlesParentComponent} from "./components/article/articles.parent.component";
 import {EditTextAreaComponent} from "./components/ui/edit.textarea.component";
 import {NewArticleComponent} from "./components/article/new.article.component";
+import {LandingPageComponent} from "./components/landing_page/landing.page.component";
+import {ParallaxDirective} from "./directives/parallax.directive";
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import {NewArticleComponent} from "./components/article/new.article.component";
     ArticlesComponent,
     ArticleComponent,
     UserChipComponent,
-    SideNavDirective
+    SideNavDirective,
+    LandingPageComponent,
+    ParallaxDirective
   ],
   imports: [
     NgUploaderModule,

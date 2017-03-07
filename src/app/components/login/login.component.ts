@@ -65,7 +65,7 @@ export class LoginComponent {
               LocalStorage.setLoggedIn(true);
               jQuery('#login_modal').closeModal();
               Materialize.toast("Login erfolgreich", 4000);
-              this.router.navigateByUrl("/user/" + response);
+              location.reload();
             },
             error => console.log(error)
           );

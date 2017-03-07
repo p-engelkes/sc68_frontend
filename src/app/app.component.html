@@ -1,4 +1,9 @@
-<navbar></navbar>
-<div class="container">
-  <router-outlet></router-outlet>
+<div *ngIf="!isLoggedIn">
+  <landing-page-component></landing-page-component>
+</div>
+<div [hidden]="!isLoggedIn">
+  <navbar></navbar>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
