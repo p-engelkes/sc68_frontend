@@ -34,6 +34,7 @@ import {EditTextAreaComponent} from "./components/ui/edit.textarea.component";
 import {NewArticleComponent} from "./components/article/new.article.component";
 import {LandingPageComponent} from "./components/landing_page/landing.page.component";
 import {ParallaxDirective} from "./directives/parallax.directive";
+import {Angular2FontAwesomeModule} from "angular2-font-awesome/angular2-font-awesome";
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {ParallaxDirective} from "./directives/parallax.directive";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing
+    routing,
+    Angular2FontAwesomeModule
   ],
   providers: [
     LoginService,

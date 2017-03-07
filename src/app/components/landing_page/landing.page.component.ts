@@ -10,4 +10,8 @@ export class LandingPageComponent {
   openLoginModal() {
     jQuery('#login_modal').openModal();
   }
+
+  openRegisterModal() {
+    jQuery('#register_modal').openModal();
+  }
 }
