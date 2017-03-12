@@ -7,8 +7,9 @@ import {Router} from "@angular/router";
 import {LocalStorage} from "../../helper/LocalStorage";
 import {RouterService} from "../../services/router.service";
 import {NavBarService} from "../../services/navbar.service";
-import {ArticleService} from "../../services/article.service";
 import {Team} from "../../models/team";
+import {OldClassService} from "../../services/old.class.service";
+import {OldClass} from "../../models/old.class";
 declare var jQuery: any;
 @Component({
   selector: 'navbar',
@@ -17,15 +18,16 @@ declare var jQuery: any;
 })
 export class NavbarComponent implements OnInit {
   title: string;
-  teamsWithAnArticle: Team[];
+  oldClassesWithAnArticle: OldClass[];
 
   constructor(private loginService: LoginService,
               private routerService: RouterService,
               private router: Router,
               private navBarService: NavBarService,
-              private articleService: ArticleService) {
-    this.articleService.getAllTeamsWithAnArticle().subscribe(
-      data => this.teamsWithAnArticle = Team.getTeamsFromJson(data),
+              private oldClassService: OldClassService) {
+
+    this.oldClassService.findAll().subscribe(
+      data => this.oldClassesWithAnArticle = OldClass.getOldClassesFromJson(data),
       error => console.log(error)
     );
   }

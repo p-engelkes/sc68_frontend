@@ -35,6 +35,7 @@ import {NewArticleComponent} from "./components/article/new.article.component";
 import {LandingPageComponent} from "./components/landing_page/landing.page.component";
 import {ParallaxDirective} from "./directives/parallax.directive";
 import {Angular2FontAwesomeModule} from "angular2-font-awesome/angular2-font-awesome";
+import {OldClassService} from "./services/old.class.service";
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {Angular2FontAwesomeModule} from "angular2-font-awesome/angular2-font-awe
     ArticleService,
     DataService,
     RouterService,
-    NavBarService
+    NavBarService,
+    OldClassService
   ],
   bootstrap: [AppComponent]
 })

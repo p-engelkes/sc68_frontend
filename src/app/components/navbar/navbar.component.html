@@ -55,9 +55,19 @@
               <li>
                 <a id="all-articles" (click)="showAllArticles()">Alle Artikel</a>
               </li>
-              <li *ngFor="let team of teamsWithAnArticle" class="bold">
-                <a id="{{team.id}}" (click)="showArticlesForTeam(team)">{{team.name}}</a>
-              </li>
+              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithAnArticle">
+                <li>
+                  <a class="collapsible-header waves-effect waves-teal">{{oldClass.name}}</a>
+                  <div class="collapsible-body" style="display: block;">
+                    <ul>
+                      <li *ngFor="let team of oldClass.teams">
+                        <a routerLinkActive="active" id="{{team.id}}"
+                           (click)="showArticlesForTeam(team)">{{team.name}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             </ul>
           </div>
         </li>

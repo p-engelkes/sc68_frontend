@@ -39,11 +39,16 @@ export class Team {
   }
 
   static getTeamsFromJson(data: any): Team[] {
-    let teams: Team[] = [];
     let teamResponses = JSON.parse(JSON.stringify(data))._body;
-    let teamsJson = JSON.parse(teamResponses);
-    for (let i = 0; i < teamsJson.length; i++) {
-      let teamJson = teamsJson[i];
+
+    return this.deserializeTeams(teamResponses);
+  }
+
+  static deserializeTeams(data: any): Team[] {
+    let teams: Team[] = [];
+
+    for (let i = 0; i < data.length; i++) {
+      let teamJson = data[i];
       let team = Team.deserialize(teamJson);
       teams.push(team);
     }
