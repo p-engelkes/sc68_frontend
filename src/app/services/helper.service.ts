@@ -30,6 +30,21 @@ export function httpGetWithParameters(url: string, http: Http, ...parameters: Pa
   return http.get(url, {headers: bearerHeaders});
 }
 
+export function httpGetWithParametersAndWithoutAuthorization(url: string, http: Http, ...parameters: Parameter[]) {
+  url = apiUrl + url;
+  for (let i = 0; i < parameters.length; i++) {
+    let parameter = parameters[i];
+    if (i == 0) {
+      url += '?' + parameter.key + '=' + parameter.value
+    }
+    if (i != parameters.length - 1) {
+      url += "&";
+    }
+  }
+
+  return http.get(url);
+}
+
 export function httpGetWithoutAuthorization(url: string, http: Http) {
   url = apiUrl + url;
   return http.get(url);

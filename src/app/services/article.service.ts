@@ -3,7 +3,12 @@
  */
 import {Injectable, Output, EventEmitter} from "@angular/core";
 import {Http} from "@angular/http";
-import {httpGetWithParameters, Parameter, httpPost, httpGetWithoutAuthorization} from "./helper.service";
+import {
+  Parameter,
+  httpPost,
+  httpGetWithoutAuthorization,
+  httpGetWithParametersAndWithoutAuthorization
+} from "./helper.service";
 import {Article} from "../models/Article";
 @Injectable()
 export class ArticleService {
@@ -25,11 +30,11 @@ export class ArticleService {
   }
 
   findAllByAuthor(authorId: number) {
-    return httpGetWithParameters("/articles/filter", this.http, new Parameter("authorId", authorId));
+    return httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("authorId", authorId));
   }
 
   findAllByTeam(teamId: number) {
-    return httpGetWithParameters("/articles/filter", this.http, new Parameter("teamId", teamId));
+    return httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("teamId", teamId));
   }
 
   update(articleId: number, article: Article) {
