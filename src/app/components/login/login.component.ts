@@ -63,6 +63,7 @@ export class LoginComponent {
               LocalStorage.setCurrentUserName(user.getFullName());
               LocalStorage.setCurrentEmail(email);
               LocalStorage.setLoggedIn(true);
+              LocalStorage.setArticleWriter(user.articleWriter);
               jQuery('#login_modal').closeModal();
               Materialize.toast("Login erfolgreich", 4000);
               location.reload();

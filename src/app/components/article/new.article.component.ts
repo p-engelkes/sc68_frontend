@@ -54,6 +54,10 @@ export class NewArticleComponent {
     this.showForm = true;
   }
 
+  isArticleWriter() {
+    return LocalStorage.isArticleWriter();
+  }
+
   createArticle(value: any) {
     let title = value.title;
     let content = value.content;

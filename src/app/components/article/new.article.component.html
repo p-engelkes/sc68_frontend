@@ -1,30 +1,32 @@
-<div class="row center-align">
-  <a (click)="showCreateArticleForm()" class="waves-effect waves-light btn" id="show-form">Neuen Artikel erstellen</a>
-</div>
+<div *ngIf="isArticleWriter()" id="newArticleComponent">
+  <div class="row center-align">
+    <a (click)="showCreateArticleForm()" class="waves-effect waves-light btn" id="show-form">Neuen Artikel erstellen</a>
+  </div>
 
-<div class="row" *ngIf="showForm">
-  <form class="col s12" [formGroup]="newArticleForm">
-    <div class="row">
-      <div class="input-field col s12">
-        <edit-input-field [formGroup]="newArticleForm" [propertyField]="titleField"></edit-input-field>
+  <div class="row" *ngIf="showForm">
+    <form class="col s12" [formGroup]="newArticleForm">
+      <div class="row">
+        <div class="input-field col s12">
+          <edit-input-field [formGroup]="newArticleForm" [propertyField]="titleField"></edit-input-field>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <edit-text-area [formGroup]="newArticleForm" [propertyField]="contentField"></edit-text-area>
+      <div class="row">
+        <div class="input-field col s12">
+          <edit-text-area [formGroup]="newArticleForm" [propertyField]="contentField"></edit-text-area>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <select id="team" formControlName="team" materialize-dropdown>
-          <option value="" disabled selected>Wähle eine Mannschaft aus</option>
-          <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
-        </select>
+      <div class="row">
+        <div class="input-field col s12">
+          <select id="team" formControlName="team" materialize-dropdown>
+            <option value="" disabled selected>Wähle eine Mannschaft aus</option>
+            <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="row right-align">
-      <a (click)="createArticle(newArticleForm.value)"
-         class="waves-effect waves-light btn submit-btn">Veröffentlichen</a>
-    </div>
-  </form>
+      <div class="row right-align">
+        <a (click)="createArticle(newArticleForm.value)"
+           class="waves-effect waves-light btn submit-btn">Veröffentlichen</a>
+      </div>
+    </form>
+  </div>
 </div>

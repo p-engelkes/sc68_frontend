@@ -7,6 +7,7 @@ export class LocalStorage {
   private static token = 'token';
   private static loggedIn = 'loggedIn';
   private static currentUserName = 'currentUserName';
+  private static articleWriter = 'articleWriter';
 
   static getCurrentUserId() {
     return +localStorage.getItem(LocalStorage.currentUserId)
@@ -30,6 +31,14 @@ export class LocalStorage {
 
   static setCurrentUserName(value: string) {
     localStorage.setItem(LocalStorage.currentUserName, value);
+  }
+
+  static isArticleWriter() {
+    return localStorage.getItem(LocalStorage.articleWriter);
+  }
+
+  static setArticleWriter(articleWriter: boolean) {
+    localStorage.setItem(LocalStorage.articleWriter, articleWriter.toString());
   }
 
   static getToken() {

@@ -16,6 +16,7 @@ export class User {
   public backNumber: number;
   public position: string;
   public profilePicture: ProfilePicture;
+  public articleWriter: boolean = false;
   public created: Date;
 
   static create(): User {
@@ -82,6 +83,11 @@ export class User {
     return this;
   }
 
+  public setArticleWriter(articleWriter: boolean): User {
+    this.articleWriter = articleWriter;
+    return this;
+  }
+
   getFullName(): string {
     let fullName = "";
     if (this.firstName) {
@@ -107,6 +113,7 @@ export class User {
       .setProfilePicture(user.profilePicture)
       .setTeam(user.team)
       .setTeamId(user.teamId)
+      .setArticleWriter(user.articleWriter)
   }
 
   static deserialize(json): User {
@@ -119,6 +126,7 @@ export class User {
       .setCreated(json.created)
       .setPosition(json.position)
       .setBackNumber(json.backNumber)
+      .setArticleWriter(json.articleWriter)
       .setProfilePicture(json.profilePicture);
     if (json.teamId > 0) {
       user.setTeam(Team.deserialize(json.team));

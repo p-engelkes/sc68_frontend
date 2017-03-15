@@ -33,6 +33,12 @@ export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2
 export let fakeArticleThree = Article.create().setTitle('3').setContent('Content 3').setTeam(teamOne);
 export let fakeArticleFour = Article.create().setTitle('4').setContent('Content 4').setTeam(teamTwo);
 
+export class FakeLocalStorage {
+  isArticleWriter() {
+    return false;
+  }
+}
+
 export class FakeLoginService {
   logIn(email, password) {
     return Observable.of(JSON.stringify(email));
