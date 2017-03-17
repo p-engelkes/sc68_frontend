@@ -40,8 +40,9 @@ export class Team {
 
   static getTeamsFromJson(data: any): Team[] {
     let teamResponses = JSON.parse(JSON.stringify(data))._body;
+    let teamsJson = JSON.parse(teamResponses);
 
-    return this.deserializeTeams(teamResponses);
+    return this.deserializeTeams(teamsJson);
   }
 
   static deserializeTeams(data: any): Team[] {

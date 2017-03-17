@@ -10,13 +10,19 @@ import {
   FakeRouterService,
   FakeNavBarService,
   FakeActivatedRoute,
-  FakeRouter
+  FakeRouter,
+  FakeTeamService
 } from "../spec.utils";
 import {ArticleComponent} from "../../../components/article/article.component";
 import {RouterService} from "../../../services/router.service";
 import {UserChipComponent} from "../../../components/user/user.chip.component";
 import {NavBarService} from "../../../services/navbar.service";
 import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
+import {NewArticleComponent} from "../../../components/article/new.article.component";
+import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
+import {EditTextAreaComponent} from "../../../components/ui/edit.textarea.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {TeamService} from "../../../services/team.service";
 import Spy = jasmine.Spy;
 describe('Articles Component', () => {
   let comp: ArticlesComponent;
@@ -25,13 +31,16 @@ describe('Articles Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent],
+      declarations: [ArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent, NewArticleComponent,
+        EditInputFieldComponent, EditTextAreaComponent],
+      imports: [ReactiveFormsModule],
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
         {provide: RouterService, useClass: FakeRouterService},
         {provide: NavBarService, useClass: FakeNavBarService},
         {provide: ActivatedRoute, useClass: FakeActivatedRoute},
-        {provide: Router, useClass: FakeRouter}
+        {provide: Router, useClass: FakeRouter},
+        {provide: TeamService, useClass: FakeTeamService}
       ],
     })
       .compileComponents();
@@ -48,7 +57,7 @@ describe('Articles Component', () => {
     tick();
     fixture.detectChanges();
 
-    let articleElements = fixture.debugElement.queryAll(By.css('article'));
+    let articleElements = fixture.debugElement.queryAll(By.css('article-component'));
 
     expect(articleElements.length).toBe(2);
   }));
@@ -60,7 +69,7 @@ describe('Articles Component', () => {
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      let articleElements = fixture.debugElement.queryAll(By.css('article'));
+      let articleElements = fixture.debugElement.queryAll(By.css('article-component'));
 
       expect(articleElements.length).toEqual(3);
     });

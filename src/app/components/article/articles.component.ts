@@ -67,7 +67,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   }
 
   private findArticles(id: number, path: string) {
-    if ((!id && !path) || path === 'home') {
+    if ((!id || !path) || path === 'home') {
       this.articleService.findAll().subscribe(
         data => {
           this.articles = Article.getArticlesFromRestResponse(data);

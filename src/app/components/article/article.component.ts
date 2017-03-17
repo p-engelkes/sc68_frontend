@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {Article} from "../../models/Article";
 @Component({
-  selector: 'article',
+  selector: 'article-component',
   templateUrl: './article.component.html'
 })
 export class ArticleComponent {

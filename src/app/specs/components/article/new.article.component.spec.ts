@@ -6,7 +6,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FakeArticleService, FakeTeamService, queryElement, setInputValue} from "../spec.utils";
 import {ArticleService} from "../../../services/article.service";
 import {TeamService} from "../../../services/team.service";
-fdescribe('New Article Component', () => {
+describe('New Article Component', () => {
   let component: NewArticleComponent;
   let fixture: ComponentFixture<NewArticleComponent>;
 

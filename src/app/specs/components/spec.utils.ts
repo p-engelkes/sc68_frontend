@@ -8,12 +8,18 @@ import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd} from "@angular/ro
 import {DataService} from "../../services/data.service";
 import {Response, ResponseOptions} from "@angular/http";
 import {tick} from "@angular/core/testing";
+import {OldClass} from "../../models/old.class";
 
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
 let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
 let trainingTimes = [trainingTimesOne, trainingTimes2];
 export let teamOne = Team.create().setId(1).setName("1. Mannschaft").setTrainingTimes(trainingTimes);
 export let teamTwo = Team.create().setId(2).setName("2. Mannschaft").setTrainingTimes(trainingTimes);
+let teamThree = Team.create().setId(3).setName("A-Junioren");
+
+export let herrenOldClass = OldClass.create().setId(1).setName('Herren').setOrderNumber(0).setTeams([teamOne, teamTwo]);
+export let aYouthOldClass = OldClass.create().setId(2).setName('A-Junioren').setOrderNumber(1).setTeams([teamThree]);
+
 
 export let user = User.create()
   .setId(1)
@@ -63,6 +69,10 @@ export class FakeTeamService {
   getAllTeams() {
     return Observable.of(getResponse([teamOne, teamTwo]));
   }
+
+  findById(id) {
+    return Observable.of(getResponse(teamOne))
+  }
 }
 
 export class FakeUserService {
@@ -90,6 +100,10 @@ export class FakeArticleService {
 
   findAllByTeam(teamId: number) {
     return Observable.of(getResponse([fakeArticleOne, fakeArticleTwo, fakeArticleThree]))
+  }
+
+  getAddArticleEvent() {
+    return new EventEmitter<Article>()
   }
 }
 
@@ -130,6 +144,12 @@ export class FakeNavBarService {
 
   getEmittedValue() {
     return new EventEmitter<any>()
+  }
+}
+
+export class FakeOldClassService {
+  findAll() {
+    return Observable.of(getResponse([herrenOldClass, aYouthOldClass]));
   }
 }
 

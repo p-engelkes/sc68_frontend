@@ -10,7 +10,8 @@ import {
   FakeNavBarService,
   queryElement,
   clickOnElement,
-  FakeArticleService
+  FakeArticleService,
+  FakeOldClassService
 } from "../spec.utils";
 import {By} from "@angular/platform-browser";
 import {LoginComponent} from "../../../components/login/login.component";
@@ -22,6 +23,7 @@ import {RegisterService} from "../../../services/register.service";
 import {RouterService} from "../../../services/router.service";
 import {NavBarService} from "../../../services/navbar.service";
 import {ArticleService} from "../../../services/article.service";
+import {OldClassService} from "../../../services/old.class.service";
 describe('Navbar Component', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
@@ -38,7 +40,8 @@ describe('Navbar Component', () => {
         {provide: NavBarService, useClass: FakeNavBarService},
         {provide: Router, useClass: FakeRouter},
         {provide: RouterService, useClass: FakeRouterService},
-        {provide: ArticleService, useClass: FakeArticleService}
+        {provide: ArticleService, useClass: FakeArticleService},
+        {provide: OldClassService, useClass: FakeOldClassService}
       ]
     })
       .compileComponents();
