@@ -88,6 +88,21 @@ export class User {
     return this;
   }
 
+  getNavigationTitle(): string {
+    let navigationTitle = "";
+    let fullName = this.getFullName();
+    let backNumber = this.backNumber;
+
+    if (fullName) {
+      navigationTitle += fullName;
+      if (backNumber) {
+        navigationTitle += " #" + backNumber;
+      }
+    }
+
+    return navigationTitle;
+  }
+
   getFullName(): string {
     let fullName = "";
     if (this.firstName) {
