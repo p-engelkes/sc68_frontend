@@ -1,16 +1,17 @@
 import {ArticlesComponent} from "../../../components/article/articles.component";
-import {ComponentFixture, TestBed, fakeAsync, tick, async} from "@angular/core/testing";
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from "@angular/core/testing";
 import {ArticleService} from "../../../services/article.service";
 import {By} from "@angular/platform-browser";
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {
-  FakeArticleService,
-  fakeArticleOne,
-  fakeArticleTwo,
-  FakeRouterService,
-  FakeNavBarService,
   FakeActivatedRoute,
+  fakeArticleOne,
+  FakeArticleService,
+  fakeArticleTwo,
+  FakeNavBarService,
+  FakeOldClassService,
   FakeRouter,
+  FakeRouterService,
   FakeTeamService
 } from "../spec.utils";
 import {ArticleComponent} from "../../../components/article/article.component";
@@ -23,6 +24,7 @@ import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.c
 import {EditTextAreaComponent} from "../../../components/ui/edit.textarea.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TeamService} from "../../../services/team.service";
+import {OldClassService} from "../../../services/old.class.service";
 import Spy = jasmine.Spy;
 describe('Articles Component', () => {
   let comp: ArticlesComponent;
@@ -40,6 +42,7 @@ describe('Articles Component', () => {
         {provide: NavBarService, useClass: FakeNavBarService},
         {provide: ActivatedRoute, useClass: FakeActivatedRoute},
         {provide: Router, useClass: FakeRouter},
+        {provide: OldClassService, useClass: FakeOldClassService},
         {provide: TeamService, useClass: FakeTeamService}
       ],
     })

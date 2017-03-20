@@ -1,11 +1,11 @@
 import {NewArticleComponent} from "../../../components/article/new.article.component";
-import {ComponentFixture, async, TestBed, fakeAsync} from "@angular/core/testing";
+import {async, ComponentFixture, fakeAsync, TestBed} from "@angular/core/testing";
 import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
 import {EditTextAreaComponent} from "../../../components/ui/edit.textarea.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import {FakeArticleService, FakeTeamService, queryElement, setInputValue} from "../spec.utils";
+import {FakeArticleService, FakeOldClassService, queryElement, setInputValue} from "../spec.utils";
 import {ArticleService} from "../../../services/article.service";
-import {TeamService} from "../../../services/team.service";
+import {OldClassService} from "../../../services/old.class.service";
 describe('New Article Component', () => {
   let component: NewArticleComponent;
   let fixture: ComponentFixture<NewArticleComponent>;
@@ -16,7 +16,7 @@ describe('New Article Component', () => {
       imports: [ReactiveFormsModule],
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
-        {provide: TeamService, useClass: FakeTeamService},
+        {provide: OldClassService, useClass: FakeOldClassService},
       ]
     })
       .compileComponents();

@@ -1,11 +1,11 @@
 import {Component} from "@angular/core";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../models/Article";
 import {LocalStorage} from "../../helper/LocalStorage";
-import {TeamService} from "../../services/team.service";
-import {Team} from "../../models/team";
+import {OldClass} from "../../models/old.class";
+import {OldClassService} from "../../services/old.class.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -17,13 +17,13 @@ export class NewArticleComponent {
   titleField: Field;
   contentField: Field;
   showForm: boolean = false;
-  teams: Team[];
+  oldClasses: OldClass[];
 
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticleService,
-              private teamService: TeamService) {
-    this.teamService.getAllTeams().subscribe(
-      data => this.teams = Team.getTeamsFromJson(data),
+              private oldClassService: OldClassService) {
+    this.oldClassService.findAllWithTeams().subscribe(
+      data => this.oldClasses = OldClass.getOldClassesFromJson(data),
       error => console.log(error)
     );
 

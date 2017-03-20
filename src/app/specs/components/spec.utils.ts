@@ -1,7 +1,7 @@
 import {Observable} from "rxjs";
 import {Article} from "../../models/Article";
 import {DebugElement, EventEmitter} from "@angular/core";
-import {User, Position} from "../../models/user";
+import {Position, User} from "../../models/user";
 import {By} from "@angular/platform-browser";
 import {Team, TrainingTimes} from "../../models/team";
 import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd} from "@angular/router";
@@ -148,7 +148,11 @@ export class FakeNavBarService {
 }
 
 export class FakeOldClassService {
-  findAll() {
+  findAllWithTeams() {
+    return Observable.of(getResponse([herrenOldClass, aYouthOldClass]));
+  }
+
+  findAllWithTeamsAndArticles() {
     return Observable.of(getResponse([herrenOldClass, aYouthOldClass]));
   }
 }

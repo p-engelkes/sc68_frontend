@@ -18,9 +18,11 @@
       <div class="row">
         <div class="input-field col s12">
           <select id="team" formControlName="team" materialize-dropdown>
-            <option value="" disabled selected>Wähle eine Mannschaft aus</option>
-            <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
+            <optgroup *ngFor="let oldClass of oldClasses" label="{{oldClass.name}}">
+              <option *ngFor="let team of oldClass.teams" value="{{team.id}}">{{team.name}}</option>
+            </optgroup>
           </select>
+          <label>Team</label>
         </div>
       </div>
       <div class="row right-align">
@@ -28,5 +30,4 @@
            class="waves-effect waves-light btn submit-btn">Veröffentlichen</a>
       </div>
     </form>
-  </div>
 </div>

@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
               private navBarService: NavBarService,
               private oldClassService: OldClassService) {
 
-    this.oldClassService.findAll().subscribe(
+    this.oldClassService.findAllWithTeamsAndArticles().subscribe(
       data => this.oldClassesWithAnArticle = OldClass.getOldClassesFromJson(data),
       error => console.log(error)
     );

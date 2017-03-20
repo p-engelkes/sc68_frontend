@@ -9,7 +9,11 @@ export class OldClassService {
   constructor(private http: Http) {
   }
 
-  findAll() {
+  findAllWithTeams() {
+    return httpGetWithoutAuthorization("/oldClasses", this.http);
+  }
+
+  findAllWithTeamsAndArticles() {
     return httpGetWithoutAuthorization("/oldClasses?articles?=true", this.http);
   }
 }

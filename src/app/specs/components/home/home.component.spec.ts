@@ -1,15 +1,16 @@
 import {HomeComponent} from "../../../components/home/home.component";
-import {ComponentFixture, async, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {ArticlesComponent} from "../../../components/article/articles.component";
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {ArticleService} from "../../../services/article.service";
 import {
-  FakeArticleService,
-  FakeRouterService,
-  FakeNavBarService,
   FakeActivatedRoute,
+  FakeArticleService,
+  FakeNavBarService,
+  FakeOldClassService,
   FakeRouter,
+  FakeRouterService,
   FakeTeamService
 } from "../spec.utils";
 import {ArticleComponent} from "../../../components/article/article.component";
@@ -22,6 +23,7 @@ import {EditTextAreaComponent} from "../../../components/ui/edit.textarea.compon
 import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TeamService} from "../../../services/team.service";
+import {OldClassService} from "../../../services/old.class.service";
 describe('Home Component', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -37,6 +39,7 @@ describe('Home Component', () => {
         {provide: NavBarService, useClass: FakeNavBarService},
         {provide: ActivatedRoute, useClass: FakeActivatedRoute},
         {provide: Router, useClass: FakeRouter},
+        {provide: OldClassService, useClass: FakeOldClassService},
         {provide: TeamService, useClass: FakeTeamService}
       ]
     })
