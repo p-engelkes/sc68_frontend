@@ -172,6 +172,10 @@ export function queryElement(css, fixture) {
   return fixture.debugElement.query(By.css(css));
 }
 
+export function queryAll(css, fixture) {
+  return fixture.debugElement.queryAll(By.css(css));
+}
+
 export function clickOnElement(css, fixture) {
   let debugElement = queryElement(css, fixture);
   debugElement.triggerEventHandler('click', null);

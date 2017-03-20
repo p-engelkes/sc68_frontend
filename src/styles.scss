@@ -1,6 +1,8 @@
 @import "../node_modules/materialize-css/sass/components/color";
 @import "../node_modules/materialize-css/sass/components/variables";
 
+$secondary-color-light: lighten($secondary-color, 20%);
+
 .container {
   padding-top: 20px;
   padding-left: 200px;
@@ -45,4 +47,12 @@ a {
   .chip:hover {
     cursor: pointer;
   }
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: $secondary-color;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+  color: $secondary-color-light;
 }

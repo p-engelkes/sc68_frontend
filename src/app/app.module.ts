@@ -10,7 +10,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {RegisterService} from "./services/register.service";
 import {HomeComponent} from "./components/home/home.component";
 import {routing} from "./app.routing";
-import {TeamComponent} from "./components/team/team.component";
+import {TeamsComponent} from "./components/team/teams.component";
 import {TeamService} from "./services/team.service";
 import {MaterializeDropdown} from "./directives/select.directive";
 import {UserProfileComponent} from "./components/user/user.profile.component";
@@ -36,6 +36,8 @@ import {LandingPageComponent} from "./components/landing_page/landing.page.compo
 import {ParallaxDirective} from "./directives/parallax.directive";
 import {Angular2FontAwesomeModule} from "angular2-font-awesome/angular2-font-awesome";
 import {OldClassService} from "./services/old.class.service";
+import {TeamParentComponent} from "./components/team/team.parent.component";
+import {TeamCardComponent} from "./components/team/team.card.component";
 
 @NgModule({
   declarations: [
@@ -44,11 +46,13 @@ import {OldClassService} from "./services/old.class.service";
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    TeamComponent,
+    TeamsComponent,
     UserProfileParentComponent,
     UserProfileComponent,
     EditUserProfileComponent,
-    TeamComponent,
+    TeamParentComponent,
+    TeamCardComponent,
+    TeamsComponent,
     PropertyComponent,
     EditInputFieldComponent,
     EditTextAreaComponent,

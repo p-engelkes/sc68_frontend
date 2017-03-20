@@ -6,9 +6,9 @@ import {TeamService} from "../../services/team.service";
 import {Team} from "../../models/team";
 @Component({
   selector: 'team',
-  templateUrl: './team.component.html'
+  templateUrl: './teams.component.html'
 })
-export class TeamComponent {
+export class TeamsComponent {
   private teams: Team[] = [];
 
   constructor(private teamService: TeamService) {
