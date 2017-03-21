@@ -10,6 +10,7 @@ import {UserProfileParentComponent} from "./components/user/user.profile.parent.
 import {ArticlesComponent} from "./components/article/articles.component";
 import {ArticlesParentComponent} from "./components/article/articles.parent.component";
 import {TeamParentComponent} from "./components/team/team.parent.component";
+import {TeamComponent} from "./components/team/team.component";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -38,6 +39,10 @@ const appRoutes: Routes = [
       {
         path: '',
         component: TeamsComponent
+      },
+      {
+        path: ':id',
+        component: TeamComponent
       }
     ]
   },

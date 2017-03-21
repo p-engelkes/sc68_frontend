@@ -1,11 +1,11 @@
 /**
  * Created by pengelkes on 30.12.2016.
  */
-import {Component, OnInit, OnDestroy} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../models/Article";
 import {NavBarService} from "../../services/navbar.service";
-import {ActivatedRoute, Router, NavigationStart} from "@angular/router";
+import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {TeamService} from "../../services/team.service";
 import {Team} from "../../models/team";
@@ -86,7 +86,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
       );
       this.teamService.findById(id).subscribe(
         data => {
-          this.navBarService.changeTitle('News - ' + Team.deserialize(JSON.parse(JSON.parse(JSON.stringify(data))._body)).name);
+          this.navBarService.changeTitle('News - ' + Team.deserialize(data).name);
         },
         error => console.log(error)
       );

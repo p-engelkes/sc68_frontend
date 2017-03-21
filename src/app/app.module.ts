@@ -38,6 +38,9 @@ import {Angular2FontAwesomeModule} from "angular2-font-awesome/angular2-font-awe
 import {OldClassService} from "./services/old.class.service";
 import {TeamParentComponent} from "./components/team/team.parent.component";
 import {TeamCardComponent} from "./components/team/team.card.component";
+import {TeamComponent} from "./components/team/team.component";
+import {SeasonTableComponent} from "./components/statistics/season.table.component";
+import {SeasonTableTeamService} from "./services/seaon.table.service";
 
 @NgModule({
   declarations: [
@@ -53,6 +56,7 @@ import {TeamCardComponent} from "./components/team/team.card.component";
     TeamParentComponent,
     TeamCardComponent,
     TeamsComponent,
+    TeamComponent,
     PropertyComponent,
     EditInputFieldComponent,
     EditTextAreaComponent,
@@ -63,8 +67,9 @@ import {TeamCardComponent} from "./components/team/team.card.component";
     ArticlesComponent,
     ArticleComponent,
     UserChipComponent,
-    SideNavDirective,
     LandingPageComponent,
+    SeasonTableComponent,
+    SideNavDirective,
     ParallaxDirective
   ],
   imports: [
@@ -85,7 +90,8 @@ import {TeamCardComponent} from "./components/team/team.card.component";
     DataService,
     RouterService,
     NavBarService,
-    OldClassService
+    OldClassService,
+    SeasonTableTeamService
   ],
   bootstrap: [AppComponent]
 })
