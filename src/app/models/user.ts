@@ -162,6 +162,25 @@ export class User {
     return user;
   }
 
+  static getUsersFromJsonResponse(data: any): User[] {
+    let userResponses = JSON.parse(JSON.stringify(data))._body;
+    let usersJson = JSON.parse(userResponses);
+
+    return this.deserializeUsers(usersJson);
+  }
+
+  private static deserializeUsers(data: any): User[] {
+    let users: User[] = [];
+
+    for (let i = 0; i < data.length; i++) {
+      let userJson = data[i];
+      let user = User.deserialize(userJson);
+      users.push(user)
+    }
+
+    return users;
+  }
+
   static registerUser(email: string, password: string): User {
     return User.create()
       .setEmail(email)

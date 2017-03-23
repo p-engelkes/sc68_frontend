@@ -41,6 +41,7 @@ import {TeamCardComponent} from "./components/team/team.card.component";
 import {TeamComponent} from "./components/team/team.component";
 import {SeasonTableComponent} from "./components/statistics/season.table.component";
 import {SeasonTableTeamService} from "./services/seaon.table.service";
+import {PlayerTableComponent} from "./components/user/player.table.component";
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {SeasonTableTeamService} from "./services/seaon.table.service";
     TeamsComponent,
     UserProfileParentComponent,
     UserProfileComponent,
+    PlayerTableComponent,
     EditUserProfileComponent,
     TeamParentComponent,
     TeamCardComponent,

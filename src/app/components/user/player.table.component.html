@@ -1,0 +1,19 @@
+<table class="highlight responsive-table">
+  <thead>
+  <tr>
+    <th data-field="pre_name">Vorname</th>
+    <th data-field="post_name">Nachname</th>
+    <th data-field="back_number">Rückennummer</th>
+    <th data-field="position">Position</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let user of users" (click)="onPlayerClick(user)">
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.backNumber}}</td>
+    <td>{{user.position}}</td>
+  </tr>
+  </tbody>
+</table>
