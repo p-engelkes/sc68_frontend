@@ -40,9 +40,11 @@ import {TeamParentComponent} from "./components/team/team.parent.component";
 import {TeamCardComponent} from "./components/team/team.card.component";
 import {TeamComponent} from "./components/team/team.component";
 import {SeasonTableComponent} from "./components/statistics/season.table.component";
-import {SeasonTableTeamService} from "./services/seaon.table.service";
+import {SeasonTableTeamService} from "./services/season.table.service";
 import {TabsDirective} from "./directives/tabs.directive";
 import {PlayerTableComponent} from "./components/user/player.table.component";
+import {GameTableComponent} from "./components/game/game.table.component";
+import {GameService} from "./services/game.service";
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import {PlayerTableComponent} from "./components/user/player.table.component";
     UserChipComponent,
     LandingPageComponent,
     SeasonTableComponent,
+    GameTableComponent,
     SideNavDirective,
     ParallaxDirective,
     TabsDirective
@@ -95,7 +98,8 @@ import {PlayerTableComponent} from "./components/user/player.table.component";
     RouterService,
     NavBarService,
     OldClassService,
-    SeasonTableTeamService
+    SeasonTableTeamService,
+    GameService
   ],
   bootstrap: [AppComponent]
 })

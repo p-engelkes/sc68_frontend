@@ -1,4 +1,4 @@
-import {Http, Headers} from "@angular/http";
+import {Headers, Http} from "@angular/http";
 import {LocalStorage} from "../helper/LocalStorage";
 import {environment} from "../../environments/environment";
 /**
@@ -37,11 +37,15 @@ export function httpGetWithParametersAndWithoutAuthorization(url: string, http: 
     if (i == 0) {
       url += '?' + parameter.key + '=' + parameter.value
     }
-    if (i != parameters.length - 1) {
+
+    if (i != 0) {
       url += "&";
+      console.log(parameter);
+      url += parameter.key + "=" + parameter.value
     }
   }
 
+  console.log(url);
   return http.get(url);
 }
 

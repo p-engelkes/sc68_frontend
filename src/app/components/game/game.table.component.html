@@ -1,0 +1,19 @@
+<table class="highlight responsive-table bordered">
+  <thead>
+  <tr>
+    <th data-field="game_time">Spielzeit</th>
+    <th data-field="home_team">Heim</th>
+    <th data-field="score">Ergebnis</th>
+    <th data-field="away_team">Auswärts</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let seasonGame of games">
+    <td>{{seasonGame.gameTime}}</td>
+    <td>{{seasonGame.homeTeamName}}</td>
+    <td class="center">{{seasonGame.score.homeTeamGoals}}:{{seasonGame.score.awayTeamGoals}}</td>
+    <td>{{seasonGame.awayTeamName}}</td>
+  </tr>
+  </tbody>
+</table>

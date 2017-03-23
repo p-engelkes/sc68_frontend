@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Team} from "../../models/team";
 import {SeasonTableTeam} from "../../models/season.table.team";
-import {SeasonTableTeamService} from "../../services/seaon.table.service";
+import {SeasonTableTeamService} from "../../services/season.table.service";
 @Component({
   selector: 'season-table-component',
   templateUrl: './season.table.component.html'

@@ -31,7 +31,7 @@ export class SeasonGame {
     seasonGame.homeTeamName = json.homeTeamName;
     seasonGame.awayTeamName = json.awayTeamName;
     seasonGame.score = Score.deserialize(json.score);
-
+    seasonGame.gameType = json.gameType;
 
     return seasonGame;
   }
