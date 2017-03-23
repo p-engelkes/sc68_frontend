@@ -41,6 +41,7 @@ import {TeamCardComponent} from "./components/team/team.card.component";
 import {TeamComponent} from "./components/team/team.component";
 import {SeasonTableComponent} from "./components/statistics/season.table.component";
 import {SeasonTableTeamService} from "./services/seaon.table.service";
+import {TabsDirective} from "./directives/tabs.directive";
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {SeasonTableTeamService} from "./services/seaon.table.service";
     LandingPageComponent,
     SeasonTableComponent,
     SideNavDirective,
-    ParallaxDirective
+    ParallaxDirective,
+    TabsDirective
   ],
   imports: [
     NgUploaderModule,

@@ -1,3 +1,16 @@
 <div *ngIf="team">
-  <season-table-component [team]="team"></season-table-component>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs" tabs-directive>
+        <li class="tab col s3"><a href="#season-table">Tabelle</a></li>
+        <li class="tab col s3"><a href="#previous-games">Vorherige Spiele</a></li>
+      </ul>
+    </div>
+    <div id="season-table" class="col s12">
+      <season-table-component [team]="team"></season-table-component>
+    </div>
+    <div id="previous-games" class="col s12">
+      <span>I will show the previous games</span>
+    </div>
+  </div>
 </div>
