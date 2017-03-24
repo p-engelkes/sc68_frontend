@@ -1,5 +1,8 @@
 <div *ngIf="user">
-  <h4>Bearbeite {{user.getFullName()}}</h4>
+  <div *ngIf="uploading" class="progress">
+    <div class="determinate" style.width.pct={{progress}}></div>
+  </div>
+
 
   <div class="row">
     <form class="col s12" [formGroup]="editUserForm">
@@ -53,7 +56,9 @@
         </div>
       </div>
       <div class="right-align">
-        <a (click)="updateUserProfile(editUserForm.value)" class="waves-effect waves-light btn submit-btn">
+        <a (click)="updateUserProfile(editUserForm.value)"
+           class="waves-effect waves-light btn submit-btn"
+           [ngClass]="{'disabled': uploading}">
           <i class="material-icons right">done</i>Aktualisieren
         </a>
       </div>

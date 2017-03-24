@@ -1,11 +1,11 @@
 /**
  * Created by pengelkes on 29.12.2016.
  */
-import {Component, OnInit, NgZone} from "@angular/core";
+import {Component, NgZone, OnInit} from "@angular/core";
 import {UserService} from "../../services/user.service";
 import {DataService} from "../../services/data.service";
-import {User, Position} from "../../models/user";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {Position, User} from "../../models/user";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
 import {Team} from "../../models/team";
 import {TeamService} from "../../services/team.service";
@@ -32,6 +32,8 @@ export class EditUserProfileComponent extends OnInit {
   private zone: NgZone;
   private options: NgUploaderOptions;
   private sizeLimit = 2000000;
+  private progress: number;
+  private uploading: boolean = false;
 
   constructor(private userService: UserService,
               private dataService: DataService,
@@ -99,46 +101,54 @@ export class EditUserProfileComponent extends OnInit {
   }
 
   handleUpload(data): void {
-    if (data && data.response) {
-      data = JSON.parse(data.response);
-      this.uploadFile = data;
-    }
+    setTimeout(() => {
+      this.zone.run(() => {
+        this.progress = +data.progress.percent;
+        if (data && data.response) {
+          this.uploading = false;
+        }
+      });
+    });
   }
 
   beforeUpload(uploadingFile): void {
+    this.uploading = true;
     if (uploadingFile.size > this.sizeLimit) {
+      this.uploading = false;
       uploadingFile.setAbort();
       alert('File is too large');
     }
   }
 
   updateUserProfile(value: any) {
-    this.dataService.user;
-    let firstName = value.firstName;
-    let lastName = value.lastName;
-    let email = value.email;
-    let backNumber = value.backNumber;
-    let position = jQuery('#position').val();
-    let teamId = jQuery('#team').val();
+    if (!this.uploading) {
+      this.dataService.user;
+      let firstName = value.firstName;
+      let lastName = value.lastName;
+      let email = value.email;
+      let backNumber = value.backNumber;
+      let position = jQuery('#position').val();
+      let teamId = jQuery('#team').val();
 
-    let user = User.create()
-      .setId(this.user.id)
-      .setFirstName(firstName)
-      .setLastName(lastName)
-      .setEmail(email)
-      .setBackNumber(backNumber)
-      .setPosition(position)
-      .setTeamId(teamId)
-      .setPassword(this.user.password);
-    this.user = user;
-    let currentUserId = LocalStorage.getCurrentUserId();
+      let user = User.create()
+        .setId(this.user.id)
+        .setFirstName(firstName)
+        .setLastName(lastName)
+        .setEmail(email)
+        .setBackNumber(backNumber)
+        .setPosition(position)
+        .setTeamId(teamId)
+        .setPassword(this.user.password);
+      this.user = user;
+      let currentUserId = LocalStorage.getCurrentUserId();
 
-    this.userService.update(currentUserId, user).subscribe(
-      data => {
-        Materialize.toast("Erfolgreich aktualisiert", 4000);
-        this.router.navigate(['/user', currentUserId])
-      },
-      error => Materialize.toast("Fehler bei der Aktualisierung")
-    )
+      this.userService.update(currentUserId, user).subscribe(
+        data => {
+          Materialize.toast("Erfolgreich aktualisiert", 4000);
+          this.router.navigate(['/user', currentUserId])
+        },
+        error => Materialize.toast("Fehler bei der Aktualisierung")
+      )
+    }
   }
 }

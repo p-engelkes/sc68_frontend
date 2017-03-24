@@ -14,7 +14,7 @@ $secondary-color-light: lighten($secondary-color, 20%);
   }
 }
 
-.modal-footer a.disabled {
+a.disabled {
   cursor: not-allowed !important;
 }
 
