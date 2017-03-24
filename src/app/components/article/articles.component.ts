@@ -1,7 +1,7 @@
 /**
  * Created by pengelkes on 30.12.2016.
  */
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../models/Article";
 import {NavBarService} from "../../services/navbar.service";
@@ -14,8 +14,10 @@ import {Team} from "../../models/team";
   templateUrl: 'articles.component.html'
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
+  @Input()
+  teamId: number;
+
   articles: Article[];
-  routerSubscription = false;
   subscription: Subscription;
 
   constructor(private articleService: ArticleService,
@@ -30,7 +32,12 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     this.articleService.getAddArticleEvent()
       .subscribe(newArticle => this.articles.unshift(newArticle));
 
-    if (!this.routerSubscription) {
+    if (this.teamId) {
+      this.articleService.findAllByTeam(this.teamId).subscribe(
+        data => this.articles = Article.getArticlesFromRestResponse(data),
+        error => console.log(error)
+      );
+    } else {
       this.subscription = this.router.events.subscribe(event => {
         if (event instanceof NavigationStart) {
           let url = event.url;
@@ -46,18 +53,17 @@ export class ArticlesComponent implements OnInit, OnDestroy {
           this.findArticles(+id, path);
         }
       });
-      this.routerSubscription = true;
-    }
 
-    let snapshot = this.route.snapshot;
-    let id = +snapshot.params['id'];
-    let urlSegment = this.route.snapshot.url;
-    let path = "";
-    if (urlSegment && urlSegment[0]) {
-      path = this.route.snapshot.url[0].path;
-    }
+      let snapshot = this.route.snapshot;
+      let id = +snapshot.params['id'];
+      let urlSegment = this.route.snapshot.url;
+      let path = "";
+      if (urlSegment && urlSegment[0]) {
+        path = this.route.snapshot.url[0].path;
+      }
 
-    this.findArticles(id, path);
+      this.findArticles(id, path);
+    }
   }
 
   ngOnDestroy(): void {

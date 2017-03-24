@@ -5,6 +5,7 @@
         <li class="tab col s3"><a href="#players">Spieler</a></li>
         <li class="tab col s3"><a href="#season-table">Tabelle</a></li>
         <li class="tab col s3"><a href="#previous-games">Vorherige Spiele</a></li>
+        <li class="tab col s3"><a href="#article-tab">Artikel</a></li>
       </ul>
     </div>
     <div id="season-table" class="col s12">
@@ -15,6 +16,9 @@
     </div>
     <div id="players" class="col s12">
       <player-table-component [teamId]="team.id"></player-table-component>
+    </div>
+    <div id="article-tab" class="col s12">
+      <articles-component [teamId]="team.id"></articles-component>
     </div>
   </div>
 </div>
