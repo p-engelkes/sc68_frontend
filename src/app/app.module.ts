@@ -45,6 +45,8 @@ import {TabsDirective} from "./directives/tabs.directive";
 import {PlayerTableComponent} from "./components/user/player.table.component";
 import {GameTableComponent} from "./components/game/game.table.component";
 import {GameService} from "./services/game.service";
+import {PushPinDirective} from "./directives/pushpin.directive";
+import {ScrollSpyDirective} from "./directives/scroll.spy.directive";
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import {GameService} from "./services/game.service";
     GameTableComponent,
     SideNavDirective,
     ParallaxDirective,
-    TabsDirective
+    TabsDirective,
+    PushPinDirective,
+    ScrollSpyDirective
   ],
   imports: [
     NgUploaderModule,

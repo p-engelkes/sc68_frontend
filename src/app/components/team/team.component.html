@@ -1,24 +1,32 @@
 <div *ngIf="team">
   <div class="row">
-    <div class="col s12">
-      <ul class="tabs" tabs-directive>
-        <li class="tab col s3"><a href="#players">Spieler</a></li>
-        <li class="tab col s3"><a href="#season-table">Tabelle</a></li>
-        <li class="tab col s3"><a href="#previous-games">Vorherige Spiele</a></li>
-        <li class="tab col s3"><a href="#article-tab">Artikel</a></li>
-      </ul>
+    <div id="season-table" class="col s12 m9 l10">
+      <div id="table" class="section scrollspy" scroll-spy-directive>
+        <h4>Tabelle</h4>
+        <season-table-component [team]="team"></season-table-component>
+      </div>
+      <div id="games" class="section scrollspy" scroll-spy-directive>
+        <h4>Spiele</h4>
+        <game-table-component [teamId]="team.id" [gameTye]="'PREVIOUS'"></game-table-component>
+      </div>
+      <div id="players" class="section scrollspy" scroll-spy-directive>
+        <h4>Spieler</h4>
+        <player-table-component [teamId]="team.id"></player-table-component>
+      </div>
+      <div id="articles" class="section scrollspy" scroll-spy-directive>
+        <h4>Artikel</h4>
+        <articles-component [teamId]="team.id"></articles-component>
+      </div>
     </div>
-    <div id="season-table" class="col s12">
-      <season-table-component [team]="team"></season-table-component>
-    </div>
-    <div id="previous-games" class="col s12">
-      <game-table-component [teamId]="team.id" [gameTye]="'PREVIOUS'"></game-table-component>
-    </div>
-    <div id="players" class="col s12">
-      <player-table-component [teamId]="team.id"></player-table-component>
-    </div>
-    <div id="article-tab" class="col s12">
-      <articles-component [teamId]="team.id"></articles-component>
+    <div class="col hide-on-small-only m3 l2">
+      <div class="toc-wrapper" push-pin-directive>
+        <ul class="section table-of-contents">
+          <li><a href="#table">Tabelle</a></li>
+          <li><a href="#games">Spiele</a></li>
+          <li><a href="#players">Spieler</a></li>
+          <li><a href="#articles">Artikel</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
