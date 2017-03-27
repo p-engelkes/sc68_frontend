@@ -19,14 +19,14 @@ declare var jQuery: any;
   selector: 'edit-user-profile',
   templateUrl: './edit.user.profile.component.html'
 })
-export class EditUserProfileComponent extends OnInit {
+export class EditUserProfileComponent implements OnInit {
   uploadFile: any;
   editUserForm: FormGroup;
   firstNameField: Field;
   lastNameField: Field;
   emailField: Field;
   backNumberField: Field;
-  private user: User;
+  user: User;
   private positions: Position[];
   private teams: Team[];
   private zone: NgZone;
@@ -39,9 +39,7 @@ export class EditUserProfileComponent extends OnInit {
               private dataService: DataService,
               private teamService: TeamService,
               private formBuilder: FormBuilder,
-              private router: Router) {
-    super();
-  }
+              private router: Router) {}
 
   ngOnInit(): void {
     this.user = this.dataService.user;

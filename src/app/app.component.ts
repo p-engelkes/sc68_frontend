@@ -6,7 +6,7 @@ import {LocalStorage} from "./helper/LocalStorage";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private isLoggedIn = false;
+  isLoggedIn = false;
 
   ngOnInit(): void {
     this.isLoggedIn = !!LocalStorage.getToken();

@@ -34,7 +34,6 @@ import {EditTextAreaComponent} from "./components/ui/edit.textarea.component";
 import {NewArticleComponent} from "./components/article/new.article.component";
 import {LandingPageComponent} from "./components/landing_page/landing.page.component";
 import {ParallaxDirective} from "./directives/parallax.directive";
-import {Angular2FontAwesomeModule} from "angular2-font-awesome/angular2-font-awesome";
 import {OldClassService} from "./services/old.class.service";
 import {TeamParentComponent} from "./components/team/team.parent.component";
 import {TeamCardComponent} from "./components/team/team.card.component";
@@ -89,8 +88,7 @@ import {ScrollSpyDirective} from "./directives/scroll.spy.directive";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing,
-    Angular2FontAwesomeModule
+    routing
   ],
   providers: [
     LoginService,

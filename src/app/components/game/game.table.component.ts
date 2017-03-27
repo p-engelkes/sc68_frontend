@@ -5,7 +5,7 @@ import {SeasonGame} from "../../models/season.game";
   selector: 'game-table-component',
   templateUrl: './game.table.component.html'
 })
-export class GameTableComponent extends OnInit {
+export class GameTableComponent implements OnInit {
   @Input()
   teamId: number;
   @Input()
@@ -13,9 +13,7 @@ export class GameTableComponent extends OnInit {
 
   games: SeasonGame[];
 
-  constructor(private gameService: GameService) {
-    super();
-  }
+  constructor(private gameService: GameService) {}
 
   ngOnInit(): void {
     this.gameService.findByTeamAndType(this.teamId, this.gameTye).subscribe(

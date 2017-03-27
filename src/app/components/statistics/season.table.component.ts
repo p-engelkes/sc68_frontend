@@ -6,15 +6,13 @@ import {SeasonTableTeamService} from "../../services/season.table.service";
   selector: 'season-table-component',
   templateUrl: './season.table.component.html'
 })
-export class SeasonTableComponent extends OnInit {
+export class SeasonTableComponent implements OnInit {
   @Input()
   team: Team;
 
   seasonTableTeams: SeasonTableTeam[];
 
-  constructor(private seasonTableTeamService: SeasonTableTeamService) {
-    super();
-  }
+  constructor(private seasonTableTeamService: SeasonTableTeamService) {}
 
   ngOnInit(): void {
     this.seasonTableTeamService.findByTeam(this.team.id).subscribe(

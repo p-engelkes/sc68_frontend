@@ -3,11 +3,10 @@ declare var jQuery: any;
 @Directive({
   selector: '[push-pin-directive]'
 })
-export class PushPinDirective extends OnInit {
+export class PushPinDirective implements OnInit {
   private element: ElementRef;
 
   constructor(element: ElementRef) {
-    super();
     this.element = element;
   }
 

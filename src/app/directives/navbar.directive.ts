@@ -6,11 +6,10 @@ declare var jQuery: any;
 @Directive({
   selector: '[side-nav]'
 })
-export class SideNavDirective extends OnInit {
+export class SideNavDirective implements OnInit {
   private element: ElementRef;
 
   constructor(element: ElementRef) {
-    super();
     this.element = element;
   }
 

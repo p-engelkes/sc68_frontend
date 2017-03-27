@@ -9,7 +9,7 @@ import {Team} from "../../models/team";
   templateUrl: './teams.component.html'
 })
 export class TeamsComponent {
-  private teams: Team[] = [];
+  teams: Team[] = [];
 
   constructor(private teamService: TeamService) {
     teamService.getAllTeams().subscribe(

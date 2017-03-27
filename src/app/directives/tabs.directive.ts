@@ -3,11 +3,10 @@ declare var jQuery: any;
 @Directive({
   selector: '[tabs-directive]'
 })
-export class TabsDirective extends OnInit {
+export class TabsDirective implements OnInit {
   private element: ElementRef;
 
   constructor(element: ElementRef) {
-    super();
     this.element = element;
   }
 

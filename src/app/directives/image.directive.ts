@@ -7,12 +7,11 @@ import {User} from "../models/user";
 @Directive({
   selector: '[profile-image]',
 })
-export class ProfileImageDirective extends OnInit {
+export class ProfileImageDirective implements OnInit {
   @Input('profile-image') user: User;
   private element: ElementRef;
 
   constructor(element: ElementRef) {
-    super();
     this.element = element;
   }
 

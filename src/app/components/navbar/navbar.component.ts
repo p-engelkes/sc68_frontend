@@ -10,6 +10,7 @@ import {NavBarService} from "../../services/navbar.service";
 import {Team} from "../../models/team";
 import {OldClassService} from "../../services/old.class.service";
 import {OldClass} from "../../models/old.class";
+import {log} from "util";
 declare var jQuery: any;
 @Component({
   selector: 'navbar',
@@ -19,18 +20,8 @@ declare var jQuery: any;
 export class NavbarComponent implements OnInit {
   title: string;
   oldClassesWithAnArticle: OldClass[];
-
-  constructor(private loginService: LoginService,
-              private routerService: RouterService,
-              private router: Router,
-              private navBarService: NavBarService,
-              private oldClassService: OldClassService) {
-
-    this.oldClassService.findAllWithTeamsAndArticles().subscribe(
-      data => this.oldClassesWithAnArticle = OldClass.getOldClassesFromJson(data),
-      error => console.log(error)
-    );
-  }
+  routerService: RouterService;
+  loginService: LoginService;
 
   ngOnInit(): void {
     this.navBarService.getEmittedValue()
@@ -42,6 +33,20 @@ export class NavbarComponent implements OnInit {
       this.loginService.logOut();
       location.reload();
     }
+  }
+
+  constructor(private router: Router,
+              private navBarService: NavBarService,
+              private oldClassService: OldClassService,
+              loginService: LoginService,
+              routerService: RouterService) {
+
+    this.oldClassService.findAllWithTeamsAndArticles().subscribe(
+      data => this.oldClassesWithAnArticle = OldClass.getOldClassesFromJson(data),
+      error => console.log(error)
+    );
+    this.routerService = routerService;
+    this.loginService = loginService;
   }
 
   openLoginModal() {

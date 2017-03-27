@@ -6,16 +6,14 @@ import {RouterService} from "../../services/router.service";
   selector: 'player-table-component',
   templateUrl: './player.table.component.html'
 })
-export class PlayerTableComponent extends OnInit {
+export class PlayerTableComponent implements OnInit {
   @Input()
   teamId: number;
 
   users: User[];
 
   constructor(private teamService: TeamService,
-              private routerService: RouterService) {
-    super();
-  }
+              private routerService: RouterService) {}
 
   ngOnInit(): void {
     this.teamService.findAllPlayersByTeam(this.teamId).subscribe(

@@ -3,11 +3,10 @@ declare var jQuery: any;
 @Directive({
   selector: '[scroll-spy-directive]'
 })
-export class ScrollSpyDirective extends OnInit {
+export class ScrollSpyDirective implements OnInit {
   private element: ElementRef;
 
   constructor(element: ElementRef) {
-    super();
     this.element = element;
   }
 

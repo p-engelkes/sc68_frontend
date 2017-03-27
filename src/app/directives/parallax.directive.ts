@@ -7,11 +7,10 @@ declare var jQuery: any;
 @Directive({
   selector: '[parallax-directive]'
 })
-export class ParallaxDirective extends OnInit {
+export class ParallaxDirective implements OnInit {
   private element: ElementRef;
 
   constructor(element: ElementRef) {
-    super();
     this.element = element;
   }
 

@@ -13,8 +13,8 @@ import {NavBarService} from "../../services/navbar.service";
   selector: 'user-profile',
   templateUrl: 'user.profile.component.html'
 })
-export class UserProfileComponent extends OnInit {
-  private user: User;
+export class UserProfileComponent implements OnInit {
+  user: User;
 
   ngOnInit(): void {
     let id = +this.route.snapshot.params['id'];
@@ -32,7 +32,6 @@ export class UserProfileComponent extends OnInit {
               private router: Router,
               private dataService: DataService,
               private navbarService: NavBarService) {
-    super()
   }
 
   isCurrentUser() {
