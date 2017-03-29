@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
 import {ArticleService} from "../../services/article.service";
@@ -12,21 +12,24 @@ declare var jQuery: any;
   selector: 'new-article-component',
   templateUrl: 'new.article.component.html'
 })
-export class NewArticleComponent {
+export class NewArticleComponent implements OnInit {
   newArticleForm: FormGroup;
   titleField: Field;
   contentField: Field;
   showForm: boolean = false;
   oldClasses: OldClass[];
 
+  async ngOnInit() {
+    try {
+      this.oldClasses = await this.oldClassService.findAllWithTeams();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticleService,
               private oldClassService: OldClassService) {
-    // this.oldClassService.findAllWithTeams().subscribe(
-    //   data => this.oldClasses = OldClass.getOldClassesFromJson(data),
-    //   error => console.log(error)
-    // );
-
     this.newArticleForm = this.formBuilder.group({
       title: [null, Validators.required],
       content: [null, Validators.required],

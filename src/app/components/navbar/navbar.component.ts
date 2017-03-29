@@ -10,7 +10,6 @@ import {NavBarService} from "../../services/navbar.service";
 import {Team} from "../../models/team";
 import {OldClassService} from "../../services/old.class.service";
 import {OldClass} from "../../models/old.class";
-import {log} from "util";
 declare var jQuery: any;
 @Component({
   selector: 'navbar',
@@ -23,7 +22,13 @@ export class NavbarComponent implements OnInit {
   routerService: RouterService;
   loginService: LoginService;
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    try {
+      this.oldClassesWithAnArticle = await this.oldClassService.findAllWithTeamsAndArticles();
+    } catch (error) {
+      console.log(error);
+    }
+
     this.navBarService.getEmittedValue()
       .subscribe(newTitle => this.title = newTitle);
   }
@@ -40,11 +45,6 @@ export class NavbarComponent implements OnInit {
               private oldClassService: OldClassService,
               loginService: LoginService,
               routerService: RouterService) {
-
-    // this.oldClassService.findAllWithTeamsAndArticles().subscribe(
-    //   data => this.oldClassesWithAnArticle = OldClass.getOldClassesFromJson(data),
-    //   error => console.log(error)
-    // );
     this.routerService = routerService;
     this.loginService = loginService;
   }
