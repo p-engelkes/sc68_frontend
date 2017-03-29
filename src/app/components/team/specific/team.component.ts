@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {Team} from "../../models/team";
-import {TeamService} from "../../services/team.service";
-import {NavBarService} from "../../services/navbar.service";
+import {Team} from "../../../models/team";
+import {TeamService} from "../../../services/team.service";
+import {NavBarService} from "../../../services/navbar.service";
 @Component({
   selector: 'team-component',
   templateUrl: './team.component.html'

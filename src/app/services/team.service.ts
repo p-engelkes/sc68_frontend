@@ -17,9 +17,11 @@ export class TeamService {
   }
 
   async findById(id: number) {
-    let response = await httpGet("/teams/" + id, this.http);
+    let data = await httpGet("/teams/" + id, this.http);
+    let teamResponse = JSON.parse(JSON.stringify(data))._body;
+    let teamJson = JSON.parse(teamResponse);
 
-    return Team.deserialize(response);
+    return Team.deserialize(teamJson);
   }
 
   findAllPlayersByTeam(id: number) {

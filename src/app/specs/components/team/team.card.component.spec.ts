@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {TeamCardComponent} from "../../../components/team/team.card.component";
+import {TeamCardComponent} from "../../../components/team/specific/team.card.component";
 import {FakeRouterService, queryElement} from "../spec.utils";
 import {RouterService} from "../../../services/router.service";
 describe('Team Card Component', () => {

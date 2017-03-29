@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {TeamsComponent} from "../../../components/team/teams.component";
+import {TeamsComponent} from "../../../components/team/general/teams.component";
 import {FakeTeamService, queryAll, FakeRouterService} from "../spec.utils";
 import {TeamService} from "../../../services/team.service";
-import {TeamCardComponent} from "../../../components/team/team.card.component";
+import {TeamCardComponent} from "../../../components/team/specific/team.card.component";
 import {RouterService} from "../../../services/router.service";
 describe('Team Component', () => {
   let component: TeamsComponent;

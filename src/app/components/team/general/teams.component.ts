@@ -2,8 +2,8 @@
  * Created by pengelkes on 02.12.2016.
  */
 import {Component, OnInit} from "@angular/core";
-import {TeamService} from "../../services/team.service";
-import {Team} from "../../models/team";
+import {TeamService} from "../../../services/team.service";
+import {Team} from "../../../models/team";
 @Component({
   selector: 'team',
   templateUrl: './teams.component.html'

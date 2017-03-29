@@ -3,8 +3,8 @@
  */
 import {Component} from "@angular/core";
 @Component({
-  selector: 'team-parent-component',
+  selector: 'teams-parent-component',
   template: '<router-outlet></router-outlet>'
 })
-export class TeamParentComponent {
+export class TeamsParentComponent {
 }

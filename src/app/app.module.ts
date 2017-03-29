@@ -10,7 +10,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {RegisterService} from "./services/register.service";
 import {HomeComponent} from "./components/home/home.component";
 import {routing} from "./app.routing";
-import {TeamsComponent} from "./components/team/teams.component";
+import {TeamsComponent} from "./components/team/general/teams.component";
 import {TeamService} from "./services/team.service";
 import {MaterializeDropdown} from "./directives/select.directive";
 import {UserProfileComponent} from "./components/user/user.profile.component";
@@ -35,9 +35,9 @@ import {NewArticleComponent} from "./components/article/new.article.component";
 import {LandingPageComponent} from "./components/landing_page/landing.page.component";
 import {ParallaxDirective} from "./directives/parallax.directive";
 import {OldClassService} from "./services/old.class.service";
-import {TeamParentComponent} from "./components/team/team.parent.component";
-import {TeamCardComponent} from "./components/team/team.card.component";
-import {TeamComponent} from "./components/team/team.component";
+import {TeamsParentComponent} from "./components/team/general/teams.parent.component";
+import {TeamCardComponent} from "./components/team/specific/team.card.component";
+import {TeamComponent} from "./components/team/specific/team.component";
 import {SeasonTableComponent} from "./components/statistics/season.table.component";
 import {SeasonTableTeamService} from "./services/season.table.service";
 import {TabsDirective} from "./directives/tabs.directive";
@@ -46,6 +46,10 @@ import {GameTableComponent} from "./components/game/game.table.component";
 import {GameService} from "./services/game.service";
 import {PushPinDirective} from "./directives/pushpin.directive";
 import {ScrollSpyDirective} from "./directives/scroll.spy.directive";
+import {AddTeamComponent} from "./components/team/general/add.team.component";
+import {EditTeamComponent} from "./components/team/specific/edit.team.component";
+import {ManageTeamPicturesComponent} from "./components/team/specific/team_picture/manage.team.pictures.component";
+import {TeamParentComponent} from "./components/team/specific/team.parent.component";
 
 @NgModule({
   declarations: [
@@ -59,10 +63,14 @@ import {ScrollSpyDirective} from "./directives/scroll.spy.directive";
     UserProfileComponent,
     PlayerTableComponent,
     EditUserProfileComponent,
-    TeamParentComponent,
-    TeamCardComponent,
+    TeamsParentComponent,
     TeamsComponent,
+    AddTeamComponent,
+    TeamParentComponent,
     TeamComponent,
+    TeamCardComponent,
+    EditTeamComponent,
+    ManageTeamPicturesComponent,
     PropertyComponent,
     EditInputFieldComponent,
     EditTextAreaComponent,

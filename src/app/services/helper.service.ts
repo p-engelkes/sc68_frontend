@@ -40,7 +40,6 @@ export function httpGetWithParametersAndWithoutAuthorization(url: string, http: 
 
     if (i != 0) {
       url += "&";
-      console.log(parameter);
       url += parameter.key + "=" + parameter.value
     }
   }
