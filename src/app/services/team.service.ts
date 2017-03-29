@@ -4,18 +4,22 @@
 import {Injectable} from "@angular/core";
 import {httpGet, httpGetWithoutAuthorization} from "./helper.service";
 import {Http} from "@angular/http";
+import {Team} from "../models/team";
 @Injectable()
 export class TeamService {
 
   constructor(private http: Http) {
   }
 
-  getAllTeams() {
-    return httpGet("/teams", this.http);
+  async getAllTeams() {
+    let response = await httpGet("/teams", this.http);
+    return Team.getTeamsFromJson(response);
   }
 
-  findById(id: number) {
-    return httpGet("/teams/" + id, this.http)
+  async findById(id: number) {
+    let response = await httpGet("/teams/" + id, this.http);
+
+    return Team.deserialize(response);
   }
 
   findAllPlayersByTeam(id: number) {

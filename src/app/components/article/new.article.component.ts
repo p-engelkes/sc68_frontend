@@ -22,10 +22,10 @@ export class NewArticleComponent {
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticleService,
               private oldClassService: OldClassService) {
-    this.oldClassService.findAllWithTeams().subscribe(
-      data => this.oldClasses = OldClass.getOldClassesFromJson(data),
-      error => console.log(error)
-    );
+    // this.oldClassService.findAllWithTeams().subscribe(
+    //   data => this.oldClasses = OldClass.getOldClassesFromJson(data),
+    //   error => console.log(error)
+    // );
 
     this.newArticleForm = this.formBuilder.group({
       title: [null, Validators.required],
@@ -58,7 +58,7 @@ export class NewArticleComponent {
     return LocalStorage.isArticleWriter();
   }
 
-  createArticle(value: any) {
+  async createArticle(value: any) {
     let title = value.title;
     let content = value.content;
     let teamId = jQuery('#team').val();
@@ -70,13 +70,13 @@ export class NewArticleComponent {
       .setTeamId(teamId)
       .setCreated(new Date());
 
-    this.articleService.create(article).subscribe(
-      data => {
-        Materialize.toast("Artikel veröffentlicht", 4000);
-        this.articleService.addArticle(article);
-        this.showForm = false
-      },
-      error => Materialize.toast("Fehler beim Erstellen des Artikels", 4000)
-    );
+    try {
+      await this.articleService.create(article);
+      Materialize.toast('Artikel veröffentlicht', 4000);
+      this.articleService.addArticle(article);
+      this.showForm = false;
+    } catch (err) {
+      Materialize.toast('Fehler beim Erstellen des Artikels', 4000);
+    }
   }
 }

@@ -46,45 +46,57 @@ describe('Edit User Profile Component', () => {
   });
 
   describe('component layout', () => {
-    it('should have 4 edit-input-fields', () => {
-      let editInputFieldDebugElements = fixture.debugElement.queryAll(By.css('edit-input-field'));
-      expect(editInputFieldDebugElements.length).toBe(4);
-    });
+    it('should have 4 edit-input-fields', async(() => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        let editInputFieldDebugElements = fixture.debugElement.queryAll(By.css('edit-input-field'));
+        expect(editInputFieldDebugElements.length).toBe(4);
+      });
+    }));
 
-    it('should have 2 select options', () => {
-      let editInputFieldDebugElements = fixture.debugElement.queryAll(By.css('select'));
-      expect(editInputFieldDebugElements.length).toBe(2);
-    });
+    it('should have 2 select options', async(() => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        let editInputFieldDebugElements = fixture.debugElement.queryAll(By.css('select'));
+        expect(editInputFieldDebugElements.length).toBe(2);
+      });
+    }));
 
-    it('should have 1 file field', () => {
-      let fileFieldDebugElement = queryElement('.file-field', fixture);
-      expect(fileFieldDebugElement).not.toBeNull();
-    });
+    it('should have 1 file field', async(() => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        let fileFieldDebugElement = queryElement('.file-field', fixture);
+        expect(fileFieldDebugElement).not.toBeNull();
+      });
+    }));
 
-    it('should have a refresh button', () => {
-      let refreshButtonDebugElement = queryElement('.btn', fixture);
-      expect(refreshButtonDebugElement).not.toBeNull();
-    });
+    it('should have a refresh button', async(() => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        let refreshButtonDebugElement = queryElement('.btn', fixture);
+        expect(refreshButtonDebugElement).not.toBeNull();
+      });
+    }));
   });
 
   describe('component logic', () => {
     // let passwordDebugElement = fixture.debugElement.query(By.css('#password'));
     // setInputValue(passwordDebugElement, 'password', fixture);
-    it('should set the editUserFormValues according to the input fields', fakeAsync(() => {
-      let firstNameDebugElement = queryElement('#firstName', fixture);
-      setInputValue(firstNameDebugElement, 'firstName', fixture);
-
-      let lastNameDebugElement = queryElement('#lastName', fixture);
-      setInputValue(lastNameDebugElement, 'lastName', fixture);
-
-      let emailFieldDebugElement = queryElement('#email', fixture);
-      setInputValue(emailFieldDebugElement, 'email', fixture);
-
-      let backNumberDebugElement = queryElement('#backNumber', fixture);
-      setInputValue(backNumberDebugElement, '8', fixture);
-
-      fixture.detectChanges();
+    it('should set the editUserFormValues according to the input fields', async(() => {
       fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        let firstNameDebugElement = queryElement('#firstName', fixture);
+        setInputValue(firstNameDebugElement, 'firstName', fixture);
+
+        let lastNameDebugElement = queryElement('#lastName', fixture);
+        setInputValue(lastNameDebugElement, 'lastName', fixture);
+
+        let emailFieldDebugElement = queryElement('#email', fixture);
+        setInputValue(emailFieldDebugElement, 'email', fixture);
+
+        let backNumberDebugElement = queryElement('#backNumber', fixture);
+        setInputValue(backNumberDebugElement, '8', fixture);
+
         expect(component.editUserForm.value.firstName).toBe('firstName');
         expect(component.editUserForm.value.lastName).toBe('lastName');
         expect(component.editUserForm.value.email).toBe('email');
@@ -93,14 +105,13 @@ describe('Edit User Profile Component', () => {
     }));
 
     it('should call the refresh action on Refresh-Button click with the given values',
-      fakeAsync(() => {
+      async(() => {
         spyOn(component, 'updateUserProfile');
 
-        let refreshButtonDebugElement = queryElement('.submit-btn', fixture);
-        refreshButtonDebugElement.triggerEventHandler('click', null);
-
-        fixture.detectChanges();
         fixture.whenStable().then(() => {
+          fixture.detectChanges();
+          let refreshButtonDebugElement = queryElement('.submit-btn', fixture);
+          refreshButtonDebugElement.triggerEventHandler('click', null);
           expect(component.updateUserProfile).toHaveBeenCalled();
         });
       }));

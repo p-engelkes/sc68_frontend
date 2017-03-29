@@ -15,11 +15,14 @@ export class PlayerTableComponent implements OnInit {
   constructor(private teamService: TeamService,
               private routerService: RouterService) {}
 
-  ngOnInit(): void {
-    this.teamService.findAllPlayersByTeam(this.teamId).subscribe(
-      data => this.users = User.getUsersFromJsonResponse(data),
-      error => console.log(error)
-    );
+  async ngOnInit() {
+    let data  = await this.teamService.findAllPlayersByTeam(this.teamId);
+    this.users = User.getUsersFromJsonResponse(data);
+
+    // this.teamService.findAllPlayersByTeam(this.teamId).subscribe(
+    //   data => this.users = User.getUsersFromJsonResponse(data),
+    //   error => console.log(error)
+    // );
   };
 
   onPlayerClick(user: User) {

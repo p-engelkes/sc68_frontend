@@ -11,7 +11,7 @@ export let apiUrl = url + "/api";
 export function httpGet(url: string, http: Http) {
   url = apiUrl + url;
   let bearerHeaders = new Headers({'Authorization': 'Bearer' + LocalStorage.getToken()});
-  return http.get(url, {headers: bearerHeaders});
+  return http.get(url, {headers: bearerHeaders}).toPromise();
 }
 
 export function httpGetWithParameters(url: string, http: Http, ...parameters: Parameter[]) {
@@ -27,7 +27,7 @@ export function httpGetWithParameters(url: string, http: Http, ...parameters: Pa
   }
 
   let bearerHeaders = new Headers({'Authorization': 'Bearer' + LocalStorage.getToken()});
-  return http.get(url, {headers: bearerHeaders});
+  return http.get(url, {headers: bearerHeaders}).toPromise();
 }
 
 export function httpGetWithParametersAndWithoutAuthorization(url: string, http: Http, ...parameters: Parameter[]) {
@@ -45,18 +45,17 @@ export function httpGetWithParametersAndWithoutAuthorization(url: string, http: 
     }
   }
 
-  console.log(url);
-  return http.get(url);
+  return http.get(url).toPromise();
 }
 
-export function httpGetWithoutAuthorization(url: string, http: Http) {
+export async function httpGetWithoutAuthorization(url: string, http: Http): Promise<any> {
   url = apiUrl + url;
-  return http.get(url);
+  return http.get(url).toPromise();
 }
 
 export function httpPostWithoutAuthorization(url: string, jsonObject: any, http: Http) {
   url = apiUrl + url;
-  return http.post(url, JSON.stringify(jsonObject), {headers: jsonHeaders});
+  return http.post(url, JSON.stringify(jsonObject), {headers: jsonHeaders}).toPromise();
 }
 
 export function httpPost(url: string, jsonObject: any, http: Http) {
@@ -65,7 +64,7 @@ export function httpPost(url: string, jsonObject: any, http: Http) {
     'Authorization': 'Bearer' + LocalStorage.getToken(),
     'Content-Type': 'application/json'
   });
-  return http.post(url, JSON.stringify(jsonObject), {headers: bearerHeaders});
+  return http.post(url, JSON.stringify(jsonObject), {headers: bearerHeaders}).toPromise();
 }
 
 export class Parameter {

@@ -9,6 +9,7 @@ import {DataService} from "../../services/data.service";
 import {Response, ResponseOptions} from "@angular/http";
 import {tick} from "@angular/core/testing";
 import {OldClass} from "../../models/old.class";
+import 'rxjs/add/operator/toPromise';
 
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
 let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
@@ -66,40 +67,40 @@ export class FakeRegisterService {
 }
 
 export class FakeTeamService {
-  getAllTeams() {
-    return Observable.of(getResponse([teamOne, teamTwo]));
+  async getAllTeams() {
+    return [teamOne, teamTwo];
   }
 
-  findById(id) {
-    return Observable.of(getResponse(teamOne))
+  async findById(id) {
+    return teamOne;
   }
 }
 
 export class FakeUserService {
-  getUser(id) {
-    return Observable.of(getResponse(user));
+  async getUser(id) {
+    return user;
   }
 
-  getAllPositions() {
-    return Observable.of(getResponse(positions));
+  async getAllPositions() {
+    return positions;
   }
 
   update(id, user) {
-    return Observable.of(JSON.stringify(user));
+    return Observable.of(getResponse(JSON.stringify(user))).toPromise();
   }
 }
 
 export class FakeArticleService {
-  findAll() {
-    return Observable.of(getResponse([fakeArticleOne, fakeArticleTwo]));
+  async findAll() {
+    return [fakeArticleOne, fakeArticleTwo];
   }
 
   getAllTeamsWithAnArticle() {
-    return Observable.of(getResponse([teamOne, teamTwo]))
+    return [teamOne, teamTwo];
   }
 
   findAllByTeam(teamId: number) {
-    return Observable.of(getResponse([fakeArticleOne, fakeArticleTwo, fakeArticleThree]))
+    return [fakeArticleOne, fakeArticleTwo, fakeArticleThree];
   }
 
   getAddArticleEvent() {
@@ -160,12 +161,10 @@ export class FakeOldClassService {
 //has to run inside fakeAsync due to the use of tick()
 export function setInputValue(debugElement: DebugElement, value: string, fixture) {
   fixture.detectChanges();
-  tick();
 
   let input = debugElement.nativeElement;
   input.value = value;
   input.dispatchEvent(new Event('input'));
-  tick();
 }
 
 export function queryElement(css, fixture) {

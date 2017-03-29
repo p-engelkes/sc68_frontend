@@ -41,24 +41,32 @@ export class EditUserProfileComponent implements OnInit {
               private formBuilder: FormBuilder,
               private router: Router) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.user = this.dataService.user;
     if (!this.user) {
-      this.userService.getUser(LocalStorage.getCurrentUserId()).subscribe(
-        data => this.user = User.getUserFromJsonResponse(data, this.dataService),
-        error => console.log(error)
-      );
+      try {
+        console.log(LocalStorage.getCurrentUserId());
+        this.user = await this.userService.getUser(LocalStorage.getCurrentUserId());
+      } catch (error) {
+        console.log("Error in getUser");
+        console.log(error);
+      }
     }
-    this.userService.getAllPositions().subscribe(
-      data => {
-        this.positions = Position.getPositionsFromJson(data);
-      },
-      error => console.log(error)
-    );
-    this.teamService.getAllTeams().subscribe(
-      data => this.teams = Team.getTeamsFromJson(data),
-      error => console.log(error)
-    );
+
+    try {
+      this.positions = await this.userService.getAllPositions();
+    } catch (error) {
+      console.log("Error in getAllPositions");
+      console.log(error);
+    }
+
+    try {
+      this.teams = await this.teamService.getAllTeams();
+    } catch (error) {
+      console.log("Error in getAllTeams");
+      console.log(error);
+    }
+
     this.editUserForm = this.formBuilder.group({
       firstName: [this.user.firstName],
       lastName: [this.user.lastName],
@@ -118,7 +126,7 @@ export class EditUserProfileComponent implements OnInit {
     }
   }
 
-  updateUserProfile(value: any) {
+  async updateUserProfile(value: any) {
     if (!this.uploading) {
       this.dataService.user;
       let firstName = value.firstName;
@@ -140,13 +148,12 @@ export class EditUserProfileComponent implements OnInit {
       this.user = user;
       let currentUserId = LocalStorage.getCurrentUserId();
 
-      this.userService.update(currentUserId, user).subscribe(
-        data => {
-          Materialize.toast("Erfolgreich aktualisiert", 4000);
-          this.router.navigate(['/user', currentUserId])
-        },
-        error => Materialize.toast("Fehler bei der Aktualisierung")
-      )
+      try {
+        await this.userService.update(currentUserId, user);
+        Materialize.toast('Erfolgreich aktualisiert', 4000);
+      } catch (err) {
+        Materialize.toast('Fehler bei der Aktualisierung', 4000);
+      }
     }
   }
 }

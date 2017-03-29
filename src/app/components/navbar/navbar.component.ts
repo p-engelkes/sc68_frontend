@@ -41,10 +41,10 @@ export class NavbarComponent implements OnInit {
               loginService: LoginService,
               routerService: RouterService) {
 
-    this.oldClassService.findAllWithTeamsAndArticles().subscribe(
-      data => this.oldClassesWithAnArticle = OldClass.getOldClassesFromJson(data),
-      error => console.log(error)
-    );
+    // this.oldClassService.findAllWithTeamsAndArticles().subscribe(
+    //   data => this.oldClassesWithAnArticle = OldClass.getOldClassesFromJson(data),
+    //   error => console.log(error)
+    // );
     this.routerService = routerService;
     this.loginService = loginService;
   }

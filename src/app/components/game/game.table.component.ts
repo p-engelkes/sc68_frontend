@@ -15,10 +15,11 @@ export class GameTableComponent implements OnInit {
 
   constructor(private gameService: GameService) {}
 
-  ngOnInit(): void {
-    this.gameService.findByTeamAndType(this.teamId, this.gameTye).subscribe(
-      data => this.games = SeasonGame.getSeasonGamesFromJson(data),
-      error => console.log(error)
-    );
+  async ngOnInit() {
+    try {
+      this.games = await this.gameService.findByTeamAndType(this.teamId, this.gameTye);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

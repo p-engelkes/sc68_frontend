@@ -16,15 +16,14 @@ import {NavBarService} from "../../services/navbar.service";
 export class UserProfileComponent implements OnInit {
   user: User;
 
-  ngOnInit(): void {
+  async ngOnInit() {
     let id = +this.route.snapshot.params['id'];
-    this.userService.getUser(id).subscribe(
-      data => {
-        this.user = User.getUserFromJsonResponse(data, this.dataService);
-        this.navbarService.changeTitle(this.user.getNavigationTitle())
-      },
-      error => console.log(error)
-    );
+    try {
+      this.user = await this.userService.getUser(id);
+      this.navbarService.changeTitle(this.user.getNavigationTitle())
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   constructor(private userService: UserService,

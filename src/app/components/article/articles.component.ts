@@ -28,15 +28,16 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     this.navBarService.changeTitle("News");
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.articleService.getAddArticleEvent()
       .subscribe(newArticle => this.articles.unshift(newArticle));
 
     if (this.teamId) {
-      this.articleService.findAllByTeam(this.teamId).subscribe(
-        data => this.articles = Article.getArticlesFromRestResponse(data),
-        error => console.log(error)
-      );
+      try {
+        this.articles = await this.articleService.findAllByTeam(this.teamId);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       this.subscription = this.router.events.subscribe(event => {
         if (event instanceof NavigationStart) {
@@ -72,37 +73,33 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     }
   }
 
-  private findArticles(id: number, path: string) {
+  private async findArticles(id: number, path: string) {
     if ((!id || !path) || path === 'home') {
-      this.articleService.findAll().subscribe(
-        data => {
-          this.articles = Article.getArticlesFromRestResponse(data);
-        },
-        error => console.log(error)
-      );
+      this.articles = await this.articleService.findAll();
       this.navBarService.changeTitle('News');
     }
 
     if (id && path === 'team') {
-      this.articleService.findAllByTeam(id).subscribe(
-        data => {
-          this.articles = Article.getArticlesFromRestResponse(data);
-        },
-        error => console.log(error)
-      );
-      this.teamService.findById(id).subscribe(
-        data => {
-          this.navBarService.changeTitle('News - ' + Team.deserialize(data).name);
-        },
-        error => console.log(error)
-      );
+      try {
+        this.articles = await this.articleService.findAllByTeam(id);
+      } catch (error) {
+        console.log(error);
+      }
+
+      try {
+        let team = await this.teamService.findById(id);
+        this.navBarService.changeTitle(team.name);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     if (id && path === 'author') {
-      this.articleService.findAllByAuthor(id).subscribe(
-        data => this.articles = Article.getArticlesFromRestResponse(data),
-        error => console.log(error)
-      )
+      try {
+        this.articles = await this.articleService.findAllByAuthor(id);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }

@@ -4,19 +4,23 @@
 import {Injectable} from "@angular/core";
 import {httpGet, httpPost} from "./helper.service";
 import {Http} from "@angular/http";
-import {User} from "../models/user";
+import {Position, User} from "../models/user";
+import {DataService} from "./data.service";
 @Injectable()
 export class UserService {
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private dataService: DataService) {
   }
 
-  getUser(userId) {
-    return httpGet("/users/" + userId, this.http);
+  async getUser(userId) {
+    let response = await httpGet("/users/" + userId, this.http);
+    return User.getUserFromJsonResponse(response, this.dataService);
   }
 
-  getAllPositions() {
-    return httpGet("/positions", this.http);
+  async getAllPositions() {
+    let response = await httpGet("/positions", this.http);
+    return Position.getPositionsFromJson(response);
   }
 
   update(currentUserId: number, user: User) {

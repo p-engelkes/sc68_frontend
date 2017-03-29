@@ -45,34 +45,21 @@ export class LoginComponent {
   }
 
 
-  login(value: any) {
+  async login(value: any) {
     if (this.loginForm.valid) {
       let email = value.email;
       let password = value.password;
-      this.loginService.logIn(email, password).subscribe(
-        data => {
-          let responseBody = JSON.parse(JSON.stringify(data))._body;
-          let response = JSON.parse(responseBody);
-          let accessToken = response.access_token;
-          LocalStorage.setToken(accessToken);
-          this.loginService.verifyToken(email).subscribe(
-            data => {
-              let response = JSON.parse(JSON.stringify(data))._body;
-              let user = User.deserialize(JSON.parse(response));
-              LocalStorage.setCurrentUserId(user.id + "");
-              LocalStorage.setCurrentUserName(user.getFullName());
-              LocalStorage.setCurrentEmail(email);
-              LocalStorage.setLoggedIn(true);
-              LocalStorage.setArticleWriter(user.articleWriter);
-              jQuery('#login_modal').closeModal();
-              Materialize.toast("Login erfolgreich", 4000);
-              location.reload();
-            },
-            error => console.log(error)
-          );
-        },
-        error => console.log(error)
-      );
+
+      try {
+        await this.loginService.logIn(email, password);
+        await this.loginService.verifyToken(email);
+
+        jQuery('#login_modal').closeModal();
+        Materialize.toast("Login erfolgreich", 4000);
+        location.reload();
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }

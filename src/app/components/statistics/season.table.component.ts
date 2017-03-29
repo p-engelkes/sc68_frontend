@@ -14,13 +14,11 @@ export class SeasonTableComponent implements OnInit {
 
   constructor(private seasonTableTeamService: SeasonTableTeamService) {}
 
-  ngOnInit(): void {
-    this.seasonTableTeamService.findByTeam(this.team.id).subscribe(
-      data => {
-        this.seasonTableTeams = SeasonTableTeam.getSeasonTableTeamsFromJson(data);
-        console.log(this.seasonTableTeams);
-      },
-      error => console.log(error)
-    );
+  async ngOnInit() {
+    try {
+      this.seasonTableTeams = await this.seasonTableTeamService.findByTeam(this.team.id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

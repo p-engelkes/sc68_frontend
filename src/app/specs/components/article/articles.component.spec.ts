@@ -72,6 +72,7 @@ describe('Articles Component', () => {
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
+      fixture.detectChanges();
       let articleElements = fixture.debugElement.queryAll(By.css('article-component'));
 
       expect(articleElements.length).toEqual(3);

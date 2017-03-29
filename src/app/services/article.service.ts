@@ -17,24 +17,30 @@ export class ArticleService {
   constructor(private http: Http) {
   }
 
-  create(article: Article) {
-    return httpPost("/articles", article, this.http);
+  async create(article: Article): Promise<any> {
+    await httpPost("/articles", article, this.http);
   }
 
   getAllTeamsWithAnArticle() {
     return httpGetWithoutAuthorization("/articles/distinct/team", this.http)
   }
 
-  findAll(): any {
-    return httpGetWithoutAuthorization("/articles", this.http);
+  async findAll() {
+    let response = await httpGetWithoutAuthorization("/articles", this.http);
+
+    return Article.getArticlesFromRestResponse(response);
   }
 
-  findAllByAuthor(authorId: number) {
-    return httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("authorId", authorId));
+  async findAllByAuthor(authorId: number) {
+    let response = await httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("authorId", authorId));
+
+    return Article.getArticlesFromRestResponse(response);
   }
 
-  findAllByTeam(teamId: number) {
-    return httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("teamId", teamId));
+  async findAllByTeam(teamId: number) {
+    let response = await httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("teamId", teamId));
+
+    return Article.getArticlesFromRestResponse(response);
   }
 
   update(articleId: number, article: Article) {

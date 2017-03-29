@@ -50,43 +50,32 @@ export class RegisterComponent {
       .setId('password').setType('password').setFormControlName('password').setPlaceHolder('password').setShouldValidate(true);
   }
 
-  register(value: any) {
+  async register(value: any) {
     if (this.registerForm.valid) {
       let email = value.email;
       let password = value.password;
       let user = User.registerUser(email, password);
 
-      this.registerService.register(user).subscribe(
-        data => {
-          let response = JSON.parse(JSON.stringify(data))._body;
-          LocalStorage.setCurrentUserId(response);
-          this.logIn(email, password);
-          jQuery('#register_modal').closeModal();
-          this.router.navigate(["/home"]);
-        },
-        error => console.log(error)
-      );
+      try {
+        await this.registerService.register(user);
+        await this.logIn(email, password);
+        jQuery('#register_modal').closeModal();
+        this.router.navigate(["/home"]);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
-  private logIn(email: string, password: string) {
-    this.loginService.logIn(email, password).subscribe(
-      data => {
-        let responseBody = JSON.parse(JSON.stringify(data))._body;
-        let response = JSON.parse(responseBody);
-        let accessToken = response.access_token;
-        LocalStorage.setToken(accessToken);
-        this.loginService.verifyToken(email).subscribe(
-          data => {
-            LocalStorage.setCurrentEmail(email);
-            LocalStorage.setLoggedIn(true);
-            Materialize.toast("Registration erfolgreich", 4000);
-          },
-          error => console.log(error)
-        );
-      },
-      error => console.log(error)
-    );
+  private async logIn(email: string, password: string) {
+    try {
+      await this.loginService.logIn(email, password);
+      await this.loginService.verifyToken(email);
+
+      Materialize.toast('Registration erfolgreich', 4000);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   getPasswordConfirmationError(): string {
