@@ -10,6 +10,12 @@ export class OldClassService {
   constructor(private http: Http) {
   }
 
+  async findAll() {
+    let response = await httpGetWithoutAuthorization("/oldClasses", this.http);
+
+    return OldClass.getOldClassesFromJson(response);
+  }
+
   async findAllWithTeams() {
     let response = await httpGetWithoutAuthorization("/oldClasses?teams=true", this.http);
 

@@ -1,1 +1,54 @@
-<h1>Add Team Component</h1>
+<div class="row" *ngIf="addTeamForm">
+  <form class="col s12" [formGroup]="addTeamForm">
+    <div class="row">
+      <div class="input-field col s6">
+        <edit-input-field [formGroup]="addTeamForm" [propertyField]="nameField"></edit-input-field>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" formControlName="name">
+      <small *ngIf="!addTeamForm.controls.name.valid" class="text-danger">
+        Name is required (minimum 5 characters).
+      </small>
+    </div>
+    <div class="form-group">
+      <label>Soccer ID</label>
+      <input type="text" formControlName="soccerId">
+    </div>
+    <!--addresses-->
+    <div formArrayName="trainingTimes">
+      <div *ngFor="let address of addTeamForm.controls.trainingTimes.controls; let i=index" class="panel panel-default">
+        <div class="panel-heading">
+          <span>Address {{i + 1}}</span>
+          <span class="glyphicon glyphicon-remove pull-right"
+                *ngIf="addTeamForm.controls.trainingTimes.controls.length > 1"
+                (click)="removeAddress(i)"></span>
+        </div>
+        <div class="panel-body" [formGroupName]="i">
+          <add-training-time-component
+            [form-group]="addTeamForm.controls.trainingTimes.controls[i]"></add-training-time-component>
+        </div>
+      </div>
+    </div>
+
+    <div class="margin-20">
+      <a (click)="addTrainingTime()" style="cursor: default; color: red;">
+        Add another Training Time +
+      </a>
+    </div>
+
+    <div class="margin-20">
+      <button type="submit" class="btn btn-primary pull-right" [disabled]="!addTeamForm.valid">Submit</button>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="margin-20">
+      <div>myForm details:-</div>
+      <pre>Is myForm valid?: <br>{{addTeamForm.valid | json}}</pre>
+      <pre>form value: <br>{{addTeamForm.value | json}}</pre>
+    </div>
+  </form>
+</div>

@@ -50,6 +50,7 @@ import {AddTeamComponent} from "./components/team/general/add.team.component";
 import {EditTeamComponent} from "./components/team/specific/edit.team.component";
 import {ManageTeamPicturesComponent} from "./components/team/specific/team_picture/manage.team.pictures.component";
 import {TeamParentComponent} from "./components/team/specific/team.parent.component";
+import {AddTrainingTimeComponent} from "./components/team/general/add.training.time.component";
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import {TeamParentComponent} from "./components/team/specific/team.parent.compon
     TeamsParentComponent,
     TeamsComponent,
     AddTeamComponent,
+    AddTrainingTimeComponent,
     TeamParentComponent,
     TeamComponent,
     TeamCardComponent,
