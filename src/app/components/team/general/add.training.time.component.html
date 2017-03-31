@@ -1,13 +1,12 @@
 <div [formGroup]="addTeamForm">
-  <div class="form-group col-xs-6">
-    <label>street</label>
-    <input type="text" class="form-control" formControlName="day">
-    <small [hidden]="addTeamForm.controls.day.valid" class="text-danger">
-      Street is required
-    </small>
+  <div class="input-field col s6">
+    <select id="day" formControlName="day" materialize-dropdown>
+      <option value="" disabled selected>Wähle den Trainingstag aus</option>
+      <option *ngFor="let day of days" value="{{day}}">{{day}}</option>
+    </select>
+    <label for="day" class="active">Trainingstag</label>
   </div>
-  <div class="form-group col-xs-6">
-    <label>postcode</label>
-    <input type="text" class="form-control" formControlName="time">
+  <div class="input-field col s6">
+    <edit-input-field [formGroup]="addTeamForm" [propertyField]="timeField"></edit-input-field>
   </div>
 </div>
