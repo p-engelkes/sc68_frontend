@@ -3,7 +3,7 @@
  */
 import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../../models/Article";
+import {Article} from "../../models/article";
 import {NavBarService} from "../../services/navbar.service";
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {Subscription} from "rxjs";

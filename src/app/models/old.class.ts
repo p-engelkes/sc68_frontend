@@ -8,45 +8,30 @@ export class OldClass {
   public orderNumber: number;
   public teams: Team[];
 
-  static create(): OldClass {
-    return new OldClass();
-  }
-
-  public setId(id: number) {
+  constructor(id?: number, name?: string, orderNumber?: number, teams?: Team[]) {
     this.id = id;
-    return this;
-  }
-
-  public setName(name: string) {
     this.name = name;
-    return this;
-  }
-
-  public setOrderNumber(orderNumber: number) {
     this.orderNumber = orderNumber;
-    return this;
-  }
-
-  public setTeams(teams: Team[]) {
     this.teams = teams;
-    return this;
   }
 
-  static deserialize(json): OldClass {
-    return OldClass.create()
-      .setId(json.id)
-      .setName(json.name)
-      .setOrderNumber(json.orderNumber)
-      .setTeams(Team.deserializeTeams(json.teams))
+  static get(json): OldClass {
+    let oldClass = new OldClass();
+    oldClass.id = json.id;
+    oldClass.name = json.name;
+    oldClass.orderNumber = json.orderNumber;
+    oldClass.teams = Team.getAllFromJson(json.teams);
+
+    return oldClass;
   }
 
-  static getOldClassesFromJson(data: any): OldClass[] {
+  static getAll(data: any): OldClass[] {
     let oldClasses: OldClass[] = [];
     let oldClassResponse = JSON.parse(JSON.stringify(data))._body;
     let oldClassesJson = JSON.parse(oldClassResponse);
     for (let i = 0; i < oldClassesJson.length; i++) {
       let oldClassJson = oldClassesJson[i];
-      let oldClass = OldClass.deserialize(oldClassJson);
+      let oldClass = OldClass.get(oldClassJson);
       oldClasses.push(oldClass);
     }
 

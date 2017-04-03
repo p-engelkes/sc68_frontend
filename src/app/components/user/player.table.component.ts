@@ -17,10 +17,10 @@ export class PlayerTableComponent implements OnInit {
 
   async ngOnInit() {
     let data  = await this.teamService.findAllPlayersByTeam(this.teamId);
-    this.users = User.getUsersFromJsonResponse(data);
+    this.users = User.getAll(data);
 
     // this.teamService.findAllPlayersByTeam(this.teamId).subscribe(
-    //   data => this.users = User.getUsersFromJsonResponse(data),
+    //   data => this.users = User.getAll(data),
     //   error => console.log(error)
     // );
   };

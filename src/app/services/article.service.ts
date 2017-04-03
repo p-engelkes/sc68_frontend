@@ -9,7 +9,7 @@ import {
   httpGetWithoutAuthorization,
   httpGetWithParametersAndWithoutAuthorization
 } from "./helper.service";
-import {Article} from "../models/Article";
+import {Article} from "../models/article";
 @Injectable()
 export class ArticleService {
   @Output() addArticleEvent: EventEmitter<Article> = new EventEmitter();
@@ -28,19 +28,19 @@ export class ArticleService {
   async findAll() {
     let response = await httpGetWithoutAuthorization("/articles", this.http);
 
-    return Article.getArticlesFromRestResponse(response);
+    return Article.getAll(response);
   }
 
   async findAllByAuthor(authorId: number) {
     let response = await httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("authorId", authorId));
 
-    return Article.getArticlesFromRestResponse(response);
+    return Article.getAll(response);
   }
 
   async findAllByTeam(teamId: number) {
     let response = await httpGetWithParametersAndWithoutAuthorization("/articles/filter", this.http, new Parameter("teamId", teamId));
 
-    return Article.getArticlesFromRestResponse(response);
+    return Article.getAll(response);
   }
 
   update(articleId: number, article: Article) {

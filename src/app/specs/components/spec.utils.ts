@@ -1,5 +1,5 @@
 import {Observable} from "rxjs";
-import {Article} from "../../models/Article";
+import {Article} from "../../models/article";
 import {DebugElement, EventEmitter} from "@angular/core";
 import {Position, User} from "../../models/user";
 import {By} from "@angular/platform-browser";
@@ -14,12 +14,12 @@ import 'rxjs/add/operator/toPromise';
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
 let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
 let trainingTimes = [trainingTimesOne, trainingTimes2];
-export let teamOne = Team.create().setId(1).setName("1. Mannschaft").setTrainingTimes(trainingTimes);
-export let teamTwo = Team.create().setId(2).setName("2. Mannschaft").setTrainingTimes(trainingTimes);
-let teamThree = Team.create().setId(3).setName("A-Junioren");
+export let teamOne = new Team(1, "1. Mannschaft", trainingTimes);
+export let teamTwo = new Team(2, "2. Mannschaft", trainingTimes);
+let teamThree = new Team(3, "A-Junioren");
 
-export let herrenOldClass = OldClass.create().setId(1).setName('Herren').setOrderNumber(0).setTeams([teamOne, teamTwo]);
-export let aYouthOldClass = OldClass.create().setId(2).setName('A-Junioren').setOrderNumber(1).setTeams([teamThree]);
+export let herrenOldClass = new OldClass(1, "Herren", 0, [teamOne, teamTwo]);
+export let aYouthOldClass = new OldClass(2, "A-Junioren", 1, [teamThree]);
 
 
 export let user = User.create()
@@ -35,10 +35,10 @@ let positionOne = new Position('position1');
 let positionTwo = new Position('position2');
 let positions = [positionOne, positionTwo];
 
-export let fakeArticleOne = Article.create().setTitle('1').setContent('Content 1').setAuthor(user).setTeam(teamOne);
-export let fakeArticleTwo = Article.create().setTitle('2').setContent('Content 2').setTeam(teamOne);
-export let fakeArticleThree = Article.create().setTitle('3').setContent('Content 3').setTeam(teamOne);
-export let fakeArticleFour = Article.create().setTitle('4').setContent('Content 4').setTeam(teamTwo);
+export let fakeArticleOne = new Article(undefined, '1', 'Content 1', user, undefined, teamOne, undefined, undefined);
+export let fakeArticleTwo = new Article(undefined, '2', 'Content 2', undefined, undefined, teamOne, undefined, undefined);
+export let fakeArticleThree = new Article(undefined, '3', 'Content 3', undefined, undefined, teamOne, undefined, undefined);
+export let fakeArticleFour = new Article(undefined, '4', 'Content 4', undefined, undefined, teamTwo, undefined, undefined);
 
 export class FakeLocalStorage {
   isArticleWriter() {

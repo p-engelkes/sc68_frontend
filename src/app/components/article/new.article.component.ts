@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../../models/Article";
+import {Article} from "../../models/article";
 import {LocalStorage} from "../../helper/LocalStorage";
 import {OldClass} from "../../models/old.class";
 import {OldClassService} from "../../services/old.class.service";
@@ -66,12 +66,12 @@ export class NewArticleComponent implements OnInit {
     let content = value.content;
     let teamId = jQuery('#team').val();
 
-    let article = Article.create()
-      .setTitle(title)
-      .setContent(content)
-      .setAuthorId(LocalStorage.getCurrentUserId())
-      .setTeamId(teamId)
-      .setCreated(new Date());
+    let article = new Article();
+    article.title = title;
+    article.content = content;
+    article.authorId = LocalStorage.getCurrentUserId();
+    article.teamId = teamId;
+    article.created = new Date();
 
     try {
       await this.articleService.create(article);

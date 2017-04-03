@@ -6,51 +6,40 @@ export class Team {
   public name: string;
   public trainingTimes: TrainingTimes[] = [];
 
-  static create(): Team {
-    return new Team();
-  }
-
-  public setId(id: number): Team {
+  constructor(id?: number, name?: string, trainingTimes?: TrainingTimes[]) {
     this.id = id;
-    return this;
-  }
-
-  public setName(name: string): Team {
     this.name = name;
-    return this;
+    if (trainingTimes) {
+      this.trainingTimes = trainingTimes
+    }
   }
 
-  public setTrainingTimes(trainingTimes: TrainingTimes[]) {
-    this.trainingTimes = trainingTimes;
-    return this;
-  }
-
-  static deserialize(json) {
-    let team = Team.create()
-      .setId(json.id)
-      .setName(json.name);
+  static get(json) {
+    let team = new Team();
+    team.id = json.id;
+    team.name = json.name;
+    console.log(json.trainingTimes);
 
     for (let trainingTime in json.trainingTimes) {
       team.trainingTimes.push(new TrainingTimes(trainingTime, json.trainingTimes[trainingTime]));
     }
 
-
     return team;
   }
 
-  static getTeamsFromJson(data: any): Team[] {
+  static getAll(data: any): Team[] {
     let teamResponses = JSON.parse(JSON.stringify(data))._body;
     let teamsJson = JSON.parse(teamResponses);
 
-    return this.deserializeTeams(teamsJson);
+    return this.getAllFromJson(teamsJson);
   }
 
-  static deserializeTeams(data: any): Team[] {
+  static getAllFromJson(data: any): Team[] {
     let teams: Team[] = [];
 
     for (let i = 0; i < data.length; i++) {
       let teamJson = data[i];
-      let team = Team.deserialize(teamJson);
+      let team = Team.get(teamJson);
       teams.push(team);
     }
 
@@ -65,10 +54,5 @@ export class TrainingTimes {
   constructor(day: string, time: string) {
     this.day = day;
     this.time = time;
-  }
-
-  static deserialize(data: any) {
-    let json = JSON.parse(data);
-    return new TrainingTimes(json.day, json.time);
   }
 }

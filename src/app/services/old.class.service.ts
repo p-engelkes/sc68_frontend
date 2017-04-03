@@ -13,18 +13,18 @@ export class OldClassService {
   async findAll() {
     let response = await httpGetWithoutAuthorization("/oldClasses", this.http);
 
-    return OldClass.getOldClassesFromJson(response);
+    return OldClass.getAll(response);
   }
 
   async findAllWithTeams() {
     let response = await httpGetWithoutAuthorization("/oldClasses?teams=true", this.http);
 
-    return OldClass.getOldClassesFromJson(response);
+    return OldClass.getAll(response);
   }
 
   async findAllWithTeamsAndArticles() {
     let response = await httpGetWithoutAuthorization("/oldClasses?articles=true", this.http);
 
-    return OldClass.getOldClassesFromJson(response);
+    return OldClass.getAll(response);
   }
 }

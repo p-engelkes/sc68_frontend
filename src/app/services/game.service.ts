@@ -11,6 +11,6 @@ export class GameService {
     let response = await httpGetWithParametersAndWithoutAuthorization("/games", this.http,
       new Parameter("teamId", teamId), new Parameter("gameType", gameType));
 
-    return SeasonGame.getSeasonGamesFromJson(response);
+    return SeasonGame.getAll(response);
   }
 }

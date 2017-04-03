@@ -144,17 +144,17 @@ export class User {
       .setArticleWriter(json.articleWriter)
       .setProfilePicture(json.profilePicture);
     if (json.teamId > 0) {
-      user.setTeam(Team.deserialize(json.team));
+      user.setTeam(Team.get(json.team));
       user.setTeamId(json.teamId);
     }
     if (user.profilePicture) {
-      user.setProfilePicture(ProfilePicture.deserialize(json.profilePicture))
+      user.setProfilePicture(ProfilePicture.get(json.profilePicture))
     }
 
     return user;
   }
 
-  static getUserFromJsonResponse(data: any, dataService: DataService): User {
+  static get(data: any, dataService: DataService): User {
     let userResponse = JSON.parse(JSON.stringify(data))._body;
     let userJson = JSON.parse(userResponse);
     let user = User.deserialize(userJson);
@@ -162,14 +162,14 @@ export class User {
     return user;
   }
 
-  static getUsersFromJsonResponse(data: any): User[] {
+  static getAll(data: any): User[] {
     let userResponses = JSON.parse(JSON.stringify(data))._body;
     let usersJson = JSON.parse(userResponses);
 
-    return this.deserializeUsers(usersJson);
+    return this.getAllFromJson(usersJson);
   }
 
-  private static deserializeUsers(data: any): User[] {
+  private static getAllFromJson(data: any): User[] {
     let users: User[] = [];
 
     for (let i = 0; i < data.length; i++) {

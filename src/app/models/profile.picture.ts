@@ -8,41 +8,14 @@ export class ProfilePicture {
   public height: number;
   public ratio: number;
 
-  static create(): ProfilePicture {
-    return new ProfilePicture();
-  }
+  static get(json): ProfilePicture {
+    let profilePicture = new ProfilePicture();
+    profilePicture.userId = json.userId;
+    profilePicture.picture = json.picture;
+    profilePicture.width = json.width;
+    profilePicture.height = json.height;
+    profilePicture.ratio = json.ratio;
 
-  public setUserId(userId: number): ProfilePicture {
-    this.userId = userId;
-    return this;
-  }
-
-  public setPicture(picture: string): ProfilePicture {
-    this.picture = picture;
-    return this;
-  }
-
-  public setWidth(width: number): ProfilePicture {
-    this.width = width;
-    return this;
-  }
-
-  public setHeight(height: number): ProfilePicture {
-    this.height = height;
-    return this;
-  }
-
-  public setRatio(ratio: number): ProfilePicture {
-    this.ratio = ratio;
-    return this;
-  }
-
-  static deserialize(json): ProfilePicture {
-    return ProfilePicture.create()
-      .setUserId(json.userId)
-      .setPicture(json.picture)
-      .setWidth(json.width)
-      .setHeight(json.height)
-      .setRatio(json.ratio)
+    return profilePicture;
   }
 }

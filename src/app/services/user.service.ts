@@ -15,7 +15,7 @@ export class UserService {
 
   async getUser(userId) {
     let response = await httpGet("/users/" + userId, this.http);
-    return User.getUserFromJsonResponse(response, this.dataService);
+    return User.get(response, this.dataService);
   }
 
   async getAllPositions() {
