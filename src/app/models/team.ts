@@ -66,4 +66,9 @@ export class TrainingTimes {
     this.day = day;
     this.time = time;
   }
+
+  static deserialize(data: any) {
+    let json = JSON.parse(data);
+    return new TrainingTimes(json.day, json.time);
+  }
 }

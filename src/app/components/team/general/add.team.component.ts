@@ -6,7 +6,8 @@ import {NavBarService} from "../../../services/navbar.service";
 import {Field, FormValidators} from "../../../validators";
 @Component({
   selector: 'add-team-component',
-  templateUrl: './add.team.component.html'
+  templateUrl: './add.team.component.html',
+  styleUrls: ['./add.team.component.scss']
 })
 export class AddTeamComponent implements OnInit {
   public addTeamForm: FormGroup;
@@ -17,10 +18,11 @@ export class AddTeamComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private oldClassService: OldClassService,
               private navBarService: NavBarService) {
+    this.navBarService.changeTitle('Team hinzufügen');
+    console.log("Team hinzufügen");
   }
 
   async ngOnInit() {
-    this.navBarService.changeTitle('Team hinzufügen');
     this.addTeamForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(5)]],
       soccerId: [''],
@@ -50,7 +52,7 @@ export class AddTeamComponent implements OnInit {
   initTrainingTimes() {
     return this.formBuilder.group({
       day: ['', Validators.required],
-      time: ['']
+      time: ['', Validators.required]
     });
   }
 
@@ -64,9 +66,8 @@ export class AddTeamComponent implements OnInit {
     control.removeAt(i);
   }
 
-  save(model: any) {
-    // call API to save
-    // ...
-    console.log(model);
+  addTeam(value: any) {
+    console.log(value);
+    console.log(value.trainingTimes.length);
   }
 }

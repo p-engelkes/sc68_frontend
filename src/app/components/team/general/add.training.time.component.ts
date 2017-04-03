@@ -20,6 +20,6 @@ export class AddTrainingTimeComponent implements OnInit{
       .setControl(this.addTeamForm.controls['time'])
       .setValidators([FormValidators.REQUIRED])
       .setMessages(['Eine Trainingszeit muss angegeben werden'])
-      .setId('time').setType('text').setFormControlName('time').setPlaceHolder('Trainingszeit')
+      .setId('time').setType('text').setFormControlName('time').setPlaceHolder('Trainingszeit').setShouldValidate(true)
   }
 }

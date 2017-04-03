@@ -1,8 +1,9 @@
 <div [formGroup]="formGroup">
   <input [id]="propertyField.id" [type]="propertyField.type" [formControlName]="propertyField.formControlName"
-         placeholder=" " [class]="propertyField.getDefaultClass()"
+         [placeholder]="propertyField.placeHolder" [class]="propertyField.getDefaultClass()"
          [ngClass]="propertyField.getValidationClass()">
-  <label [attr.for]="propertyField.id" [attr.data-error]="propertyField.getError()" class="active">
+  <label [attr.for]="propertyField.id" [attr.data-error]="propertyField.getError()" class="active"
+         [ngClass]="propertyField.getLabelClass()">
     {{propertyField.placeHolder}}
   </label>
 </div>

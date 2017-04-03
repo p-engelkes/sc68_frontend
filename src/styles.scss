@@ -56,3 +56,7 @@ a {
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
   color: $secondary-color-light;
 }
+
+.select-wrapper + label {
+  top: 0 !important;
+}

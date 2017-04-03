@@ -1,4 +1,4 @@
-import {FormGroup, AbstractControl} from "@angular/forms";
+import {AbstractControl, FormGroup} from "@angular/forms";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -78,6 +78,14 @@ export class Field {
   getDefaultClass(): string {
     if (this.shouldValidate) {
       return 'validate';
+    }
+
+    return '';
+  }
+
+  getLabelClass(): string {
+    if (this.type === 'text') {
+      return 'move-label';
     }
 
     return '';

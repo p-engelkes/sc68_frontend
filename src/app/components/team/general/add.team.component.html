@@ -8,7 +8,7 @@
         <edit-input-field [formGroup]="addTeamForm" [propertyField]="soccerIdField"></edit-input-field>
       </div>
     </div>
-    <div class="row">
+    <div class="row margin">
       <div class="input-field col s12">
         <select id="old-class" formControlName="oldClass" materialize-dropdown>
           <option value="" disabled selected>Wähle eine Altersklasse aus</option>
@@ -20,38 +20,35 @@
     <!--addresses-->
     <div formArrayName="trainingTimes">
       <div *ngFor="let address of addTeamForm.controls.trainingTimes.controls; let i=index" class="row">
-        <div class="col s11">
-          <div class="card z-depth-3 bordered-card">
-            <div class="card-content">
-              <p class="card-title">Trainingseinheit {{i + 1}}</p>
-              <p [formGroupName]="i">
-                <add-training-time-component
-                  [form-group]="addTeamForm.controls.trainingTimes.controls[i]"></add-training-time-component>
-              </p>
+        <div class="col s12 card bordered-card">
+          <div class="card-content">
+            <p class="card-title">Trainingseinheit {{i + 1}}</p>
+            <p [formGroupName]="i" class="training-time-component">
+              <add-training-time-component
+                [form-group]="addTeamForm.controls.trainingTimes.controls[i]"></add-training-time-component>
+            </p>
+          </div>
+          <div class="card-action">
+            <div class="right-align">
+              <a (click)="removeTrainingTime(i)">Trainingseinheit entfernen</a>
             </div>
           </div>
-        </div>
-        <div class="col s1">
-          <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">remove</i></a>
         </div>
       </div>
     </div>
 
-    <div class="margin-20">
-      <a (click)="addTrainingTime()" style="cursor: default; color: red;">
-        Add another Training Time +
+    <div class="row center-align">
+      <a (click)="addTrainingTime()" class="btn-floating btn-large waves-effect waves-light green">
+        <i class="material-icons">add</i>
       </a>
     </div>
 
-    <div class="margin-20">
-      <button type="submit" class="btn btn-primary pull-right" [disabled]="!addTeamForm.valid">Submit</button>
-    </div>
-    <div class="clearfix"></div>
-
-    <div class="margin-20">
-      <div>myForm details:-</div>
-      <pre>Is myForm valid?: <br>{{addTeamForm.valid | json}}</pre>
-      <pre>form value: <br>{{addTeamForm.value | json}}</pre>
+    <div class="right-align">
+      <a (click)="addTeam(addTeamForm.value)"
+         class="waves-effect waves-light btn submit-btn"
+         [ngClass]="{'disabled': addTeamForm.valid}">
+        Team hinzufügen
+      </a>
     </div>
   </form>
 </div>
