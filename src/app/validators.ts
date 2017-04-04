@@ -102,22 +102,24 @@ export class Field {
   }
 
   getValidationClass(): string {
-    if (this.control.touched == false) {
-      return "";
-    } else {
-      let valid = true;
-      for (let i = 0; i < this.validators.length; i++) {
-        if (this.control.hasError(this.validators[i].toString())) {
-          valid = false;
-        }
-      }
-
-      if (valid) {
-        return 'valid';
-      } else {
-        return 'invalid';
-      }
-    }
+    // if (this.control.touched == false) {
+    //   return "";
+    // } else {
+    //   let valid = true;
+    //   for (let i = 0; i < this.validators.length; i++) {
+    //     console.log(this.control.errors);
+    //     if (this.control.hasError(this.validators[i].toString())) {
+    //       valid = false;
+    //     }
+    //   }
+    //
+    //   // if (valid) {
+    //   //   return 'valid';
+    //   // } else {
+    //   //   return 'invalid';
+    //   // }
+    // }
+    return "";
   }
 
   static computeError(error: string, message: string, hasError: boolean): string {

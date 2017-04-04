@@ -1,7 +1,7 @@
 /**
  * Created by patrickengelkes on 30/03/2017.
  */
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {Field, FormValidators} from "../../../validators";
 @Component({
@@ -11,6 +11,7 @@ import {Field, FormValidators} from "../../../validators";
 export class AddTrainingTimeComponent implements OnInit{
   @Input('form-group')
   public addTeamForm: FormGroup;
+  @Output() onUpdateDay: EventEmitter<number> = new EventEmitter();
 
   public days = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
   public timeField: Field;
@@ -21,5 +22,9 @@ export class AddTrainingTimeComponent implements OnInit{
       .setValidators([FormValidators.REQUIRED])
       .setMessages(['Eine Trainingszeit muss angegeben werden'])
       .setId('time').setType('text').setFormControlName('time').setPlaceHolder('Trainingszeit').setShouldValidate(true)
+  }
+
+  updateDay(newValue: number) {
+    this.onUpdateDay.emit(newValue);
   }
 }

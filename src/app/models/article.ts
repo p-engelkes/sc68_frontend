@@ -22,6 +22,7 @@ export class Article {
     this.author = author;
     this.authorId = authorId;
     this.team = team;
+    this.teamId = teamId;
     this.created = created;
   }
 

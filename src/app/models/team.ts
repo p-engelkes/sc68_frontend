@@ -1,9 +1,11 @@
+import {OldClass} from "./old.class";
 /**
  * Created by pengelkes on 02.12.2016.
  */
 export class Team {
   public id: number;
   public name: string;
+  public oldClassId: number;
   public trainingTimes: TrainingTimes[] = [];
 
   constructor(id?: number, name?: string, trainingTimes?: TrainingTimes[]) {
@@ -18,7 +20,6 @@ export class Team {
     let team = new Team();
     team.id = json.id;
     team.name = json.name;
-    console.log(json.trainingTimes);
 
     for (let trainingTime in json.trainingTimes) {
       team.trainingTimes.push(new TrainingTimes(trainingTime, json.trainingTimes[trainingTime]));

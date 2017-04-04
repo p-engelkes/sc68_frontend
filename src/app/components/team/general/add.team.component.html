@@ -10,11 +10,12 @@
     </div>
     <div class="row margin">
       <div class="input-field col s12">
-        <select id="old-class" formControlName="oldClass" materialize-dropdown>
+        <select id="old-class" formControlName="oldClass" materialize-dropdown
+                (changeEvent)="updateOldClassValue($event)">
           <option value="" disabled selected>Wähle eine Altersklasse aus</option>
           <option *ngFor="let oldClass of oldClasses" value="{{oldClass.id}}">{{oldClass.name}}</option>
         </select>
-        <label for="old-class" class="active">Altersklasse</label>
+        <label for="old-class" class="active" data-error="Eine Altersklasse muss ausgewählt werden">Altersklasse</label>
       </div>
     </div>
     <!--addresses-->
@@ -24,8 +25,8 @@
           <div class="card-content">
             <p class="card-title">Trainingseinheit {{i + 1}}</p>
             <p [formGroupName]="i" class="training-time-component">
-              <add-training-time-component
-                [form-group]="addTeamForm.controls.trainingTimes.controls[i]"></add-training-time-component>
+              <add-training-time-component (onUpdateDay)="updateDayValue($event, i)"
+                                           [form-group]="addTeamForm.controls.trainingTimes.controls[i]"></add-training-time-component>
             </p>
           </div>
           <div class="card-action">
@@ -46,7 +47,7 @@
     <div class="right-align">
       <a (click)="addTeam(addTeamForm.value)"
          class="waves-effect waves-light btn submit-btn"
-         [ngClass]="{'disabled': addTeamForm.valid}">
+         [ngClass]="{'disabled': !addTeamForm.valid}">
         Team hinzufügen
       </a>
     </div>

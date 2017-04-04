@@ -57,6 +57,11 @@ a {
   color: $secondary-color-light;
 }
 
+.input-field label:not(.label-icon).active {
+  font-size: .8rem;
+  transform: translateY(-140%);
+}
+
 .select-wrapper + label {
   top: 0 !important;
 }

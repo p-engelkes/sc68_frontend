@@ -1,9 +1,12 @@
-import {Component, OnInit} from "@angular/core";
+import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {OldClassService} from "../../../services/old.class.service";
 import {OldClass} from "../../../models/old.class";
 import {NavBarService} from "../../../services/navbar.service";
 import {Field, FormValidators} from "../../../validators";
+import {Team} from "../../../models/team";
+import {MaterializeDropdown} from "../../../directives/select.directive";
+declare var jQuery: any;
 @Component({
   selector: 'add-team-component',
   templateUrl: './add.team.component.html',
@@ -19,14 +22,13 @@ export class AddTeamComponent implements OnInit {
               private oldClassService: OldClassService,
               private navBarService: NavBarService) {
     this.navBarService.changeTitle('Team hinzufügen');
-    console.log("Team hinzufügen");
   }
 
   async ngOnInit() {
     this.addTeamForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(5)]],
       soccerId: [''],
-      oldClass: [''],
+      oldClass: ['', [Validators.required]],
       trainingTimes: this.formBuilder.array([
         this.initTrainingTimes(),
       ])
@@ -34,8 +36,8 @@ export class AddTeamComponent implements OnInit {
 
     this.nameField = Field.create()
       .setControl(this.addTeamForm.controls['name'])
-      .setValidators([FormValidators.REQUIRED])
-      .setMessages(['Ein Name muss angegeben werden'])
+      .setValidators([FormValidators.REQUIRED, FormValidators.MIN_LENGTH])
+      .setMessages(['Ein Name muss angegeben werden', 'Der Name ist zu kurz'])
       .setId('name').setType('text').setFormControlName('name').setPlaceHolder("Teamname").setShouldValidate(true);
 
     this.soccerIdField = Field.create()
@@ -47,6 +49,17 @@ export class AddTeamComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  updateOldClassValue(newValue: number) {
+    this.addTeamForm.controls['oldClass'].setValue(newValue);
+  }
+
+  updateDayValue(newValue: number, index: number) {
+    const control = <FormArray>this.addTeamForm.controls['trainingTimes'];
+    let formGroup = <FormGroup>control.at(index);
+    formGroup.controls['day'].setValue(newValue);
+    console.log(formGroup.controls['day'].value);
   }
 
   initTrainingTimes() {
@@ -66,8 +79,10 @@ export class AddTeamComponent implements OnInit {
     control.removeAt(i);
   }
 
-  addTeam(value: any) {
-    console.log(value);
-    console.log(value.trainingTimes.length);
+  addTeam(team: Team) {
+    if (this.addTeamForm.valid) {
+         team.oldClassId = jQuery('#old-class');
+         console.log(team);
+    }
   }
 }
