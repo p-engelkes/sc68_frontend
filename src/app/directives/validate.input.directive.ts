@@ -16,7 +16,6 @@ export class ValidateInputDirective {
 
   getClassList() {
     let classList = this.element.nativeElement.classList;
-    console.log(classList);
 
     if (classList) {
       if (classList.contains('ng-invalid')) {

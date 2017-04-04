@@ -5,6 +5,8 @@ import {OldClass} from "../../../models/old.class";
 import {NavBarService} from "../../../services/navbar.service";
 import {Field, FormValidators} from "../../../validators";
 import {Team} from "../../../models/team";
+import {TeamService} from "../../../services/team.service";
+import {Router} from "@angular/router";
 declare var jQuery: any;
 @Component({
   selector: 'add-team-component',
@@ -19,7 +21,9 @@ export class AddTeamComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private oldClassService: OldClassService,
-              private navBarService: NavBarService) {
+              private navBarService: NavBarService,
+              private teamService: TeamService,
+              private router: Router) {
     this.navBarService.changeTitle('Team hinzufügen');
   }
 
@@ -79,10 +83,10 @@ export class AddTeamComponent implements OnInit {
     control.removeAt(i);
   }
 
-  addTeam(team: Team) {
+  async addTeam(team: Team) {
     if (this.addTeamForm.valid) {
-         team.oldClassId = jQuery('#old-class');
-         console.log(team);
+      let createdTeam = await this.teamService.add(team);
+      this.router.navigate(['/teams', +createdTeam.id]);
     }
   }
 }

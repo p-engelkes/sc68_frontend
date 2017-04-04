@@ -2,7 +2,7 @@
  * Created by pengelkes on 02.12.2016.
  */
 import {Injectable} from "@angular/core";
-import {httpGet, httpGetWithoutAuthorization} from "./helper.service";
+import {httpGet, httpGetWithoutAuthorization, httpPost} from "./helper.service";
 import {Http} from "@angular/http";
 import {Team} from "../models/team";
 @Injectable()
@@ -24,7 +24,15 @@ export class TeamService {
     return Team.get(teamJson);
   }
 
-  findAllPlayersByTeam(id: number) {
+  async findAllPlayersByTeam(id: number) {
     return httpGetWithoutAuthorization("/teams/" + id + "/players", this.http);
+  }
+
+  async add(team: Team) {
+    let data = await httpPost("/teams", team, this.http);
+    let teamResponse = JSON.parse(JSON.stringify(data))._body;
+    let teamJson = JSON.parse(teamResponse);
+
+    return Team.get(teamJson);
   }
 }
