@@ -1,11 +1,10 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {OldClassService} from "../../../services/old.class.service";
 import {OldClass} from "../../../models/old.class";
 import {NavBarService} from "../../../services/navbar.service";
 import {Field, FormValidators} from "../../../validators";
 import {Team} from "../../../models/team";
-import {MaterializeDropdown} from "../../../directives/select.directive";
 declare var jQuery: any;
 @Component({
   selector: 'add-team-component',
@@ -26,7 +25,7 @@ export class AddTeamComponent implements OnInit {
 
   async ngOnInit() {
     this.addTeamForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(5)]],
+      name: ['', [Validators.required]],
       soccerId: [''],
       oldClass: ['', [Validators.required]],
       trainingTimes: this.formBuilder.array([
@@ -38,7 +37,8 @@ export class AddTeamComponent implements OnInit {
       .setControl(this.addTeamForm.controls['name'])
       .setValidators([FormValidators.REQUIRED, FormValidators.MIN_LENGTH])
       .setMessages(['Ein Name muss angegeben werden', 'Der Name ist zu kurz'])
-      .setId('name').setType('text').setFormControlName('name').setPlaceHolder("Teamname").setShouldValidate(true);
+      .setId('name').setType('text').setFormControlName('name').setPlaceHolder("Teamname").setShouldValidate(true)
+      .setIsMandatory(true);
 
     this.soccerIdField = Field.create()
       .setControl(this.addTeamForm.controls['soccerId'])

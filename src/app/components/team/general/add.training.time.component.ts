@@ -22,6 +22,7 @@ export class AddTrainingTimeComponent implements OnInit{
       .setValidators([FormValidators.REQUIRED])
       .setMessages(['Eine Trainingszeit muss angegeben werden'])
       .setId('time').setType('text').setFormControlName('time').setPlaceHolder('Trainingszeit').setShouldValidate(true)
+      .setIsMandatory(true);
   }
 
   updateDay(newValue: number) {

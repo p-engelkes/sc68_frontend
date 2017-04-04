@@ -30,6 +30,7 @@ export class Field {
   public formControlName: string;
   public placeHolder: string;
   public shouldValidate: boolean = false;
+  public isMandatory: boolean = false;
 
   public static create(): Field {
     return new Field();
@@ -75,6 +76,11 @@ export class Field {
     return this;
   }
 
+  public setIsMandatory(isMandatory: boolean): Field {
+    this.isMandatory = isMandatory;
+    return this;
+  }
+
   getDefaultClass(): string {
     if (this.shouldValidate) {
       return 'validate';
@@ -89,6 +95,14 @@ export class Field {
     }
 
     return '';
+  }
+
+  getPlaceHolder() {
+    if (this.isMandatory) {
+      return this.placeHolder + '*'
+    }
+
+    return this.placeHolder;
   }
 
   getError(): string {
