@@ -35,4 +35,9 @@ export class TeamService {
 
     return Team.get(teamJson);
   }
+
+  async update(team: Team) {
+    return httpPost(`/teams/${team.id}`, team, this.http);
+  }
+
 }

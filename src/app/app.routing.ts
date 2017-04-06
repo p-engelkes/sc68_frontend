@@ -12,7 +12,6 @@ import {ArticlesParentComponent} from "./components/article/articles.parent.comp
 import {TeamsParentComponent} from "./components/team/general/teams.parent.component";
 import {TeamComponent} from "./components/team/specific/team.component";
 import {AddTeamComponent} from "./components/team/general/add.team.component";
-import {EditTeamComponent} from "./components/team/specific/edit.team.component";
 import {ManageTeamPicturesComponent} from "./components/team/specific/team_picture/manage.team.pictures.component";
 import {TeamParentComponent} from "./components/team/specific/team.parent.component";
 /**
@@ -58,7 +57,7 @@ const appRoutes: Routes = [
           },
           {
             path: 'edit',
-            component: EditTeamComponent
+            component: AddTeamComponent
           },
           {
             path: 'manage_team_pictures',

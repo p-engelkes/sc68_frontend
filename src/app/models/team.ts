@@ -1,4 +1,4 @@
-import {OldClass} from "./old.class";
+import {days} from "../components/team/general/add.team.component";
 /**
  * Created by pengelkes on 02.12.2016.
  */
@@ -6,6 +6,7 @@ export class Team {
   public id: number;
   public name: string;
   public oldClassId: number;
+  public soccerId: string;
   public trainingTimes: TrainingTimes[] = [];
 
   constructor(id?: number, name?: string, trainingTimes?: TrainingTimes[]) {
@@ -16,10 +17,20 @@ export class Team {
     }
   }
 
+  static prepareForJson(team: Team): Team {
+    for (let trainingTime of team.trainingTimes) {
+      trainingTime.day = days[trainingTime.day]
+    }
+
+    return team;
+  }
+
   static get(json) {
     let team = new Team();
     team.id = json.id;
     team.name = json.name;
+    team.oldClassId = json.oldClassId;
+    team.soccerId = json.soccerInfoId;
 
     for (let trainingTime in json.trainingTimes) {
       team.trainingTimes.push(new TrainingTimes(trainingTime, json.trainingTimes[trainingTime]));

@@ -46,9 +46,9 @@
 
     <div class="right-align">
       <a (click)="addTeam(addTeamForm.value)"
-         class="waves-effect waves-light btn submit-btn tooltipped"
+         class="waves-effect waves-light btn submit-btn"
          [ngClass]="{'disabled': !addTeamForm.valid}">
-        Team hinzufügen
+        {{getSubmitButtonText()}}
       </a>
     </div>
   </form>

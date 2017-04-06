@@ -4,9 +4,9 @@ import {OldClassService} from "../../../services/old.class.service";
 import {OldClass} from "../../../models/old.class";
 import {NavBarService} from "../../../services/navbar.service";
 import {Field, FormValidators} from "../../../validators";
-import {Team} from "../../../models/team";
+import {Team, TrainingTimes} from "../../../models/team";
 import {TeamService} from "../../../services/team.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 declare var jQuery: any;
 @Component({
   selector: 'add-team-component',
@@ -18,24 +18,48 @@ export class AddTeamComponent implements OnInit {
   public oldClasses: OldClass[];
   nameField: Field;
   soccerIdField: Field;
+  private currentTeam: Team;
+  private formAction: FormAction;
 
   constructor(private formBuilder: FormBuilder,
               private oldClassService: OldClassService,
               private navBarService: NavBarService,
               private teamService: TeamService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
     this.navBarService.changeTitle('Team hinzufügen');
   }
 
   async ngOnInit() {
-    this.addTeamForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      soccerId: [''],
-      oldClass: ['', [Validators.required]],
-      trainingTimes: this.formBuilder.array([
-        this.initTrainingTimes(),
-      ])
-    });
+    let snapshot = this.route.snapshot.parent;
+    if (snapshot && snapshot.params['id']) {
+      this.formAction = FormAction.EDIT;
+      this.currentTeam = await this.teamService.findById(+snapshot.params['id']);
+      this.addTeamForm = this.formBuilder.group({
+        name: [this.currentTeam.name, [Validators.required]],
+        soccerId: [this.currentTeam.soccerId],
+        oldClass: [this.currentTeam.oldClassId, [Validators.required]],
+        trainingTimes: this.formBuilder.array([
+          this.initTrainingTimes()
+        ])
+      });
+
+      this.removeTrainingTime(0);
+
+      for (let trainingTime of this.currentTeam.trainingTimes) {
+        this.addTrainingTime(trainingTime);
+      }
+    } else {
+      this.formAction = FormAction.ADD;
+      this.addTeamForm = this.formBuilder.group({
+        name: ['', [Validators.required]],
+        soccerId: [''],
+        oldClass: ['', [Validators.required]],
+        trainingTimes: this.formBuilder.array([
+          this.initTrainingTimes()
+        ])
+      });
+    }
 
     this.nameField = Field.create()
       .setControl(this.addTeamForm.controls['name'])
@@ -63,19 +87,27 @@ export class AddTeamComponent implements OnInit {
     const control = <FormArray>this.addTeamForm.controls['trainingTimes'];
     let formGroup = <FormGroup>control.at(index);
     formGroup.controls['day'].setValue(newValue);
-    console.log(formGroup.controls['day'].value);
   }
 
-  initTrainingTimes() {
-    return this.formBuilder.group({
-      day: ['', Validators.required],
-      time: ['', Validators.required]
-    });
+  initTrainingTimes(trainingTime?: TrainingTimes) {
+    if (trainingTime) {
+      let trainingTimeValue = days.indexOf(trainingTime.day);
+      console.log(trainingTimeValue);
+      return this.formBuilder.group({
+        day: [trainingTimeValue],
+        time: [trainingTime.time]
+      });
+    } else {
+      return this.formBuilder.group({
+        day: ['', Validators.required],
+        time: ['', Validators.required]
+      });
+    }
   }
 
-  addTrainingTime() {
+  addTrainingTime(trainingTime?: TrainingTimes) {
     const control = <FormArray>this.addTeamForm.controls['trainingTimes'];
-    control.push(this.initTrainingTimes());
+    control.push(this.initTrainingTimes(trainingTime));
   }
 
   removeTrainingTime(i: number) {
@@ -83,10 +115,32 @@ export class AddTeamComponent implements OnInit {
     control.removeAt(i);
   }
 
+  getSubmitButtonText() {
+    if (this.formAction === FormAction.ADD) {
+      return 'Team hinzufügen';
+    } else if (this.formAction === FormAction.EDIT) {
+      return 'Team bearbeiten';
+    }
+  }
+
   async addTeam(team: Team) {
     if (this.addTeamForm.valid) {
-      let createdTeam = await this.teamService.add(team);
-      this.router.navigate(['/teams', +createdTeam.id]);
+      Team.prepareForJson(team);
+      if (this.formAction === FormAction.EDIT) {
+        team.id = this.currentTeam.id;
+        await this.teamService.update(team);
+        this.router.navigate(['/teams', this.currentTeam.id])
+      } else {
+        let createdTeam = await this.teamService.add(team);
+        this.router.navigate(['/teams', createdTeam.id]);
+      }
     }
   }
 }
+
+export enum FormAction {
+  ADD,
+  EDIT
+}
+
+export let days = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]

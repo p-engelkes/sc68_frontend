@@ -7,9 +7,8 @@ import {Team, TrainingTimes} from "../../models/team";
 import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {Response, ResponseOptions} from "@angular/http";
-import {tick} from "@angular/core/testing";
 import {OldClass} from "../../models/old.class";
-import 'rxjs/add/operator/toPromise';
+import "rxjs/add/operator/toPromise";
 
 let trainingTimesOne = new TrainingTimes("Friday", "19:00");
 let trainingTimes2 = new TrainingTimes("Wednesday", "19:00");
@@ -47,12 +46,10 @@ export class FakeLocalStorage {
 }
 
 export class FakeLoginService {
-  logIn(email, password) {
-    return Observable.of(JSON.stringify(email));
+  async logIn(email, password) {
   }
 
-  verifyToken(email) {
-    return Observable.of(JSON.stringify(email));
+  async verifyToken(email) {
   }
 
   isLoggedIn() {
@@ -126,7 +123,11 @@ export class FakeRouter {
 
 export class FakeRouterService {
   navigateTo(url) {
-    return Observable.of(true);
+    return Observable.of(true).toPromise();
+  }
+
+  navigateToWithParameter(url, id) {
+    return Observable.of(true).toPromise();
   }
 }
 

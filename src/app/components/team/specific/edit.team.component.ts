@@ -4,5 +4,4 @@ import {Component} from "@angular/core";
   templateUrl: './edit.team.component.html'
 })
 export class EditTeamComponent {
-
 }

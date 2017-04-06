@@ -45,7 +45,6 @@ export class EditUserProfileComponent implements OnInit {
     this.user = this.dataService.user;
     if (!this.user) {
       try {
-        console.log(LocalStorage.getCurrentUserId());
         this.user = await this.userService.getUser(LocalStorage.getCurrentUserId());
       } catch (error) {
         console.log("Error in getUser");
@@ -56,14 +55,12 @@ export class EditUserProfileComponent implements OnInit {
     try {
       this.positions = await this.userService.getAllPositions();
     } catch (error) {
-      console.log("Error in getAllPositions");
       console.log(error);
     }
 
     try {
       this.teams = await this.teamService.getAllTeams();
     } catch (error) {
-      console.log("Error in getAllTeams");
       console.log(error);
     }
 

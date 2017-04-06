@@ -1,17 +1,17 @@
 import {NavbarComponent} from "../../../components/navbar/navbar.component";
-import {ComponentFixture, async, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {LoginService} from "../../../services/login.service";
 import {
-  FakeLoginService,
-  FakeRouter,
-  FakeRegisterService,
-  FakeRouterService,
   checkRouterNavigation,
-  FakeNavBarService,
-  queryElement,
   clickOnElement,
   FakeArticleService,
-  FakeOldClassService
+  FakeLoginService,
+  FakeNavBarService,
+  FakeOldClassService,
+  FakeRegisterService,
+  FakeRouter,
+  FakeRouterService,
+  queryElement
 } from "../spec.utils";
 import {By} from "@angular/platform-browser";
 import {LoginComponent} from "../../../components/login/login.component";
@@ -50,7 +50,7 @@ describe('Navbar Component', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     fakeLoginService = fixture.debugElement.injector.get(LoginService);
-    fakeRouterService = fixture.debugElement.injector.get(RouterService);
+    // fakeRouterService = fixture.debugElement.injector.get(RouterService);
     component = fixture.componentInstance;
   });
 
