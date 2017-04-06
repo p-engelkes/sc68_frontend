@@ -10,10 +10,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 declare var jQuery: any;
 @Component({
   selector: 'add-team-component',
-  templateUrl: './team.management.component.html',
-  styleUrls: ['./team.management.component.scss']
+  templateUrl: './manage.team.component.html',
+  styleUrls: ['./manage.team.component.scss']
 })
-export class TeamManagementComponent implements OnInit {
+export class ManageTeamComponent implements OnInit {
   public addTeamForm: FormGroup;
   public oldClasses: OldClass[];
   nameField: Field;

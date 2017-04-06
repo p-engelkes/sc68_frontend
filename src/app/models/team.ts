@@ -1,4 +1,4 @@
-import {days} from "../components/team/general/team.management.component";
+import {days} from "../components/team/general/manage.team.component";
 /**
  * Created by pengelkes on 02.12.2016.
  */

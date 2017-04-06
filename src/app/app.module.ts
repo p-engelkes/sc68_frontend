@@ -46,7 +46,7 @@ import {GameTableComponent} from "./components/game/game.table.component";
 import {GameService} from "./services/game.service";
 import {PushPinDirective} from "./directives/pushpin.directive";
 import {ScrollSpyDirective} from "./directives/scroll.spy.directive";
-import {TeamManagementComponent} from "./components/team/general/team.management.component";
+import {ManageTeamComponent} from "./components/team/general/manage.team.component";
 import {ManageTeamPicturesComponent} from "./components/team/specific/team_picture/manage.team.pictures.component";
 import {TeamParentComponent} from "./components/team/specific/team.parent.component";
 import {AddTrainingTimeComponent} from "./components/team/general/add.training.time.component";
@@ -66,7 +66,7 @@ import {ValidateInputDirective} from "./directives/validate.input.directive";
     EditUserProfileComponent,
     TeamsParentComponent,
     TeamsComponent,
-    TeamManagementComponent,
+    ManageTeamComponent,
     AddTrainingTimeComponent,
     TeamParentComponent,
     TeamComponent,
