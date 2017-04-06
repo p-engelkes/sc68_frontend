@@ -11,7 +11,7 @@ import {ValidateInputDirective} from "../../directives/validate.input.directive"
 })
 export class EditInputFieldComponent {
   @Input() formGroup: FormGroup;
-  @Input() propertyField: Field
+  @Input() propertyField: Field;
 
   @ViewChild('input') validateInputDirective: ValidateInputDirective;
 }
