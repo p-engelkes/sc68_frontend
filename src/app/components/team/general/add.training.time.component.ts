@@ -4,7 +4,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {Field, FormValidators} from "../../../validators";
-import {days} from "./add.team.component";
+import {days} from "./team.management.component";
 @Component({
   selector: 'add-training-time-component',
   templateUrl: './add.training.time.component.html'

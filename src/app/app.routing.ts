@@ -11,7 +11,7 @@ import {ArticlesComponent} from "./components/article/articles.component";
 import {ArticlesParentComponent} from "./components/article/articles.parent.component";
 import {TeamsParentComponent} from "./components/team/general/teams.parent.component";
 import {TeamComponent} from "./components/team/specific/team.component";
-import {AddTeamComponent} from "./components/team/general/add.team.component";
+import {TeamManagementComponent} from "./components/team/general/team.management.component";
 import {ManageTeamPicturesComponent} from "./components/team/specific/team_picture/manage.team.pictures.component";
 import {TeamParentComponent} from "./components/team/specific/team.parent.component";
 /**
@@ -45,7 +45,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'add',
-        component: AddTeamComponent
+        component: TeamManagementComponent
       },
       {
         path: ':id',
@@ -57,7 +57,7 @@ const appRoutes: Routes = [
           },
           {
             path: 'edit',
-            component: AddTeamComponent
+            component: TeamManagementComponent
           },
           {
             path: 'manage_team_pictures',
