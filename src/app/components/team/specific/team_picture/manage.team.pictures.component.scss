@@ -1,0 +1,23 @@
+@import "../../../../../../node_modules/materialize-css/sass/components/color";
+@import "../../../../../../node_modules/materialize-css/sass/components/variables";
+
+.drag-n-drop-container {
+  width: 50%;
+  height: 250px;
+  border: 2px dashed $secondary-color;
+  border-radius: 30px;
+  margin: 0 auto 5rem;
+
+  h3 {
+    text-align: center;
+    margin-top: 90px;
+  }
+}
+
+.file-over {
+  background: #f5f5f5;
+}
+
+.team-picture {
+  margin: 1.5rem;
+}

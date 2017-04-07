@@ -51,6 +51,8 @@ import {ManageTeamPicturesComponent} from "./components/team/specific/team_pictu
 import {TeamParentComponent} from "./components/team/specific/team.parent.component";
 import {AddTrainingTimeComponent} from "./components/team/general/add.training.time.component";
 import {ValidateInputDirective} from "./directives/validate.input.directive";
+import {CarouselDirective} from "./directives/carousel.directive";
+import {MaterialBoxedDirective} from "./directives/materialboxed.directive";
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import {ValidateInputDirective} from "./directives/validate.input.directive";
     TabsDirective,
     PushPinDirective,
     ScrollSpyDirective,
-    ValidateInputDirective
+    ValidateInputDirective,
+    CarouselDirective,
+    MaterialBoxedDirective
   ],
   imports: [
     NgUploaderModule,

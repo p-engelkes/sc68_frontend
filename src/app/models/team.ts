@@ -1,4 +1,5 @@
 import {days} from "../components/team/general/manage.team.component";
+import {Picture} from "./profile.picture";
 /**
  * Created by pengelkes on 02.12.2016.
  */
@@ -8,6 +9,7 @@ export class Team {
   public oldClassId: number;
   public soccerId: string;
   public trainingTimes: TrainingTimes[] = [];
+  public teamPictures: Picture[];
 
   constructor(id?: number, name?: string, trainingTimes?: TrainingTimes[]) {
     this.id = id;

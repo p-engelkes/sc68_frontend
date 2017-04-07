@@ -1,14 +1,13 @@
 /**
  * Created by pengelkes on 29.12.2016.
  */
-import {Directive, Input, ElementRef, OnInit} from "@angular/core";
-import {User} from "../models/user";
+import {Directive, ElementRef, Input, OnInit} from "@angular/core";
 
 @Directive({
-  selector: '[profile-image]',
+  selector: '[image]',
 })
 export class ProfileImageDirective implements OnInit {
-  @Input('profile-image') user: User;
+  @Input('image-data') data: string;
   private element: ElementRef;
 
   constructor(element: ElementRef) {
@@ -16,6 +15,6 @@ export class ProfileImageDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.element.nativeElement.src = 'data:image/png;base64,' + this.user.profilePicture.picture;
+    this.element.nativeElement.src = 'data:image/png;base64,' + this.data;
   }
 }

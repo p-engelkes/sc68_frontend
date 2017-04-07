@@ -14,6 +14,12 @@ export function httpGet(url: string, http: Http) {
   return http.get(url, {headers: bearerHeaders}).toPromise();
 }
 
+export function httpDelete(url: string, http: Http) {
+  url = apiUrl + url;
+  let bearerHeaders = new Headers({'Authorization': 'Bearer' + LocalStorage.getToken()});
+  return http.delete(url, {headers: bearerHeaders}).toPromise();
+}
+
 export function httpGetWithParameters(url: string, http: Http, ...parameters: Parameter[]) {
   url = apiUrl + url;
   for (let i = 0; i < parameters.length; i++) {

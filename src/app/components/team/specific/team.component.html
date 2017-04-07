@@ -31,6 +31,11 @@
   </div>
 
   <div class="row">
+    <div class="carousel col s12 m9 l10" carousel-directive>
+      <a class="carousel-item" *ngFor="let picture of team.teamPictures">
+        <img image [image-data]="picture.data">
+      </a>
+    </div>
     <div id="season-table" class="col s12 m9 l10">
       <div id="table" class="section scrollspy" scroll-spy-directive>
         <h4>Tabelle</h4>
