@@ -13,8 +13,8 @@ export class PushPinDirective implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       jQuery('.toc-wrapper').pushpin({
-        top: 150,
-        offset: 0
+        top: -200,
+        offset: 200
       })
     }, 100)
   }

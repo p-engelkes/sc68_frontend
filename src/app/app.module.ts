@@ -53,6 +53,7 @@ import {AddTrainingTimeComponent} from "./components/team/general/add.training.t
 import {ValidateInputDirective} from "./directives/validate.input.directive";
 import {CarouselDirective} from "./directives/carousel.directive";
 import {MaterialBoxedDirective} from "./directives/materialboxed.directive";
+import {TeamPictureCarouselComponent} from "./components/team/specific/team_picture/team.picture.carousel";
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import {MaterialBoxedDirective} from "./directives/materialboxed.directive";
     AddTrainingTimeComponent,
     TeamParentComponent,
     TeamComponent,
+    TeamPictureCarouselComponent,
     TeamCardComponent,
     ManageTeamPicturesComponent,
     PropertyComponent,

@@ -31,12 +31,12 @@
   </div>
 
   <div class="row">
-    <div class="carousel col s12 m9 l10" carousel-directive>
-      <a class="carousel-item" *ngFor="let picture of team.teamPictures">
-        <img image [image-data]="picture.data">
-      </a>
+    <div class="col s12 m9 l10">
+      <div id="team-pictures" class="section scrollspy" scroll-spy-directive>
+        <team-picture-carousel-component [teamPictures]="team.teamPictures"></team-picture-carousel-component>
+      </div>
     </div>
-    <div id="season-table" class="col s12 m9 l10">
+    <div class="col s12 m9 l10">
       <div id="table" class="section scrollspy" scroll-spy-directive>
         <h4>Tabelle</h4>
         <season-table-component [team]="team"></season-table-component>
@@ -57,6 +57,7 @@
     <div class="col hide-on-small-only m3 l2">
       <div class="toc-wrapper" push-pin-directive>
         <ul class="section table-of-contents">
+          <li><a href="#team-pictures">Bilder</a></li>
           <li><a href="#table">Tabelle</a></li>
           <li><a href="#games">Spiele</a></li>
           <li><a href="#players">Spieler</a></li>
