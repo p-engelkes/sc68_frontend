@@ -17,7 +17,6 @@ export class TeamsComponent implements OnInit{
   async ngOnInit() {
     try {
       this.teams = await this.teamService.getAllTeams()
-      console.log(this.teams);
     } catch (error) {
       console.log(error);
     }

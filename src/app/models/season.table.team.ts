@@ -17,8 +17,8 @@ export class SeasonTableTeam {
 
     let seasonTables: SeasonTableTeam[] = [];
 
-    for (let i = 0; i < seasonTablesJson.length; i++) {
-      let seasonTableJson = seasonTablesJson[i];
+    for (let i = 0; i < seasonTablesJson.tableTeams.length; i++) {
+      let seasonTableJson = seasonTablesJson.tableTeams[i];
       seasonTables.push(SeasonTableTeam.get(seasonTableJson));
     }
 

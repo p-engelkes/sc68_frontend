@@ -92,7 +92,6 @@ export class ManageTeamComponent implements OnInit {
   initTrainingTimes(trainingTime?: TrainingTimes) {
     if (trainingTime) {
       let trainingTimeValue = days.indexOf(trainingTime.day);
-      console.log(trainingTimeValue);
       return this.formBuilder.group({
         day: [trainingTimeValue],
         time: [trainingTime.time]

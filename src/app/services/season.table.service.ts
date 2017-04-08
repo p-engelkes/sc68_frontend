@@ -9,7 +9,6 @@ export class SeasonTableTeamService {
 
   async findByTeam(teamId) {
     let response = await httpGetWithParametersAndWithoutAuthorization("/table", this.http, new Parameter("teamId", teamId));
-
     return SeasonTableTeam.getAll(response);
   }
 }
