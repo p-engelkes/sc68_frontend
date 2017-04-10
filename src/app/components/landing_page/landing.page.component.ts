@@ -8,10 +8,10 @@ declare var jQuery: any;
 export class LandingPageComponent {
 
   openLoginModal() {
-    jQuery('#login_modal').openModal();
+    jQuery('#login_modal').modal('open');
   }
 
   openRegisterModal() {
-    jQuery('#register_modal').openModal();
+    jQuery('#register_modal').modal('open');
   }
 }

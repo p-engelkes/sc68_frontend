@@ -5,8 +5,6 @@ import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {LocalStorage} from "../../helper/LocalStorage";
-import {User} from "../../models/user";
 
 declare var Materialize: any;
 declare var jQuery: any;
@@ -54,7 +52,7 @@ export class LoginComponent {
         await this.loginService.logIn(email, password);
         await this.loginService.verifyToken(email);
 
-        jQuery('#login_modal').closeModal();
+        jQuery('#login_modal').modal('close');
         Materialize.toast("Login erfolgreich", 4000);
         location.reload();
       } catch (error) {

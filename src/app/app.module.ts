@@ -54,6 +54,7 @@ import {ValidateInputDirective} from "./directives/validate.input.directive";
 import {CarouselDirective} from "./directives/carousel.directive";
 import {MaterialBoxedDirective} from "./directives/materialboxed.directive";
 import {TeamPictureCarouselComponent} from "./components/team/specific/team_picture/team.picture.carousel";
+import {ModalDirective} from "./directives/modal.directive";
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import {TeamPictureCarouselComponent} from "./components/team/specific/team_pict
     ScrollSpyDirective,
     ValidateInputDirective,
     CarouselDirective,
-    MaterialBoxedDirective
+    MaterialBoxedDirective,
+    ModalDirective
   ],
   imports: [
     NgUploaderModule,

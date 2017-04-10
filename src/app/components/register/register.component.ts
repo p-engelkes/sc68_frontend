@@ -2,13 +2,12 @@
  * Created by pengelkes on 30.11.2016.
  */
 import {Component} from "@angular/core";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register.service";
-import {matchingPasswords, Field, FormValidators} from "../../validators";
+import {Field, FormValidators, matchingPasswords} from "../../validators";
 import {User} from "../../models/user";
 import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
-import {LocalStorage} from "../../helper/LocalStorage";
 declare var jQuery: any;
 declare var Materialize: any;
 @Component({
@@ -59,7 +58,7 @@ export class RegisterComponent {
       try {
         await this.registerService.register(user);
         await this.logIn(email, password);
-        jQuery('#register_modal').closeModal();
+        jQuery('#register_modal').modal('close');
         this.router.navigate(["/home"]);
       } catch (error) {
         console.log(error);
