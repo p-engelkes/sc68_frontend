@@ -11,6 +11,8 @@ export class GameTableComponent implements OnInit {
   @Input()
   gameTye: string;
 
+  public header = 'Spiele';
+
   games: SeasonGame[];
 
   constructor(private gameService: GameService) {}

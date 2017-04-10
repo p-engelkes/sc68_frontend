@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 import {TeamService} from "../../services/team.service";
 import {User} from "../../models/user";
 import {RouterService} from "../../services/router.service";
@@ -10,6 +10,7 @@ export class PlayerTableComponent implements OnInit {
   @Input()
   teamId: number;
 
+  header: 'Spieler'
   users: User[];
 
   constructor(private teamService: TeamService,

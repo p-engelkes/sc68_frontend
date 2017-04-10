@@ -8,7 +8,6 @@ import {NavBarService} from "../../services/navbar.service";
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {TeamService} from "../../services/team.service";
-import {Team} from "../../models/team";
 @Component({
   selector: 'articles-component',
   templateUrl: 'articles.component.html'
@@ -17,6 +16,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   @Input()
   teamId: number;
 
+  header = 'Artikel';
   articles: Article[];
   subscription: Subscription;
 

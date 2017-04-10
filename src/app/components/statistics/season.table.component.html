@@ -1,29 +1,32 @@
-<table class="highlight responsive-table centered">
-  <thead>
-  <tr>
-    <th data-field="position">Platz</th>
-    <th data-field="name">Name</th>
-    <th data-field="games">Spiele</th>
-    <th data-field="won">G</th>
-    <th data-field="tied_games">U</th>
-    <th data-field="lost_games">V</th>
-    <th data-field="goal_ratio">Torverhältnis</th>
-    <th data-field="goal_difference">Tordifferenz</th>
-    <th data-field="points">Punkte</th>
-  </tr>
-  </thead>
+<div *ngIf="seasonTableTeams.length > 0">
+  <h4>{{header}}</h4>
+  <table class="highlight responsive-table centered">
+    <thead>
+    <tr>
+      <th data-field="position">Platz</th>
+      <th data-field="name">Name</th>
+      <th data-field="games">Spiele</th>
+      <th data-field="won">G</th>
+      <th data-field="tied_games">U</th>
+      <th data-field="lost_games">V</th>
+      <th data-field="goal_ratio">Torverhältnis</th>
+      <th data-field="goal_difference">Tordifferenz</th>
+      <th data-field="points">Punkte</th>
+    </tr>
+    </thead>
 
-  <tbody>
-  <tr *ngFor="let seasonTableTeam of seasonTableTeams">
-    <td>{{seasonTableTeam.position}}</td>
-    <td>{{seasonTableTeam.name}}</td>
-    <td>{{seasonTableTeam.games}}</td>
-    <td>{{seasonTableTeam.wonGames}}</td>
-    <td>{{seasonTableTeam.tiedGames}}</td>
-    <td>{{seasonTableTeam.lostGames}}</td>
-    <td>{{seasonTableTeam.goalRatio}}</td>
-    <td>{{seasonTableTeam.goalDifference}}</td>
-    <td>{{seasonTableTeam.points}}</td>
-  </tr>
-  </tbody>
-</table>
+    <tbody>
+    <tr *ngFor="let seasonTableTeam of seasonTableTeams">
+      <td>{{seasonTableTeam.position}}</td>
+      <td>{{seasonTableTeam.name}}</td>
+      <td>{{seasonTableTeam.games}}</td>
+      <td>{{seasonTableTeam.wonGames}}</td>
+      <td>{{seasonTableTeam.tiedGames}}</td>
+      <td>{{seasonTableTeam.lostGames}}</td>
+      <td>{{seasonTableTeam.goalRatio}}</td>
+      <td>{{seasonTableTeam.goalDifference}}</td>
+      <td>{{seasonTableTeam.points}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {Team} from "../../models/team";
 import {SeasonTableTeam} from "../../models/season.table.team";
 import {SeasonTableTeamService} from "../../services/season.table.service";
 @Component({
@@ -8,15 +7,16 @@ import {SeasonTableTeamService} from "../../services/season.table.service";
 })
 export class SeasonTableComponent implements OnInit {
   @Input()
-  team: Team;
+  teamId: number;
 
+  public header = 'Tabelle';
   seasonTableTeams: SeasonTableTeam[];
 
   constructor(private seasonTableTeamService: SeasonTableTeamService) {}
 
   async ngOnInit() {
     try {
-      this.seasonTableTeams = await this.seasonTableTeamService.findByTeam(this.team.id);
+      this.seasonTableTeams = await this.seasonTableTeamService.findByTeam(this.teamId);
     } catch (error) {
       console.log(error);
     }
