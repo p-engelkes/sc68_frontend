@@ -1,3 +1,9 @@
-<div *ngFor="let team of teams">
-  <team-card-component [team]="team"></team-card-component>
+<div *ngFor="let oldClass of oldClasses">
+  <div class="row">
+    <h4>{{oldClass.name}}</h4>
+    <div *ngFor="let team of oldClass.teams">
+      <team-card-component [team]="team"></team-card-component>
+    </div>
+  </div>
 </div>
+

@@ -61,8 +61,8 @@
                   <div class="collapsible-body" style="display: block;">
                     <ul>
                       <li *ngFor="let team of oldClass.teams">
-                        <a routerLinkActive="active" id="{{team.id}}"
-                           (click)="showArticlesForTeam(team)">{{team.name}}</a>
+                        <a routerLinkActive="active" id="article-team+{{team.id}}"
+                           (click)="showArticlesForTeam(team.id)">{{team.name}}</a>
                       </li>
                     </ul>
                   </div>
@@ -74,9 +74,34 @@
       </ul>
     </li>
 
-    <li routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
-      <a id="teams" (click)="routerService.navigateTo('/teams')">Teams</a>
+    <li class="no-padding" id="teams">
+      <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-teal" id="team">Team</a>
+          <div class="collapsible-body" style="display: block;">
+            <ul>
+              <li>
+                <a id="all-teams" (click)="showAllTeams()">Alle Teams</a>
+              </li>
+              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithTeam">
+                <li>
+                  <a class="collapsible-header waves-effect waves-teal">{{oldClass.name}}</a>
+                  <div class="collapsible-body" style="display: block;">
+                    <ul>
+                      <li *ngFor="let team of oldClass.teams">
+                        <a routerLinkActive="active" id="team+{{team.id}}"
+                           (click)="showTeamPage(team.id)">{{team.name}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </li>
+
     <li routerLinkActive="active">
       <a id="about-us" (click)="routerService.navigateTo('/aboutUs')">Über uns</a>
     </li>

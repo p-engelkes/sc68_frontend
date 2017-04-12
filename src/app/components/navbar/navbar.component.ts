@@ -7,7 +7,6 @@ import {Router} from "@angular/router";
 import {LocalStorage} from "../../helper/LocalStorage";
 import {RouterService} from "../../services/router.service";
 import {NavBarService} from "../../services/navbar.service";
-import {Team} from "../../models/team";
 import {OldClassService} from "../../services/old.class.service";
 import {OldClass} from "../../models/old.class";
 declare var jQuery: any;
@@ -19,12 +18,14 @@ declare var jQuery: any;
 export class NavbarComponent implements OnInit {
   title: string;
   oldClassesWithAnArticle: OldClass[];
+  oldClassesWithTeam: OldClass[];
   routerService: RouterService;
   loginService: LoginService;
 
   async ngOnInit() {
     try {
       this.oldClassesWithAnArticle = await this.oldClassService.findAllWithTeamsAndArticles();
+      this.oldClassesWithTeam = await this.oldClassService.findAllWithTeams();
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +79,15 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/articles']);
   }
 
-  showArticlesForTeam(team: Team) {
-    this.router.navigate(['/articles/team', team.id])
+  showArticlesForTeam(teamId: number) {
+    this.router.navigate(['/articles/team', teamId])
+  }
+
+  showAllTeams() {
+    this.router.navigate(['/teams']);
+  }
+
+  showTeamPage(teamId: number) {
+    this.router.navigate(['/teams', teamId])
   }
 }
