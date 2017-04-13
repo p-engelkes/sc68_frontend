@@ -56,6 +56,7 @@ import {MaterialBoxedDirective} from "./directives/materialboxed.directive";
 import {TeamPictureCarouselComponent} from "./components/team/specific/team_picture/team.picture.carousel";
 import {ModalDirective} from "./directives/modal.directive";
 import {LocationService} from "./services/location.service";
+import {CollapsibleDirective} from "./directives/collapsible.directive";
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import {LocationService} from "./services/location.service";
     ValidateInputDirective,
     CarouselDirective,
     MaterialBoxedDirective,
-    ModalDirective
+    ModalDirective,
+    CollapsibleDirective
   ],
   imports: [
     NgUploaderModule,

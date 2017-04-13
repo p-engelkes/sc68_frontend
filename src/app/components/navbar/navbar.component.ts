@@ -26,6 +26,8 @@ export class NavbarComponent implements OnInit {
     try {
       this.oldClassesWithAnArticle = await this.oldClassService.findAllWithTeamsAndArticles();
       this.oldClassesWithTeam = await this.oldClassService.findAllWithTeams();
+      console.log(this.oldClassesWithTeam);
+      console.log(this.oldClassesWithAnArticle);
     } catch (error) {
       console.log(error);
     }

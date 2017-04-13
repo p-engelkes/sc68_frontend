@@ -47,7 +47,7 @@
     </li>
 
     <li class="no-padding" id="articles">
-      <ul class="collapsible collapsible-accordion">
+      <ul class="collapsible collapsible-accordion" collapsible-directive>
         <li class="bold">
           <a class="collapsible-header waves-effect waves-teal" id="article">Artikel</a>
           <div class="collapsible-body" style="display: block;">
@@ -55,7 +55,8 @@
               <li>
                 <a id="all-articles" (click)="showAllArticles()">Alle Artikel</a>
               </li>
-              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithAnArticle">
+              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithAnArticle"
+                  collapsible-directive>
                 <li>
                   <a class="collapsible-header waves-effect waves-teal">{{oldClass.name}}</a>
                   <div class="collapsible-body" style="display: block;">
@@ -75,21 +76,22 @@
     </li>
 
     <li class="no-padding" id="teams">
-      <ul class="collapsible collapsible-accordion">
+      <ul class="collapsible collapsible-accordion" collapsible-directive>
         <li class="bold">
-          <a class="collapsible-header waves-effect waves-teal" id="team">Team</a>
+          <a class="collapsible-header waves-effect waves-teal" id="team">Teams</a>
           <div class="collapsible-body" style="display: block;">
             <ul>
               <li>
-                <a id="all-teams" (click)="showAllTeams()">Alle Teams</a>
+                <a id="all-teams" (click)="showAllArticles()">Alle Teams</a>
               </li>
-              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithTeam">
+              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithTeam"
+                  collapsible-directive>
                 <li>
                   <a class="collapsible-header waves-effect waves-teal">{{oldClass.name}}</a>
                   <div class="collapsible-body" style="display: block;">
                     <ul>
                       <li *ngFor="let team of oldClass.teams">
-                        <a routerLinkActive="active" id="team+{{team.id}}"
+                        <a routerLinkActive="active"
                            (click)="showTeamPage(team.id)">{{team.name}}</a>
                       </li>
                     </ul>
@@ -101,6 +103,34 @@
         </li>
       </ul>
     </li>
+
+    <!--<li class="no-padding" id="teams">-->
+    <!--<ul class="collapsible collapsible-accordion">-->
+    <!--<li class="bold">-->
+    <!--<a class="collapsible-header waves-effect waves-teal" id="team">Team</a>-->
+    <!--<div class="collapsible-body" style="display: block;">-->
+    <!--<ul>-->
+    <!--<li>-->
+    <!--<a id="all-teams" (click)="showAllTeams()">Alle Teams</a>-->
+    <!--</li>-->
+    <!--<ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithTeam">-->
+    <!--<li>-->
+    <!--<a class="collapsible-header waves-effect waves-teal">{{oldClass.name}}</a>-->
+    <!--<div class="collapsible-body" style="display: block;">-->
+    <!--<ul>-->
+    <!--<li *ngFor="let team of oldClass.teams">-->
+    <!--<a routerLinkActive="active" id="team+{{team.id}}"-->
+    <!--(click)="showTeamPage(team.id)">{{team.name}}</a>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</li>-->
 
     <li routerLinkActive="active">
       <a id="about-us" (click)="routerService.navigateTo('/aboutUs')">Über uns</a>

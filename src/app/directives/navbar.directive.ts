@@ -1,7 +1,7 @@
 /**
  * Created by patrickengelkes on 21/02/2017.
  */
-import {Directive, OnInit, ElementRef} from "@angular/core";
+import {Directive, ElementRef, OnInit} from "@angular/core";
 declare var jQuery: any;
 @Directive({
   selector: '[side-nav]'
@@ -16,12 +16,11 @@ export class SideNavDirective implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       jQuery(this.element.nativeElement).sideNav({
-        menuWidth: 300,
+        menuWidth: 320,
         edge: 'left',
         closeOnClick: false,
         draggable: true
       });
-      jQuery(this.element.nativeElement).collapsible();
     }, 100)
   }
 }

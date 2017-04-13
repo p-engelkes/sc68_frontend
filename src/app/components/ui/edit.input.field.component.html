@@ -1,6 +1,6 @@
 <div [formGroup]="formGroup">
   <input [id]="propertyField.id" [type]="propertyField.type" [formControlName]="propertyField.formControlName"
-         [ngClass]="validateInputDirective.validationClass" (keydown)="validateInputDirective.getClassList()"
+         [ngClass]="validateInputDirective.validationClass" (keyup)="validateInputDirective.getClassList()"
          #input="validate-input-directive" validate-input-directive>
   <label [attr.for]="propertyField.id" [attr.data-error]="propertyField.getError()" class="active"
          [ngClass]="propertyField.getLabelClass()">

@@ -1,7 +1,7 @@
 <div [formGroup]="formGroup">
   <textarea [id]="propertyField.id" [formControlName]="propertyField.formControlName"
             [ngClass]="validateInputDirective.validationClass" class="materialize-textarea"
-            (keydown)="validateInputDirective.getClassList()"
+            (keyup)="validateInputDirective.getClassList()"
             #input="validate-input-directive" validate-input-directive></textarea>
   <label [attr.for]="propertyField.id" [attr.data-error]="propertyField.getError()">
     {{propertyField.placeHolder}}
