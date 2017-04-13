@@ -24,16 +24,18 @@
       </div>
       <div class="row">
         <div class="input-field col s12 m6 l6">
-          <select id="position" formControlName="position" materialize-dropdown>
+          <select id="position" formControlName="position" dropdown-directive (changeEvent)="updatePosition($event)">
             <option value="" disabled selected>Wähle deine Position aus</option>
             <option *ngFor="let position of positions" value="{{position.name}}">{{position.name}}</option>
           </select>
           <label for="position" class="active">Position</label>
         </div>
         <div class="input-field col s12 m6 l6">
-          <select id="team" formControlName="team" materialize-dropdown>
+          <select id="team" formControlName="team" dropdown-directive (changeEvent)="updateTeamId($event)">
             <option value="" disabled selected>Wähle deine Mannschaft aus</option>
-            <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
+            <optgroup *ngFor="let oldClass of oldClasses" label="{{oldClass.name}}">
+              <option *ngFor="let team of oldClass.teams" value="{{team.id}}">{{team.name}}</option>
+            </optgroup>
           </select>
           <label for="team" class="active">Mannschaft</label>
         </div>

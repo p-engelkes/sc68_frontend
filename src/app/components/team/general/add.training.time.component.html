@@ -1,6 +1,6 @@
 <div [formGroup]="addTeamForm">
   <div class="input-field col s6">
-    <select id="day" formControlName="day" materialize-dropdown (changeEvent)="updateDay($event)">
+    <select id="day" formControlName="day" dropdown-directive (changeEvent)="updateDay($event)">
       <option value="" disabled selected>Wähle den Trainingstag aus</option>
       <option *ngFor="let day of trainingDays; let i = index" value="{{i}}">{{day}}</option>
     </select>

@@ -12,7 +12,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {routing} from "./app.routing";
 import {TeamsComponent} from "./components/team/general/teams.component";
 import {TeamService} from "./services/team.service";
-import {MaterializeDropdown} from "./directives/select.directive";
+import {DropdownDirective} from "./directives/dropdown.directive";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {UserService} from "./services/user.service";
 import {PropertyComponent} from "./components/ui/property.component";
@@ -82,7 +82,7 @@ import {CollapsibleDirective} from "./directives/collapsible.directive";
     PropertyComponent,
     EditInputFieldComponent,
     EditTextAreaComponent,
-    MaterializeDropdown,
+    DropdownDirective,
     ProfileImageDirective,
     ArticlesParentComponent,
     NewArticleComponent,

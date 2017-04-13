@@ -17,7 +17,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <select id="team" formControlName="team" materialize-dropdown (changeEvent)="updateTeamId($event)">
+          <select id="team" formControlName="team" dropdown-directive (changeEvent)="updateTeamId($event)">
             <optgroup *ngFor="let oldClass of oldClasses" label="{{oldClass.name}}">
               <option *ngFor="let team of oldClass.teams" value="{{team.id}}">{{team.name}}</option>
             </optgroup>

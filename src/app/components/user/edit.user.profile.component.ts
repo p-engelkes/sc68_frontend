@@ -7,14 +7,14 @@ import {DataService} from "../../services/data.service";
 import {Position, User} from "../../models/user";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
-import {Team} from "../../models/team";
-import {TeamService} from "../../services/team.service";
 import {LocalStorage} from "../../helper/LocalStorage";
 import {Router} from "@angular/router";
 import {NgUploaderOptions} from "ngx-uploader";
 import {apiUrl} from "../../services/helper.service";
 import {LocationService} from "../../services/location.service";
 import {NavBarService} from "../../services/navbar.service";
+import {OldClass} from "../../models/old.class";
+import {OldClassService} from "../../services/old.class.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -30,7 +30,7 @@ export class EditUserProfileComponent implements OnInit {
   backNumberField: Field;
   user: User;
   private positions: Position[];
-  private teams: Team[];
+  private oldClasses: OldClass[];
   private zone: NgZone;
   private options: NgUploaderOptions;
   private sizeLimit = 2000000;
@@ -40,7 +40,7 @@ export class EditUserProfileComponent implements OnInit {
 
   constructor(private userService: UserService,
               private dataService: DataService,
-              private teamService: TeamService,
+              private oldClassService: OldClassService,
               private formBuilder: FormBuilder,
               private navBarService: NavBarService,
               private router: Router,
@@ -67,7 +67,7 @@ export class EditUserProfileComponent implements OnInit {
     }
 
     try {
-      this.teams = await this.teamService.getAllTeams();
+      this.oldClasses = await this.oldClassService.findAllWithTeams();
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +78,7 @@ export class EditUserProfileComponent implements OnInit {
       email: [this.user.email, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
       position: [this.user.position],
       backNumber: [this.user.backNumber],
-      team: [this.user.team ? this.user.team : '']
+      team: [this.user.team ? this.user.team.id : '']
     });
 
     this.firstNameField = Field.create()
@@ -131,15 +131,22 @@ export class EditUserProfileComponent implements OnInit {
     }
   }
 
+  updateTeamId(newValue: number) {
+    this.editUserForm.controls['team'].setValue(newValue);
+  }
+
+  updatePosition(newValue: any) {
+    this.editUserForm.controls['position'].setValue(newValue);
+  }
+
   async updateUserProfile(value: any) {
     if (!this.uploading) {
-      this.dataService.user;
       let firstName = value.firstName;
       let lastName = value.lastName;
       let email = value.email;
       let backNumber = value.backNumber;
-      let position = jQuery('#position').val();
-      let teamId = jQuery('#team').val();
+      let position = value.position;
+      let teamId = value.team;
 
       let user = User.create()
         .setId(this.user.id)
@@ -156,6 +163,7 @@ export class EditUserProfileComponent implements OnInit {
       try {
         await this.userService.update(currentUserId, user);
         Materialize.toast('Erfolgreich aktualisiert', 4000);
+        this.locationService.goBack();
       } catch (err) {
         Materialize.toast('Fehler bei der Aktualisierung', 4000);
       }

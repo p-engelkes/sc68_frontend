@@ -10,7 +10,7 @@
     </div>
     <div class="row margin">
       <div class="input-field col s12">
-        <select id="old-class" formControlName="oldClass" materialize-dropdown
+        <select id="old-class" formControlName="oldClass" dropdown-directive
                 (changeEvent)="updateOldClassValue($event)">
           <option value="" disabled selected>Wähle eine Altersklasse aus</option>
           <option *ngFor="let oldClass of oldClasses" value="{{oldClass.id}}">{{oldClass.name}}</option>

@@ -5,11 +5,10 @@ import {Directive, ElementRef, EventEmitter, OnInit, Output} from "@angular/core
 declare var jQuery: any;
 
 @Directive({
-  selector: "[materialize-dropdown]",
-  exportAs: 'materializeDropdown'
+  selector: "[dropdown-directive]"
 })
-export class MaterializeDropdown implements OnInit {
-  @Output() changeEvent: EventEmitter<number> = new EventEmitter();
+export class DropdownDirective implements OnInit {
+  @Output() changeEvent: EventEmitter<any> = new EventEmitter();
 
   el: ElementRef;
 
