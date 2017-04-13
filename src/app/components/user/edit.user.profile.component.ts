@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 import {NgUploaderOptions} from "ngx-uploader";
 import {apiUrl} from "../../services/helper.service";
 import {LocationService} from "../../services/location.service";
+import {NavBarService} from "../../services/navbar.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -41,9 +42,11 @@ export class EditUserProfileComponent implements OnInit {
               private dataService: DataService,
               private teamService: TeamService,
               private formBuilder: FormBuilder,
+              private navBarService: NavBarService,
               private router: Router,
               locationService: LocationService) {
     this.locationService = locationService;
+    this.navBarService.changeTitle("User bearbeiten");
   }
 
   async ngOnInit() {

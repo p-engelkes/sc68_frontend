@@ -43,7 +43,7 @@ export class ManageTeamPicturesComponent implements OnInit {
         authTokenPrefix: 'Bearer'
       });
 
-      this.navBarService.changeTitle(this.team.name);
+      this.navBarService.changeTitle("Bilder verwalten");
     }
   }
 

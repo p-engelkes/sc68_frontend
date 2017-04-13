@@ -4,6 +4,7 @@
 import {Component, OnInit} from "@angular/core";
 import {OldClass} from "../../../models/old.class";
 import {OldClassService} from "../../../services/old.class.service";
+import {NavBarService} from "../../../services/navbar.service";
 @Component({
   selector: 'team',
   templateUrl: './teams.component.html'
@@ -11,7 +12,9 @@ import {OldClassService} from "../../../services/old.class.service";
 export class TeamsComponent implements OnInit{
   oldClasses: OldClass[];
 
-  constructor(private oldClassService: OldClassService) {
+  constructor(private oldClassService: OldClassService,
+              private navBarService: NavBarService) {
+    this.navBarService.changeTitle("Teams");
   }
 
   async ngOnInit() {

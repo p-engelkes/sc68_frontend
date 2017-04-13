@@ -100,6 +100,10 @@ export class User {
       }
     }
 
+    if (!navigationTitle) {
+      navigationTitle = this.email;
+    }
+
     return navigationTitle;
   }
 
