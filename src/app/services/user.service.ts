@@ -14,7 +14,7 @@ export class UserService {
   }
 
   async getUser(userId) {
-    let response = await httpGet("/players/" + userId, this.http);
+    let response = await httpGet("/users/" + userId, this.http);
     return User.get(response, this.dataService);
   }
 
@@ -24,6 +24,6 @@ export class UserService {
   }
 
   update(currentUserId: number, user: User) {
-    return httpPost("/players/" + currentUserId, user, this.http);
+    return httpPost("/users/" + currentUserId, user, this.http);
   }
 }

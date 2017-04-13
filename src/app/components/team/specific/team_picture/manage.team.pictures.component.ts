@@ -6,6 +6,7 @@ import {LocalStorage} from "../../../../helper/LocalStorage";
 import {ActivatedRoute} from "@angular/router";
 import {TeamService} from "../../../../services/team.service";
 import {NavBarService} from "../../../../services/navbar.service";
+import {LocationService} from "../../../../services/location.service";
 @Component({
   selector: 'manage-team-pictures-component',
   templateUrl: './manage.team.pictures.component.html',
@@ -19,10 +20,13 @@ export class ManageTeamPicturesComponent implements OnInit {
   private progress: number;
   private uploading: boolean = false;
   private hasBaseDropZoneOver: boolean;
+  private locationService: LocationService;
 
   constructor(private teamService: TeamService,
               private navBarService: NavBarService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              locationService: LocationService) {
+    this.locationService = locationService;
   }
 
   async ngOnInit() {

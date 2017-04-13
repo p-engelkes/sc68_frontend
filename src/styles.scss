@@ -65,3 +65,19 @@ a {
 .select-wrapper + label {
   top: 0 !important;
 }
+
+.relative {
+  position: relative;
+}
+
+.align-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.align-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+}

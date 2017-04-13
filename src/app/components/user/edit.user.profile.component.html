@@ -55,11 +55,15 @@
           </div>
         </div>
       </div>
-      <div class="right-align">
+      <div class="relative">
         <a (click)="updateUserProfile(editUserForm.value)"
-           class="waves-effect waves-light btn submit-btn"
+           class="waves-effect waves-light btn submit-btn align-right"
            [ngClass]="{'disabled': uploading}">
-          <i class="material-icons right">done</i>Aktualisieren
+          Aktualisieren
+        </a>
+        <a (click)="locationService.goBack()"
+           class="waves-effect waves-light btn submit-btn align-left">
+          Aktualisieren
         </a>
       </div>
     </form>

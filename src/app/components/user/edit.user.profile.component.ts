@@ -13,6 +13,7 @@ import {LocalStorage} from "../../helper/LocalStorage";
 import {Router} from "@angular/router";
 import {NgUploaderOptions} from "ngx-uploader";
 import {apiUrl} from "../../services/helper.service";
+import {LocationService} from "../../services/location.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -34,12 +35,16 @@ export class EditUserProfileComponent implements OnInit {
   private sizeLimit = 2000000;
   private progress: number;
   private uploading: boolean = false;
+  private locationService: LocationService;
 
   constructor(private userService: UserService,
               private dataService: DataService,
               private teamService: TeamService,
               private formBuilder: FormBuilder,
-              private router: Router) {}
+              private router: Router,
+              locationService: LocationService) {
+    this.locationService = locationService;
+  }
 
   async ngOnInit() {
     this.user = this.dataService.user;
@@ -70,7 +75,7 @@ export class EditUserProfileComponent implements OnInit {
       email: [this.user.email, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
       position: [this.user.position],
       backNumber: [this.user.backNumber],
-      team: [this.user.team.id]
+      team: [this.user.team ? this.user.team : '']
     });
 
     this.firstNameField = Field.create()

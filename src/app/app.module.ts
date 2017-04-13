@@ -55,6 +55,7 @@ import {CarouselDirective} from "./directives/carousel.directive";
 import {MaterialBoxedDirective} from "./directives/materialboxed.directive";
 import {TeamPictureCarouselComponent} from "./components/team/specific/team_picture/team.picture.carousel";
 import {ModalDirective} from "./directives/modal.directive";
+import {LocationService} from "./services/location.service";
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import {ModalDirective} from "./directives/modal.directive";
     NavBarService,
     OldClassService,
     SeasonTableTeamService,
-    GameService
+    GameService,
+    LocationService
   ],
   bootstrap: [AppComponent]
 })

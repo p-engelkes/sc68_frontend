@@ -7,6 +7,7 @@ import {Field, FormValidators} from "../../../validators";
 import {Team, TrainingTimes} from "../../../models/team";
 import {TeamService} from "../../../services/team.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {LocationService} from "../../../services/location.service";
 declare var jQuery: any;
 @Component({
   selector: 'add-team-component',
@@ -20,20 +21,23 @@ export class ManageTeamComponent implements OnInit {
   soccerIdField: Field;
   private currentTeam: Team;
   private formAction: FormAction;
+  private locationService: LocationService;
 
   constructor(private formBuilder: FormBuilder,
               private oldClassService: OldClassService,
               private navBarService: NavBarService,
               private teamService: TeamService,
               private router: Router,
-              private route: ActivatedRoute) {
-    this.navBarService.changeTitle('Team hinzufügen');
+              private route: ActivatedRoute,
+              locationService: LocationService) {
+    this.locationService = locationService;
   }
 
   async ngOnInit() {
     let snapshot = this.route.snapshot.parent;
     if (snapshot && snapshot.params['id']) {
       this.formAction = FormAction.EDIT;
+      this.navBarService.changeTitle('Team bearbeiten');
       this.currentTeam = await this.teamService.findById(+snapshot.params['id']);
       this.addTeamForm = this.formBuilder.group({
         name: [this.currentTeam.name, [Validators.required]],
@@ -51,6 +55,7 @@ export class ManageTeamComponent implements OnInit {
       }
     } else {
       this.formAction = FormAction.ADD;
+      this.navBarService.changeTitle('Team hinzufügen');
       this.addTeamForm = this.formBuilder.group({
         name: ['', [Validators.required]],
         soccerId: [''],
