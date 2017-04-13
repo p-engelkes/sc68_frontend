@@ -46,11 +46,7 @@ export class NavbarComponent implements OnInit {
     this.routerService = routerService;
     this.loginService = loginService;
     this.navBarService.getEmittedValue()
-      .subscribe(newTitle => {
-        console.log('changeTitle called');
-        this.title = newTitle;
-      });
-
+      .subscribe(newTitle => this.title = newTitle);
   }
 
   openLoginModal() {

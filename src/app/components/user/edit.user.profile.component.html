@@ -7,32 +7,30 @@
   <div class="row" *ngIf="editUserForm">
     <form class="col s12" [formGroup]="editUserForm">
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
           <edit-input-field [formGroup]="editUserForm" [propertyField]="firstNameField"></edit-input-field>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
           <edit-input-field [formGroup]="editUserForm" [propertyField]="lastNameField"></edit-input-field>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s12 m6 l6">
           <edit-input-field [formGroup]="editUserForm" [propertyField]="emailField"></edit-input-field>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s12 m6 l6">
           <edit-input-field [formGroup]="editUserForm" [propertyField]="backNumberField"></edit-input-field>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
           <select id="position" formControlName="position" materialize-dropdown>
             <option value="" disabled selected>Wähle deine Position aus</option>
             <option *ngFor="let position of positions" value="{{position.name}}">{{position.name}}</option>
           </select>
           <label for="position" class="active">Position</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
           <select id="team" formControlName="team" materialize-dropdown>
             <option value="" disabled selected>Wähle deine Mannschaft aus</option>
             <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
