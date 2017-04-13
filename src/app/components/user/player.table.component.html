@@ -1,4 +1,4 @@
-<div *ngIf="users && users.length > 0">
+<div *ngIf="players && players.length > 0">
   <h4>Spieler</h4>
   <table class="highlight responsive-table">
     <thead>
@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let user of users" (click)="onPlayerClick(user)">
+    <tr *ngFor="let user of players" (click)="onPlayerClick(user)">
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>
       <td>{{user.backNumber}}</td>

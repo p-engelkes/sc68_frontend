@@ -6,6 +6,7 @@ import {httpDelete, httpGet, httpGetWithoutAuthorization, httpPost} from "./help
 import {Http} from "@angular/http";
 import {Team} from "../models/team";
 import {Picture} from "../models/profile.picture";
+import {User} from "../models/user";
 @Injectable()
 export class TeamService {
 
@@ -39,7 +40,8 @@ export class TeamService {
   }
 
   async findAllPlayersByTeam(id: number) {
-    return httpGetWithoutAuthorization("/teams/" + id + "/players", this.http);
+    let data = await httpGetWithoutAuthorization("/teams/" + id + "/players", this.http);
+    return User.getAll(data);
   }
 
   async add(team: Team) {

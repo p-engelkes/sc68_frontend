@@ -36,13 +36,13 @@
         <team-picture-carousel-component [teamPictures]="team.teamPictures"></team-picture-carousel-component>
       </div>
       <div id="table" class="section scrollspy" scroll-spy-directive>
-        <season-table-component [teamId]="team.id"></season-table-component>
+        <season-table-component [seasonTableTeams]="seasonTableTeams"></season-table-component>
       </div>
       <div id="games" class="section scrollspy" scroll-spy-directive>
-        <game-table-component [teamId]="team.id" [gameTye]="'PREVIOUS'"></game-table-component>
+        <game-table-component [games]="games"></game-table-component>
       </div>
       <div id="players" class="section scrollspy" scroll-spy-directive>
-        <player-table-component [teamId]="team.id"></player-table-component>
+        <player-table-component [players]="players"></player-table-component>
       </div>
       <div id="articles" class="section scrollspy" scroll-spy-directive>
         <articles-component [teamId]="team.id"></articles-component>
@@ -51,10 +51,10 @@
     <div class="col hide-on-small-only m3 l2">
       <div class="toc-wrapper" push-pin-directive>
         <ul class="section table-of-contents">
-          <li><a href="#team-pictures">Bilder</a></li>
-          <li><a href="#table">Tabelle</a></li>
-          <li><a href="#games">Spiele</a></li>
-          <li><a href="#players">Spieler</a></li>
+          <li *ngIf="team.teamPictures && team.teamPictures.length > 0"><a href="#team-pictures">Bilder</a></li>
+          <li *ngIf="seasonTableTeams && seasonTableTeams.length > 0"><a href="#table">Tabelle</a></li>
+          <li *ngIf="games && games.length > 0"><a href="#games">Spiele</a></li>
+          <li *ngIf="players && players.length > 0"><a href="#players">Spieler</a></li>
           <li><a href="#articles">Artikel</a></li>
         </ul>
       </div>

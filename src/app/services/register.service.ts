@@ -5,7 +5,6 @@ import {Injectable} from "@angular/core";
 import {User} from "../models/user";
 import {Http} from "@angular/http";
 import {httpPostWithoutAuthorization} from "./helper.service";
-import {LocalStorage} from "../helper/LocalStorage";
 @Injectable()
 export class RegisterService {
 
@@ -13,6 +12,6 @@ export class RegisterService {
   }
 
   register(user: User) {
-    return httpPostWithoutAuthorization("/users/register", user, this.http);
+    return httpPostWithoutAuthorization("/players/register", user, this.http);
   }
 }

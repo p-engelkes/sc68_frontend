@@ -1,30 +1,18 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {TeamService} from "../../services/team.service";
+import {Component, Input} from "@angular/core";
 import {User} from "../../models/user";
 import {RouterService} from "../../services/router.service";
 @Component({
   selector: 'player-table-component',
   templateUrl: './player.table.component.html'
 })
-export class PlayerTableComponent implements OnInit {
+export class PlayerTableComponent {
   @Input()
-  teamId: number;
+  players: User[];
 
-  header: 'Spieler'
-  users: User[];
+  header: 'Spieler';
 
-  constructor(private teamService: TeamService,
-              private routerService: RouterService) {}
-
-  async ngOnInit() {
-    let data  = await this.teamService.findAllPlayersByTeam(this.teamId);
-    this.users = User.getAll(data);
-
-    // this.teamService.findAllPlayersByTeam(this.teamId).subscribe(
-    //   data => this.users = User.getAll(data),
-    //   error => console.log(error)
-    // );
-  };
+  constructor(private routerService: RouterService) {
+  }
 
   onPlayerClick(user: User) {
     this.routerService.navigateToWithParameter("/user", user.id);

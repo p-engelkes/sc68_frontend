@@ -1,3 +1,6 @@
+@import "../../../../node_modules/materialize-css/sass/components/color";
+@import "../../../../node_modules/materialize-css/sass/components/variables";
+
 a.button-collapse.top-nav.full {
   line-height: 122px;
 }
@@ -7,7 +10,6 @@ a.button-collapse.top-nav {
   text-align: center;
   height: 48px;
   width: 48px;
-  margin-left: 1.5rem;
   top: 0;
   float: none;
   color: #fff;
@@ -29,10 +31,28 @@ nav.top-nav {
   box-shadow: none;
 }
 
-nav.top-nav a.page-title {
-  line-height: 80px;
-  font-size: 50px;
-  padding-left: 50px;
+@media #{$small-and-down} {
+  nav.top-nav a.page-title {
+    line-height: 72px;
+    font-size: 2rem;
+    padding-left: 50px;
+  }
+}
+
+@media #{$medium-and-up} {
+  nav.top-nav a.page-title {
+    line-height: 75px;
+    font-size: 2.5rem;
+    padding-left: 50px;
+  }
+}
+
+@media #{$large-and-up} {
+  nav.top-nav a.page-title {
+    line-height: 80px;
+    font-size: 3.5rem;
+    padding-left: 50px;
+  }
 }
 
 nav i {

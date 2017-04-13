@@ -5,6 +5,7 @@ import {Team} from "../../../../models/team";
 import {LocalStorage} from "../../../../helper/LocalStorage";
 import {ActivatedRoute} from "@angular/router";
 import {TeamService} from "../../../../services/team.service";
+import {NavBarService} from "../../../../services/navbar.service";
 @Component({
   selector: 'manage-team-pictures-component',
   templateUrl: './manage.team.pictures.component.html',
@@ -20,6 +21,7 @@ export class ManageTeamPicturesComponent implements OnInit {
   private hasBaseDropZoneOver: boolean;
 
   constructor(private teamService: TeamService,
+              private navBarService: NavBarService,
               private route: ActivatedRoute) {
   }
 
@@ -36,6 +38,8 @@ export class ManageTeamPicturesComponent implements OnInit {
         authToken: LocalStorage.getToken(),
         authTokenPrefix: 'Bearer'
       });
+
+      this.navBarService.changeTitle(this.team.name);
     }
   }
 
