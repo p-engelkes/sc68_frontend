@@ -1,17 +1,40 @@
 <div *ngIf="team">
-  <div class="team-card">
-    <div class="col s12">
-      <div class="card z-depth-3 bordered-card">
-        <div class="card-content">
-          <p class="card-title center-align">{{team.name}}</p>
-          <p *ngFor="let trainingTime of team.trainingTimes">
-            {{trainingTime.day}}: {{trainingTime.time}}
-          </p>
-        </div>
-        <div class="card-action">
-          <a (click)="routerService.navigateToWithParameter('/teams', team.id)">Mehr Informationen</a>
+  <div *ngIf="picture; else noPicture">
+    <div class="team-card">
+      <div class="col s12">
+        <div class="card z-depth-3 bordered-card">
+          <div class="card-image">
+            <img image [image-data]="picture.data">
+            <span class="card-title center-align">{{team.name}}</span>
+          </div>
+          <div class="card-content">
+            <p *ngFor="let trainingTime of team.trainingTimes">
+              {{trainingTime.day}}: {{trainingTime.time}}
+            </p>
+          </div>
+          <div class="card-action">
+            <a (click)="routerService.navigateToWithParameter('/teams', team.id)">Mehr Informationen</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <ng-template #noPicture>
+    <div class="team-card">
+      <div class="col s12">
+        <div class="card z-depth-3 bordered-card">
+          <div class="card-content">
+            <p class="card-title center-align">{{team.name}}</p>
+            <p *ngFor="let trainingTime of team.trainingTimes">
+              {{trainingTime.day}}: {{trainingTime.time}}
+            </p>
+          </div>
+          <div class="card-action">
+            <a (click)="routerService.navigateToWithParameter('/teams', team.id)">Mehr Informationen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>

@@ -40,7 +40,9 @@ export class TeamComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationStart) {
         let urlParts = event.url.split("/");
         let id = +urlParts[urlParts.length - 1];
-        this.initTeamComponent(id);
+        if (id) {
+          this.initTeamComponent(id);
+        }
       }
     });
 
