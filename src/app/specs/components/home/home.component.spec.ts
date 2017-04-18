@@ -18,7 +18,7 @@ import {RouterService} from "../../../services/router.service";
 import {UserChipComponent} from "../../../components/user/user.chip.component";
 import {NavBarService} from "../../../services/navbar.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NewArticleComponent} from "../../../components/article/new.article.component";
+import {AddArticleComponent} from "../../../components/article/add.article.component";
 import {EditTextAreaComponent} from "../../../components/ui/edit.textarea.component";
 import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -30,7 +30,7 @@ describe('Home Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, ArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent, NewArticleComponent,
+      declarations: [HomeComponent, ArticlesComponent, ProfileImageDirective, ArticleComponent, UserChipComponent, AddArticleComponent,
         EditTextAreaComponent, EditInputFieldComponent],
       imports: [ReactiveFormsModule],
       providers: [

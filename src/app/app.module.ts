@@ -31,7 +31,7 @@ import {SideNavDirective} from "./directives/navbar.directive";
 import {NavBarService} from "./services/navbar.service";
 import {ArticlesParentComponent} from "./components/article/articles.parent.component";
 import {EditTextAreaComponent} from "./components/ui/edit.textarea.component";
-import {NewArticleComponent} from "./components/article/new.article.component";
+import {AddArticleComponent} from "./components/article/add.article.component";
 import {LandingPageComponent} from "./components/landing_page/landing.page.component";
 import {ParallaxDirective} from "./directives/parallax.directive";
 import {OldClassService} from "./services/old.class.service";
@@ -85,7 +85,7 @@ import {CollapsibleDirective} from "./directives/collapsible.directive";
     DropdownDirective,
     ProfileImageDirective,
     ArticlesParentComponent,
-    NewArticleComponent,
+    AddArticleComponent,
     ArticlesComponent,
     ArticleComponent,
     UserChipComponent,

@@ -10,9 +10,9 @@ declare var Materialize: any;
 declare var jQuery: any;
 @Component({
   selector: 'new-article-component',
-  templateUrl: 'new.article.component.html'
+  templateUrl: 'app/components/article/add.article.component.html'
 })
-export class NewArticleComponent implements OnInit {
+export class AddArticleComponent implements OnInit {
   newArticleForm: FormGroup;
   titleField: Field;
   contentField: Field;

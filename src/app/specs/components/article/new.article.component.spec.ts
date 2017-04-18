@@ -1,4 +1,4 @@
-import {NewArticleComponent} from "../../../components/article/new.article.component";
+import {AddArticleComponent} from "../../../components/article/add.article.component";
 import {async, ComponentFixture, fakeAsync, TestBed} from "@angular/core/testing";
 import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
 import {EditTextAreaComponent} from "../../../components/ui/edit.textarea.component";
@@ -7,12 +7,12 @@ import {FakeArticleService, FakeOldClassService, queryElement, setInputValue} fr
 import {ArticleService} from "../../../services/article.service";
 import {OldClassService} from "../../../services/old.class.service";
 describe('New Article Component', () => {
-  let component: NewArticleComponent;
-  let fixture: ComponentFixture<NewArticleComponent>;
+  let component: AddArticleComponent;
+  let fixture: ComponentFixture<AddArticleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewArticleComponent, EditInputFieldComponent, EditTextAreaComponent],
+      declarations: [AddArticleComponent, EditInputFieldComponent, EditTextAreaComponent],
       imports: [ReactiveFormsModule],
       providers: [
         {provide: ArticleService, useClass: FakeArticleService},
@@ -23,7 +23,7 @@ describe('New Article Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewArticleComponent);
+    fixture = TestBed.createComponent(AddArticleComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();

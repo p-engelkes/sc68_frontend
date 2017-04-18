@@ -1,13 +1,13 @@
 /**
  * Created by pengelkes on 30.12.2016.
  */
-import {Injectable, Output, EventEmitter} from "@angular/core";
+import {EventEmitter, Injectable, Output} from "@angular/core";
 import {Http} from "@angular/http";
 import {
-  Parameter,
-  httpPost,
   httpGetWithoutAuthorization,
-  httpGetWithParametersAndWithoutAuthorization
+  httpGetWithParametersAndWithoutAuthorization,
+  httpPost,
+  Parameter
 } from "./helper.service";
 import {Article} from "../models/article";
 @Injectable()
@@ -21,14 +21,18 @@ export class ArticleService {
     await httpPost("/articles", article, this.http);
   }
 
-  getAllTeamsWithAnArticle() {
-    return httpGetWithoutAuthorization("/articles/distinct/team", this.http)
-  }
-
   async findAll() {
     let response = await httpGetWithoutAuthorization("/articles", this.http);
 
     return Article.getAll(response);
+  }
+
+  async findById(id: number) {
+    let data = await httpGetWithoutAuthorization("/articles/" + id, this.http);
+    let articleResponse = JSON.parse(JSON.stringify(data))._body;
+    let articleJson = JSON.parse(articleResponse)
+
+    return Article.get(articleJson);
   }
 
   async findAllByAuthor(authorId: number) {

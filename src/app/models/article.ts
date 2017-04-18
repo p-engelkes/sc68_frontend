@@ -1,5 +1,6 @@
 import {User} from "./user";
 import {Team} from "./team";
+import {Picture} from "./profile.picture";
 /**
  * Created by pengelkes on 30.12.2016.
  */
@@ -13,6 +14,7 @@ export class Article {
   public team: Team;
   public teamId: number;
   public created: Date;
+  public articlePictures: Picture[];
 
   constructor(id?: number, title?: string, content?: string, author?: User, authorId?: number, team?: Team,
               teamId?: number, created?: Date) {
