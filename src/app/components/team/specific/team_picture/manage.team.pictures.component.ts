@@ -1,8 +1,6 @@
 import {Component, NgZone, OnInit} from "@angular/core";
 import {NgUploaderOptions} from "ngx-uploader";
-import {apiUrl} from "../../../../services/helper.service";
 import {Team} from "../../../../models/team";
-import {LocalStorage} from "../../../../helper/LocalStorage";
 import {ActivatedRoute} from "@angular/router";
 import {TeamService} from "../../../../services/team.service";
 import {NavBarService} from "../../../../services/navbar.service";
@@ -28,25 +26,26 @@ export class ManageTeamPicturesComponent implements OnInit {
               private navBarService: NavBarService,
               private route: ActivatedRoute,
               locationService: LocationService) {
-    this.locationService = locationService;
+    console.log("Manage Team Pictures Constructor called");
+    // this.locationService = locationService;
   }
 
   async ngOnInit() {
-    let snapshot = this.route.snapshot.parent;
-    if (snapshot && snapshot.params['id']) {
-      let id = +snapshot.params['id'];
-      this.team = await this.teamService.findById(id);
-      await this.pictureService.findPicturesByTeam(this.team);
-
-      this.zone = new NgZone({enableLongStackTrace: false});
-      this.options = new NgUploaderOptions({
-        url: apiUrl + '/teamPictures/' + this.team.id + '/upload',
-        authToken: LocalStorage.getToken(),
-        authTokenPrefix: 'Bearer'
-      });
-
-      this.navBarService.changeTitle("Bilder verwalten");
-    }
+    // let snapshot = this.route.snapshot.parent;
+    // if (snapshot && snapshot.params['id']) {
+    //   let id = +snapshot.params['id'];
+    //   this.team = await this.teamService.findById(id);
+    //   await this.pictureService.findPicturesByTeam(this.team);
+    //
+    //   this.zone = new NgZone({enableLongStackTrace: false});
+    //   this.options = new NgUploaderOptions({
+    //     url: apiUrl + '/teamPictures/' + this.team.id + '/upload',
+    //     authToken: LocalStorage.getToken(),
+    //     authTokenPrefix: 'Bearer'
+    //   });
+    //
+    //   this.navBarService.changeTitle("Bilder verwalten");
+    // }
   }
 
   handleUpload(data): void {

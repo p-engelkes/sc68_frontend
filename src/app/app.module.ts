@@ -57,6 +57,7 @@ import {TeamPictureCarouselComponent} from "./components/team/specific/team_pict
 import {ModalDirective} from "./directives/modal.directive";
 import {LocationService} from "./services/location.service";
 import {CollapsibleDirective} from "./directives/collapsible.directive";
+import {PictureService} from "./services/picture.service";
 
 @NgModule({
   declarations: [
@@ -123,7 +124,8 @@ import {CollapsibleDirective} from "./directives/collapsible.directive";
     OldClassService,
     SeasonTableTeamService,
     GameService,
-    LocationService
+    LocationService,
+    PictureService
   ],
   bootstrap: [AppComponent]
 })

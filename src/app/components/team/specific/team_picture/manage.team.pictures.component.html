@@ -1,50 +1,50 @@
-<div class="row relative" style="margin-bottom: 5rem;">
-  <a (click)="locationService.goBack()"
-     class="waves-effect waves-light btn submit-btn align-left">
-    Zurück
-  </a>
-</div>
+<!--<div class="row relative" style="margin-bottom: 5rem;">-->
+<!--<a (click)="locationService.goBack()"-->
+<!--class="waves-effect waves-light btn submit-btn align-left">-->
+<!--Zurück-->
+<!--</a>-->
+<!--</div>-->
 
-<div class="row">
-  <div class="col s12 m12 l8 offset-l2">
-    <div class="drag-n-drop-container z-depth-5"
-         ngFileDrop
-         [options]="options"
-         (onUpload)="handleUpload($event)"
-         [ngClass]="{'file-over': hasBaseDropZoneOver}"
-         (onFileOver)="fileOverBase($event)">
-      <h3>Drag & Drop</h3>
-      <div class="btn">
-        <span>Datei auswählen</span>
-        <input type="file"
-               ngFileSelect
-               [options]="options"
-               (onUpload)="handleUpload($event)"
-               (beforeUpload)="beforeUpload($event)">
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="row">-->
+<!--<div class="col s12 m12 l8 offset-l2">-->
+<!--<div class="drag-n-drop-container z-depth-5"-->
+<!--ngFileDrop-->
+<!--[options]="options"-->
+<!--(onUpload)="handleUpload($event)"-->
+<!--[ngClass]="{'file-over': hasBaseDropZoneOver}"-->
+<!--(onFileOver)="fileOverBase($event)">-->
+<!--<h3>Drag & Drop</h3>-->
+<!--<div class="btn">-->
+<!--<span>Datei auswählen</span>-->
+<!--<input type="file"-->
+<!--ngFileSelect-->
+<!--[options]="options"-->
+<!--(onUpload)="handleUpload($event)"-->
+<!--(beforeUpload)="beforeUpload($event)">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-<div *ngIf="team && team.teamPictures">
-  <div *ngFor="let picture of team.teamPictures; let i=index">
-    <div class="row">
-      <div class="col s12 m12 l12 team-picture">
-        <img class="materialboxed center-align reduce-width" width="100%" image [image-data]="picture.data"
-             materialboxed-directive>
-        <a class="btn-floating btn-large waves-effect waves-light red remove-button"
-           (click)="deleteTeamPicture(picture.id, i)">
-          <i class="material-icons">remove</i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div *ngIf="team && team.teamPictures">-->
+<!--<div *ngFor="let picture of team.teamPictures; let i=index">-->
+<!--<div class="row">-->
+<!--<div class="col s12 m12 l12 team-picture">-->
+<!--<img class="materialboxed center-align reduce-width" width="100%" image [image-data]="picture.data"-->
+<!--materialboxed-directive>-->
+<!--<a class="btn-floating btn-large waves-effect waves-light red remove-button"-->
+<!--(click)="deleteTeamPicture(picture.id, i)">-->
+<!--<i class="material-icons">remove</i>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-<div *ngIf="team && team.teamPictures && team.teamPictures.length > 0" class="row relative"
-     style="margin-bottom: 5rem;">
-  <a (click)="locationService.goBack()"
-     class="waves-effect waves-light btn submit-btn align-left">
-    Zurück
-  </a>
-</div>
+<!--<div *ngIf="team && team.teamPictures && team.teamPictures.length > 0" class="row relative"-->
+<!--style="margin-bottom: 5rem;">-->
+<!--<a (click)="locationService.goBack()"-->
+<!--class="waves-effect waves-light btn submit-btn align-left">-->
+<!--Zurück-->
+<!--</a>-->
+<!--</div>-->

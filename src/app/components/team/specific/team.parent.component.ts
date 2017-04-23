@@ -6,4 +6,8 @@ import {Component} from "@angular/core";
   selector: 'team-parent-component',
   template: '<router-outlet></router-outlet>'
 })
-export class TeamParentComponent {}
+export class TeamParentComponent {
+  constructor() {
+    console.log('Team parent constructor called');
+  }
+}

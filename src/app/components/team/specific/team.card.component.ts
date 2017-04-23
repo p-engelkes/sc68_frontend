@@ -6,6 +6,7 @@ import {Team} from "../../../models/team";
 import {RouterService} from "../../../services/router.service";
 import {Picture} from "../../../models/profile.picture";
 import {TeamService} from "../../../services/team.service";
+import {PictureService} from "../../../services/picture.service";
 @Component({
   selector: 'team-card-component',
   templateUrl: './team.card.component.html'
@@ -17,11 +18,12 @@ export class TeamCardComponent implements OnInit {
   picture: Picture;
 
   constructor(private routerService: RouterService,
+              private pictureService: PictureService,
               private teamService: TeamService) {
   }
 
   async ngOnInit() {
-    await this.teamService.findPicturesByTeam(this.team);
+    await this.pictureService.findPicturesByTeam(this.team);
     if (this.team.teamPictures && this.team.teamPictures.length > 0) {
       let pictureNumber = Math.floor(Math.random() * this.team.teamPictures.length);
       this.picture = this.team.teamPictures[pictureNumber];

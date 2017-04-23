@@ -10,6 +10,7 @@ import {SeasonGame} from "../../../models/season.game";
 import {GameService} from "../../../services/game.service";
 import {User} from "../../../models/user";
 import {Subscription} from "rxjs";
+import {PictureService} from "../../../services/picture.service";
 @Component({
   selector: 'team-component',
   templateUrl: './team.component.html',
@@ -25,6 +26,7 @@ export class TeamComponent implements OnInit, OnDestroy {
   subscribtion: Subscription;
 
   constructor(private route: ActivatedRoute,
+              private pictureService: PictureService,
               private teamService: TeamService,
               private navbarService: NavBarService,
               private seasonTableTeamService: SeasonTableTeamService,
@@ -55,7 +57,7 @@ export class TeamComponent implements OnInit, OnDestroy {
       this.seasonTableTeams = await this.seasonTableTeamService.findByTeam(this.team.id);
       this.games = await this.gameService.findByTeamAndType(this.team.id, 'PREVIOUS');
       this.players = await this.teamService.findAllPlayersByTeam(this.team.id);
-      await this.teamService.findPicturesByTeam(this.team);
+      await this.pictureService.findPicturesByTeam(this.team);
       this.navbarService.changeTitle(this.team.name);
     } catch (error) {
       console.log(error);
