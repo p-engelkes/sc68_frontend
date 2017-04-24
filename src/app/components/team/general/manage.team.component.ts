@@ -8,6 +8,7 @@ import {Team, TrainingTimes} from "../../../models/team";
 import {TeamService} from "../../../services/team.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationService} from "../../../services/location.service";
+import {FormAction} from "../../ui/FormEnums";
 declare var jQuery: any;
 @Component({
   selector: 'add-team-component',
@@ -140,11 +141,6 @@ export class ManageTeamComponent implements OnInit {
       }
     }
   }
-}
-
-export enum FormAction {
-  ADD,
-  EDIT
 }
 
 export let days = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]

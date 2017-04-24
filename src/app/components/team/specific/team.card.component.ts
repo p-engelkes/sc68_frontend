@@ -5,7 +5,6 @@ import {Component, Input, OnInit} from "@angular/core";
 import {Team} from "../../../models/team";
 import {RouterService} from "../../../services/router.service";
 import {Picture} from "../../../models/profile.picture";
-import {TeamService} from "../../../services/team.service";
 import {PictureService} from "../../../services/picture.service";
 @Component({
   selector: 'team-card-component',
@@ -18,8 +17,7 @@ export class TeamCardComponent implements OnInit {
   picture: Picture;
 
   constructor(private routerService: RouterService,
-              private pictureService: PictureService,
-              private teamService: TeamService) {
+              private pictureService: PictureService) {
   }
 
   async ngOnInit() {

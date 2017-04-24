@@ -9,10 +9,10 @@ import {OldClassService} from "../../services/old.class.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
-  selector: 'new-article-component',
-  templateUrl: './add.article.component.html'
+  selector: 'manage-article-component',
+  templateUrl: './manage.article.component.html'
 })
-export class AddArticleComponent implements OnInit {
+export class ManageArticleComponent implements OnInit {
   newArticleForm: FormGroup;
   titleField: Field;
   contentField: Field;
@@ -56,6 +56,10 @@ export class AddArticleComponent implements OnInit {
 
   showCreateArticleForm() {
     this.showForm = true;
+  }
+
+  abort() {
+    this.showForm = false;
   }
 
   isArticleWriter() {

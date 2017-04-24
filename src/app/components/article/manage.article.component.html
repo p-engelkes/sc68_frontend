@@ -25,9 +25,19 @@
           <label>Team</label>
         </div>
       </div>
+      <div class="relative">
+        <a (click)="createArticle(newArticleForm.value)"
+           class="waves-effect waves-light btn submit-btn align-right">
+          Veröffentlichen
+        </a>
+        <a (click)="abort()"
+           class="waves-effect waves-light btn align-left">
+          Abbrechen
+        </a>
+      </div>
       <div class="row right-align">
         <a (click)="createArticle(newArticleForm.value)"
            class="waves-effect waves-light btn submit-btn">Veröffentlichen</a>
       </div>
     </form>
-</div>
+  </div>
