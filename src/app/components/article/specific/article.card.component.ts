@@ -25,5 +25,13 @@ export class ArticleCardComponent implements OnInit {
     }
   }
 
+  getShortenedArticleContent() {
+    if (this.article.content.length > 1000) {
+      let content = this.article.content.substr(0, 1000);
+      content += "...";
+      return content;
+    }
 
+    return this.article.content;
+  }
 }
