@@ -11,7 +11,7 @@ import {LocationService} from "../../../services/location.service";
 import {FormAction} from "../../ui/FormEnums";
 declare var jQuery: any;
 @Component({
-  selector: 'add-team-component',
+  selector: 'manage-team-component',
   templateUrl: './manage.team.component.html',
   styleUrls: ['./manage.team.component.scss']
 })

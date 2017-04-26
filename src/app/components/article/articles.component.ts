@@ -16,7 +16,6 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   @Input()
   teamId: number;
 
-  header = 'Artikel';
   articles: Article[];
   subscription: Subscription;
 
