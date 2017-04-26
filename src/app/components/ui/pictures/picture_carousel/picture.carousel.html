@@ -1,0 +1,7 @@
+<div *ngIf="pictures && pictures.length > 0">
+  <div class="carousel" carousel-directive>
+    <a class="carousel-item" *ngFor="let picture of pictures">
+      <img image [image-data]="picture.data">
+    </a>
+  </div>
+</div>

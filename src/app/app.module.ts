@@ -19,19 +19,19 @@ import {PropertyComponent} from "./components/ui/property.component";
 import {EditUserProfileComponent} from "./components/user/edit.user.profile.component";
 import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
 import {DataService} from "./services/data.service";
-import {EditInputFieldComponent} from "./components/ui/edit.input.field.component";
+import {EditInputFieldComponent} from "./components/ui/input_fields/edit_input_field/edit.input.field.component";
 import {NgUploaderModule} from "ngx-uploader";
 import {ProfileImageDirective} from "./directives/image.directive";
 import {ArticleService} from "./services/article.service";
-import {ArticlesComponent} from "./components/article/articles.component";
-import {ArticleComponent} from "./components/article/article.component";
+import {ArticlesComponent} from "./components/article/general/articles.component";
+import {ArticleCardComponent} from "./components/article/specific/article.card.component";
 import {UserChipComponent} from "./components/user/user.chip.component";
 import {RouterService} from "./services/router.service";
 import {SideNavDirective} from "./directives/navbar.directive";
 import {NavBarService} from "./services/navbar.service";
-import {ArticlesParentComponent} from "./components/article/articles.parent.component";
-import {EditTextAreaComponent} from "./components/ui/edit.textarea.component";
-import {ManageArticleComponent} from "./components/article/manage.article.component";
+import {ArticlesParentComponent} from "./components/article/general/articles.parent.component";
+import {EditTextAreaComponent} from "./components/ui/input_fields/edit_textarea_component/edit.textarea.component";
+import {ManageArticleComponent} from "./components/article/general/manage.article.component";
 import {LandingPageComponent} from "./components/landing_page/landing.page.component";
 import {ParallaxDirective} from "./directives/parallax.directive";
 import {OldClassService} from "./services/old.class.service";
@@ -47,17 +47,20 @@ import {GameService} from "./services/game.service";
 import {PushPinDirective} from "./directives/pushpin.directive";
 import {ScrollSpyDirective} from "./directives/scroll.spy.directive";
 import {ManageTeamComponent} from "./components/team/general/manage.team.component";
-import {ManageTeamPicturesComponent} from "./components/team/specific/team_picture/manage.team.pictures.component";
+import {ManagePicturesComponent} from "./components/ui/pictures/manage_pictures/manage.pictures.component";
 import {TeamParentComponent} from "./components/team/specific/team.parent.component";
 import {AddTrainingTimeComponent} from "./components/team/general/add.training.time.component";
 import {ValidateInputDirective} from "./directives/validate.input.directive";
 import {CarouselDirective} from "./directives/carousel.directive";
 import {MaterialBoxedDirective} from "./directives/materialboxed.directive";
-import {TeamPictureCarouselComponent} from "./components/team/specific/team_picture/team.picture.carousel";
+import {PictureCarouselComponent} from "./components/ui/pictures/picture_carousel/picture.carousel";
 import {ModalDirective} from "./directives/modal.directive";
 import {LocationService} from "./services/location.service";
 import {CollapsibleDirective} from "./directives/collapsible.directive";
 import {PictureService} from "./services/picture.service";
+import {ArticleParentComponent} from "./components/article/specific/article.parent.component";
+import {ArticleComponent} from "./components/article/specific/article.component";
+
 
 @NgModule({
   declarations: [
@@ -77,9 +80,9 @@ import {PictureService} from "./services/picture.service";
     AddTrainingTimeComponent,
     TeamParentComponent,
     TeamComponent,
-    TeamPictureCarouselComponent,
+    PictureCarouselComponent,
     TeamCardComponent,
-    ManageTeamPicturesComponent,
+    ManagePicturesComponent,
     PropertyComponent,
     EditInputFieldComponent,
     EditTextAreaComponent,
@@ -88,7 +91,9 @@ import {PictureService} from "./services/picture.service";
     ArticlesParentComponent,
     ManageArticleComponent,
     ArticlesComponent,
+    ArticleParentComponent,
     ArticleComponent,
+    ArticleCardComponent,
     UserChipComponent,
     LandingPageComponent,
     SeasonTableComponent,

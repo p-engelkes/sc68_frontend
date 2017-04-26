@@ -1,11 +1,11 @@
 import {EditUserProfileComponent} from "../../../components/user/edit.user.profile.component";
-import {ComponentFixture, async, TestBed, fakeAsync} from "@angular/core/testing";
-import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {EditInputFieldComponent} from "../../../components/ui/input_fields/edit_input_field/edit.input.field.component";
 import {
-  FakeUserService,
   FakeDataService,
-  FakeTeamService,
   FakeRouter,
+  FakeTeamService,
+  FakeUserService,
   queryElement,
   setInputValue
 } from "../spec.utils";

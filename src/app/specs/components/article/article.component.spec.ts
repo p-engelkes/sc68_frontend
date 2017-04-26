@@ -1,9 +1,9 @@
-import {ComponentFixture, async, TestBed} from "@angular/core/testing";
-import {ArticleComponent} from "../../../components/article/article.component";
-import {queryElement, fakeArticleOne, fakeArticleTwo, FakeRouterService} from "../spec.utils";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {fakeArticleOne, fakeArticleTwo, FakeRouterService, queryElement} from "../spec.utils";
 import {ProfileImageDirective} from "../../../directives/image.directive";
 import {UserChipComponent} from "../../../components/user/user.chip.component";
 import {RouterService} from "../../../services/router.service";
+import {ArticleComponent} from "../../../components/article/specific/article.component";
 describe('Article Component', () => {
   let fixture: ComponentFixture<ArticleComponent>;
   let component: ArticleComponent;

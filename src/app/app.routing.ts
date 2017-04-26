@@ -7,13 +7,16 @@ import {TeamsComponent} from "./components/team/general/teams.component";
 import {UserProfileComponent} from "./components/user/user.profile.component";
 import {EditUserProfileComponent} from "./components/user/edit.user.profile.component";
 import {UserProfileParentComponent} from "./components/user/user.profile.parent.component";
-import {ArticlesComponent} from "./components/article/articles.component";
-import {ArticlesParentComponent} from "./components/article/articles.parent.component";
+import {ArticlesComponent} from "./components/article/general/articles.component";
+import {ArticlesParentComponent} from "./components/article/general/articles.parent.component";
 import {TeamsParentComponent} from "./components/team/general/teams.parent.component";
 import {TeamComponent} from "./components/team/specific/team.component";
 import {ManageTeamComponent} from "./components/team/general/manage.team.component";
-import {ManageTeamPicturesComponent} from "./components/team/specific/team_picture/manage.team.pictures.component";
+import {ManagePicturesComponent} from "./components/ui/pictures/manage_pictures/manage.pictures.component";
 import {TeamParentComponent} from "./components/team/specific/team.parent.component";
+import {ManageArticleComponent} from "./components/article/general/manage.article.component";
+import {ArticleParentComponent} from "./components/article/specific/article.parent.component";
+import {ArticleComponent} from "./components/article/specific/article.component";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -60,8 +63,8 @@ const appRoutes: Routes = [
             component: ManageTeamComponent
           },
           {
-            path: 'manage_team_pictures',
-            component: ManageTeamPicturesComponent
+            path: 'manage_pictures',
+            component: ManagePicturesComponent
           }
         ]
       }
@@ -96,6 +99,28 @@ const appRoutes: Routes = [
       {
         path: 'author/:id',
         component: ArticlesComponent
+      },
+      {
+        path: 'add',
+        component: ManageArticleComponent
+      },
+      {
+        path: ':id',
+        component: ArticleParentComponent,
+        children: [
+          {
+            path: '',
+            component: ArticleComponent
+          },
+          {
+            path: 'edit',
+            component: ManageArticleComponent
+          },
+          {
+            path: 'manage_pictures',
+            component: ManagePicturesComponent
+          }
+        ]
       }
     ]
   }

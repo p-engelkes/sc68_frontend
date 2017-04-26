@@ -2,15 +2,15 @@
  * Created by pengelkes on 30.12.2016.
  */
 import {Component, Input, OnDestroy, OnInit} from "@angular/core";
-import {ArticleService} from "../../services/article.service";
-import {Article} from "../../models/article";
-import {NavBarService} from "../../services/navbar.service";
+import {ArticleService} from "../../../services/article.service";
+import {Article} from "../../../models/article";
+import {NavBarService} from "../../../services/navbar.service";
 import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {TeamService} from "../../services/team.service";
+import {TeamService} from "../../../services/team.service";
 @Component({
   selector: 'articles-component',
-  templateUrl: 'articles.component.html'
+  templateUrl: './articles.component.html'
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
   @Input()
@@ -28,9 +28,6 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.articleService.getAddArticleEvent()
-      .subscribe(newArticle => this.articles.unshift(newArticle));
-
     if (this.teamId) {
       try {
         this.articles = await this.articleService.findAllByTeam(this.teamId);

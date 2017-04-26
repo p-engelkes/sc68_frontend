@@ -1,10 +1,10 @@
-import {async, TestBed, ComponentFixture, fakeAsync} from "@angular/core/testing";
+import {async, ComponentFixture, fakeAsync, TestBed} from "@angular/core/testing";
 import {RegisterComponent} from "../../../components/register/register.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RegisterService} from "../../../services/register.service";
-import {FakeRegisterService, FakeRouter, FakeLoginService, queryElement, setInputValue} from "../spec.utils";
+import {FakeLoginService, FakeRegisterService, FakeRouter, queryElement, setInputValue} from "../spec.utils";
 import {Router} from "@angular/router";
-import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
+import {EditInputFieldComponent} from "../../../components/ui/input_fields/edit_input_field/edit.input.field.component";
 import {By} from "@angular/platform-browser";
 import {LoginService} from "../../../services/login.service";
 describe('Register Component', () => {

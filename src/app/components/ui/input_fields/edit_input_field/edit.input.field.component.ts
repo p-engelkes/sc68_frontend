@@ -2,9 +2,9 @@
  * Created by pengelkes on 29.12.2016.
  */
 import {Component, Input, ViewChild} from "@angular/core";
-import {Field} from "../../validators";
+import {Field} from "../../../../validators";
 import {FormGroup} from "@angular/forms";
-import {ValidateInputDirective} from "../../directives/validate.input.directive";
+import {ValidateInputDirective} from "../../../../directives/validate.input.directive";
 @Component({
   selector: 'edit-input-field',
   templateUrl: 'edit.input.field.component.html'

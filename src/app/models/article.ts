@@ -14,7 +14,7 @@ export class Article {
   public team: Team;
   public teamId: number;
   public created: Date;
-  public articlePictures: Picture[];
+  public pictures: Picture[];
 
   constructor(id?: number, title?: string, content?: string, author?: User, authorId?: number, team?: Team,
               teamId?: number, created?: Date) {

@@ -4,7 +4,7 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {Article} from "../models/article";
-import {httpDelete, httpGet, httpGetWithoutAuthorization} from "./helper.service";
+import {httpDelete, httpGet} from "./helper.service";
 import {Picture} from "../models/profile.picture";
 import {Team} from "../models/team";
 @Injectable()
@@ -15,10 +15,10 @@ export class PictureService {
 
   async findPicturesByArticle(article: Article) {
     if (article) {
-      let data = await httpGetWithoutAuthorization(`/articlePictures/${article.id}`, this.http);
+      let data = await httpGet(`/articlePictures/${article.id}`, this.http);
       let pictureResponse = JSON.parse(JSON.stringify(data))._body;
       let pictureJson = JSON.parse(pictureResponse);
-      article.articlePictures = Picture.getAll(pictureJson);
+      article.pictures = Picture.getAll(pictureJson);
     }
   }
 

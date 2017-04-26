@@ -1,7 +1,7 @@
 /**
  * Created by pengelkes on 30.12.2016.
  */
-import {EventEmitter, Injectable, Output} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {
   httpGetWithoutAuthorization,
@@ -12,13 +12,15 @@ import {
 import {Article} from "../models/article";
 @Injectable()
 export class ArticleService {
-  @Output() addArticleEvent: EventEmitter<Article> = new EventEmitter();
-
   constructor(private http: Http) {
   }
 
-  async create(article: Article): Promise<any> {
-    await httpPost("/articles", article, this.http);
+  async add(article: Article): Promise<any> {
+    let data = await httpPost("/articles", article, this.http);
+    let articleResponse = JSON.parse(JSON.stringify(data))._body;
+    let articleJson = JSON.parse(articleResponse);
+
+    return Article.get(articleJson);
   }
 
   async findAll() {
@@ -47,15 +49,7 @@ export class ArticleService {
     return Article.getAll(response);
   }
 
-  update(articleId: number, article: Article) {
-    return httpPost("/articles/" + articleId, article, this.http);
-  }
-
-  addArticle(article: Article) {
-    this.addArticleEvent.emit(article);
-  }
-
-  getAddArticleEvent() {
-    return this.addArticleEvent;
+  async update(article: Article) {
+    return httpPost("/articles/" + article.id, article, this.http);
   }
 }

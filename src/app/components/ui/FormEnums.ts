@@ -5,3 +5,8 @@ export enum FormAction {
   ADD,
   EDIT
 }
+
+export enum PictureClass {
+  TEAM,
+  ARTICLE
+}

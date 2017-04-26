@@ -3,7 +3,6 @@ import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 import {Team} from "../../../models/team";
 import {TeamService} from "../../../services/team.service";
 import {NavBarService} from "../../../services/navbar.service";
-import {carouselHrefs} from "../../../models/profile.picture";
 import {SeasonTableTeamService} from "../../../services/season.table.service";
 import {SeasonTableTeam} from "../../../models/season.table.team";
 import {SeasonGame} from "../../../models/season.game";
@@ -32,7 +31,6 @@ export class TeamComponent implements OnInit, OnDestroy {
               private seasonTableTeamService: SeasonTableTeamService,
               private gameService: GameService,
               private router: Router) {
-    this.carouselHrefs = carouselHrefs;
     let snapshot = this.route.snapshot;
     this.id = +snapshot.params['id'];
   }

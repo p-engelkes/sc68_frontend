@@ -1,7 +1,7 @@
-import {ManageArticleComponent} from "../../../components/article/manage.article.component";
+import {ManageArticleComponent} from "../../../components/article/general/manage.article.component";
 import {async, ComponentFixture, fakeAsync, TestBed} from "@angular/core/testing";
-import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
-import {EditTextAreaComponent} from "../../../components/ui/edit.textarea.component";
+import {EditInputFieldComponent} from "../../../components/ui/input_fields/edit_input_field/edit.input.field.component";
+import {EditTextAreaComponent} from "../../../components/ui/input_fields/edit_textarea_component/edit.textarea.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {FakeArticleService, FakeOldClassService, queryElement, setInputValue} from "../spec.utils";
 import {ArticleService} from "../../../services/article.service";
@@ -53,7 +53,6 @@ describe('New Article Component', () => {
 
     describe('component with visible form', () => {
       beforeEach(() => {
-        component.showForm = true;
         fixture.detectChanges();
       });
 
@@ -78,7 +77,7 @@ describe('New Article Component', () => {
       });
 
       describe('component logic', () => {
-        it('should set the newArticleForm values according to the input fields', fakeAsync(() => {
+        it('should set the manageArticleForm values according to the input fields', fakeAsync(() => {
           let titleDebugElement = queryElement('#title', fixture);
           setInputValue(titleDebugElement, 'title', fixture);
 
@@ -87,8 +86,8 @@ describe('New Article Component', () => {
 
           fixture.detectChanges();
           fixture.whenStable().then(() => {
-            expect(component.newArticleForm.value.title).toBe('title');
-            expect(component.newArticleForm.value.content).toBe('content');
+            expect(component.manageArticleForm.value.title).toBe('title');
+            expect(component.manageArticleForm.value.content).toBe('content');
           });
         }));
       });
@@ -101,19 +100,17 @@ describe('New Article Component', () => {
 
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          expect(component.createArticle).toHaveBeenCalledWith(component.newArticleForm.value);
+          expect(component.createArticle).toHaveBeenCalledWith(component.manageArticleForm.value);
         })
       }))
     });
 
     it('should set the showForm to true on Create New Article Button click', fakeAsync(() => {
-      expect(component.showForm).toBeFalsy();
       let showFormButtonDebugElement = queryElement('#show-form', fixture);
       showFormButtonDebugElement.triggerEventHandler('click', null);
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(component.showForm).toBeTruthy();
       })
     }))
   });

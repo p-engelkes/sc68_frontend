@@ -1,0 +1,9 @@
+<div class="row center-align">
+  <a class="waves-effect waves-light btn"
+     routerLink="/articles/add">
+    Artikel hinzufügen
+  </a>
+</div>
+<div *ngFor="let article of articles">
+  <article-card-component [article]="article"></article-card-component>
+</div>

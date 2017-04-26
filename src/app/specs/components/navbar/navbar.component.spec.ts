@@ -18,7 +18,7 @@ import {LoginComponent} from "../../../components/login/login.component";
 import {RegisterComponent} from "../../../components/register/register.component";
 import {Router} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
-import {EditInputFieldComponent} from "../../../components/ui/edit.input.field.component";
+import {EditInputFieldComponent} from "../../../components/ui/input_fields/edit_input_field/edit.input.field.component";
 import {RegisterService} from "../../../services/register.service";
 import {RouterService} from "../../../services/router.service";
 import {NavBarService} from "../../../services/navbar.service";
