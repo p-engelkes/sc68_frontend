@@ -9,6 +9,7 @@ import {OldClassService} from "../../../services/old.class.service";
 import {FormAction} from "../../ui/FormEnums";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NavBarService} from "../../../services/navbar.service";
+import {LocationService} from "../../../services/location.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -22,13 +23,16 @@ export class ManageArticleComponent implements OnInit {
   oldClasses: OldClass[];
   private currentArticle: Article;
   private formAction: FormAction;
+  private locationService: LocationService;
 
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticleService,
               private navBarService: NavBarService,
               private router: Router,
               private route: ActivatedRoute,
-              private oldClassService: OldClassService) {
+              private oldClassService: OldClassService,
+              locationService: LocationService) {
+    this.locationService = locationService;
   }
 
   async ngOnInit() {
