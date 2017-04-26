@@ -1,20 +1,50 @@
 <div *ngIf="article">
-  <div class="row article">
-    <div class="col s12">
-      <div class="card z-depth-3 bordered-card">
-        <div class="card-content">
-          <span class="card-title">{{article.title}}</span>
-          <p>{{article.content}}</p>
-        </div>
-        <div *ngIf="article.author || article.authorId">
-          <div class="card-action">
-            <user-chip [user]="article.author"></user-chip>
-            <div class="right-align">
-              Verfasst am: {{article.created | date: 'dd.MM.yyyy HH:mm:ss'}}
+  <div *ngIf="picture; else noPicture">
+    <div class="row article">
+      <div class="col s12">
+        <div class="card z-depth-3 bordered-card">
+          <div class="card-image">
+            <img image [image-data]="picture.data"
+                 (click)="routerService.navigateToWithParameter('/articles', article.id)">
+            <span class="card-title">{{article.title}}</span>
+          </div>
+          <div class="card-content">
+            <p>{{article.content}}</p>
+          </div>
+          <div *ngIf="article.author || article.authorId">
+            <div class="card-action">
+              <div class="right-align">
+                <user-chip [user]="article.author"></user-chip>
+                Verfasst am: {{article.created | date: 'dd.MM.yyyy HH:mm:ss'}}
+              </div>
+              <a (click)="routerService.navigateToWithParameter('/articles', article.id)">Zeige ganzen Artikel</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
+  <ng-template #noPicture>
+    <div class="row article">
+      <div class="col s12">
+        <div class="card z-depth-3 bordered-card">
+          <div class="card-content">
+            <span class="card-title">{{article.title}}</span>
+            <p>{{article.content}}</p>
+          </div>
+          <div *ngIf="article.author || article.authorId">
+            <div class="card-action">
+              <div class="right-align">
+                <user-chip [user]="article.author"></user-chip>
+                Verfasst am: {{article.created | date: 'dd.MM.yyyy HH:mm:ss'}}
+              </div>
+              <a (click)="routerService.navigateToWithParameter('/articles', article.id)">Zeige ganzen Artikel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>

@@ -27,8 +27,4 @@ export class TeamCardComponent implements OnInit {
       this.picture = this.team.teamPictures[pictureNumber];
     }
   }
-
-  goToTeamDetail() {
-    console.log("Go To Team Detail called");
-  }
 }

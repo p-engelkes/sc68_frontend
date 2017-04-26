@@ -49,6 +49,14 @@ a {
   }
 }
 
+.card .card-action a {
+  cursor: pointer;
+}
+
+.card .card-image img {
+  cursor: pointer;
+}
+
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   color: $secondary-color;
 }
