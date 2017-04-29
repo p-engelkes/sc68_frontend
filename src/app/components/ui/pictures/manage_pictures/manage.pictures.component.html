@@ -33,7 +33,7 @@
   <div *ngIf="team">
     <div *ngFor="let picture of team.teamPictures; let i=index">
       <div class="row">
-        <div class="col s12 m12 l12 team-picture">
+        <div class="col s12 picture">
           <img class="materialboxed center-align reduce-width" width="100%" image [image-data]="picture.data"
                materialboxed-directive>
           <a class="btn-floating btn-large waves-effect waves-light red remove-button"
@@ -47,7 +47,7 @@
   <div *ngIf="article">
     <div *ngFor="let picture of article.pictures; let i=index">
       <div class="row">
-        <div class="col s12 m12 l12 team-picture">
+        <div class="col s12 m12 l12 picture">
           <img class="materialboxed center-align reduce-width" width="100%" image [image-data]="picture.data"
                materialboxed-directive>
           <a class="btn-floating btn-large waves-effect waves-light red remove-button"

@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   async ngOnInit() {
     let id = +this.route.snapshot.params['id'];
     try {
-      this.user = await this.userService.getUser(id);
+      this.user = await this.userService.findById(id);
       this.navbarService.changeTitle(this.user.getNavigationTitle())
     } catch (error) {
       console.log(error);

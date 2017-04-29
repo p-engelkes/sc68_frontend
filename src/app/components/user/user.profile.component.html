@@ -1,38 +1,61 @@
 <div *ngIf="user" class="user-profile">
-  <table class="striped bordered">
-    <tbody>
-    <tr>
-      <td>Vorname</td>
-      <td>{{user.firstName}}</td>
-    </tr>
-    <tr>
-      <td>Nachname</td>
-      <td>{{user.lastName}}</td>
-    </tr>
-    <tr>
-      <td>E-Mail</td>
-      <td>{{user.email}}</td>
-    </tr>
-    <tr>
-      <td>Rückennummer</td>
-      <td>{{user.backNumber}}</td>
-    </tr>
-    <tr>
-      <td>Position</td>
-      <td>{{user.position}}</td>
-    </tr>
-    <tr>
-      <td>Team</td>
-      <td>{{user.team ? user.team.name : ''}}</td>
-    </tr>
-    </tbody>
-  </table>
-
-  <div class="row" *ngIf="isCurrentUser()">
-    <div class="right-align">
-      <a (click)="editUserProfile()" class="waves-effect waves-light btn" style="margin-top: 2rem;">
-        Bearbeiten
+  <div *ngIf="isCurrentUser()" style="position: relative;height: 70px;">
+    <div class="fixed-action-btn horizontal" style="position: absolute;right: 24px;">
+      <a class="btn-floating btn-large red">
+        <i class="material-icons">menu</i>
       </a>
+      <ul>
+        <li>
+          <a class="btn-floating light-blue darken-4"
+             routerLink="manage_picture"
+             style="transform: scaleX(0.4) scaleY(0.4) translateX(40px) translateY(0px); opacity: 0;">
+            <i class="material-icons">picture_in_picture</i>
+          </a>
+        </li>
+        <li>
+          <a class="btn-floating amber"
+             routerLink="edit"
+             style="transform: scaleX(0.4) scaleY(0.4) translateX(40px) translateY(0px); opacity: 0;">
+            <i class="material-icons">mode_edit</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m10 l9">
+      <table class="striped bordered">
+        <tbody>
+        <tr>
+          <td>Vorname</td>
+          <td>{{user.firstName}}</td>
+        </tr>
+        <tr>
+          <td>Nachname</td>
+          <td>{{user.lastName}}</td>
+        </tr>
+        <tr>
+          <td>E-Mail</td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td>Rückennummer</td>
+          <td>{{user.backNumber}}</td>
+        </tr>
+        <tr>
+          <td>Position</td>
+          <td>{{user.position}}</td>
+        </tr>
+        <tr>
+          <td>Team</td>
+          <td>{{user.team ? user.team.name : ''}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col s12 m2 l3">
+      <img class="materialboxed center-align" style="width: 100%;" image [image-data]="user.profilePicture.data"
+           materialboxed-directive>
     </div>
   </div>
 </div>

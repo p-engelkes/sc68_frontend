@@ -60,6 +60,7 @@ import {CollapsibleDirective} from "./directives/collapsible.directive";
 import {PictureService} from "./services/picture.service";
 import {ArticleParentComponent} from "./components/article/specific/article.parent.component";
 import {ArticleComponent} from "./components/article/specific/article.component";
+import {ManageUserProfilePictureComponent} from "./components/user/manage.user.profile.picture";
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import {ArticleComponent} from "./components/article/specific/article.component"
     UserProfileComponent,
     PlayerTableComponent,
     EditUserProfileComponent,
+    ManageUserProfilePictureComponent,
     TeamsParentComponent,
     TeamsComponent,
     ManageTeamComponent,

@@ -2,7 +2,7 @@
  * Created by pengelkes on 09.12.2016.
  */
 import {Injectable} from "@angular/core";
-import {httpGet, httpPost} from "./helper.service";
+import {httpDelete, httpGet, httpPost} from "./helper.service";
 import {Http} from "@angular/http";
 import {Position, User} from "../models/user";
 import {DataService} from "./data.service";
@@ -13,7 +13,7 @@ export class UserService {
               private dataService: DataService) {
   }
 
-  async getUser(userId) {
+  async findById(userId) {
     let response = await httpGet("/users/" + userId, this.http);
     return User.get(response, this.dataService);
   }
@@ -23,7 +23,11 @@ export class UserService {
     return Position.getPositionsFromJson(response);
   }
 
-  update(currentUserId: number, user: User) {
+  async update(currentUserId: number, user: User) {
     return httpPost("/users/" + currentUserId, user, this.http);
+  }
+
+  async deleteProfilePicture(id: number) {
+    await httpDelete(`/user/${id}/profilePicture`, this.http);
   }
 }

@@ -13,8 +13,7 @@ import {Article} from "../../../../models/article";
 import {ArticleService} from "../../../../services/article.service";
 @Component({
   selector: 'manage-team-pictures-component',
-  templateUrl: './manage.pictures.component.html',
-  styleUrls: ['./manage.pictures.component.scss']
+  templateUrl: './manage.pictures.component.html'
 })
 export class ManagePicturesComponent implements OnInit {
   private team: Team;

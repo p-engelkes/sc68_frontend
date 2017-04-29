@@ -17,6 +17,7 @@ import {TeamParentComponent} from "./components/team/specific/team.parent.compon
 import {ManageArticleComponent} from "./components/article/general/manage.article.component";
 import {ArticleParentComponent} from "./components/article/specific/article.parent.component";
 import {ArticleComponent} from "./components/article/specific/article.component";
+import {ManageUserProfilePictureComponent} from "./components/user/manage.user.profile.picture";
 /**
  * Created by pengelkes on 30.11.2016.
  */
@@ -81,6 +82,10 @@ const appRoutes: Routes = [
       {
         path: 'edit',
         component: EditUserProfileComponent
+      },
+      {
+        path: 'manage_picture',
+        component: ManageUserProfilePictureComponent
       }
     ]
   },
