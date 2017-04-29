@@ -1,15 +1,18 @@
-<div class="row" *ngIf="addTeamForm">
-  <form class="col s12" [formGroup]="addTeamForm">
+<div class="row" *ngIf="manageTeamForm">
+  <form class="col s12" [formGroup]="manageTeamForm">
     <div class="row">
       <div class="input-field col s6">
-        <edit-input-field [formGroup]="addTeamForm" [propertyField]="nameField"></edit-input-field>
+        <edit-input-field [formGroup]="manageTeamForm" [propertyField]="nameField"></edit-input-field>
       </div>
       <div class="input-field col s6">
-        <edit-input-field [formGroup]="addTeamForm" [propertyField]="soccerIdField"></edit-input-field>
+        <edit-input-field [formGroup]="manageTeamForm" [propertyField]="soccerIdField"></edit-input-field>
       </div>
     </div>
     <div class="row margin">
-      <div class="input-field col s12">
+      <div class="input-field col s6">
+        <edit-input-field [formGroup]="manageTeamForm" [propertyField]="orderNumberField"></edit-input-field>
+      </div>
+      <div class="input-field col s6">
         <select id="old-class" formControlName="oldClass" dropdown-directive
                 (changeEvent)="updateOldClassValue($event)">
           <option value="" disabled selected>Wähle eine Altersklasse aus</option>
@@ -20,13 +23,13 @@
     </div>
     <!--addresses-->
     <div formArrayName="trainingTimes">
-      <div *ngFor="let address of addTeamForm.controls.trainingTimes.controls; let i=index" class="row">
+      <div *ngFor="let address of manageTeamForm.controls.trainingTimes.controls; let i=index" class="row">
         <div class="col s12 card bordered-card">
           <div class="card-content">
             <p class="card-title">Trainingseinheit {{i + 1}}</p>
             <p [formGroupName]="i" class="training-time-component">
               <add-training-time-component (onUpdateDay)="updateDayValue($event, i)"
-                                           [form-group]="addTeamForm.controls.trainingTimes.controls[i]"></add-training-time-component>
+                                           [form-group]="manageTeamForm.controls.trainingTimes.controls[i]"></add-training-time-component>
             </p>
           </div>
           <div class="card-action">
@@ -46,9 +49,9 @@
 
 
     <div class="relative">
-      <a (click)="addTeam(addTeamForm.value)"
+      <a (click)="addTeam(manageTeamForm.value)"
          class="waves-effect waves-light btn submit-btn align-right"
-         [ngClass]="{'disabled': !addTeamForm.valid}">
+         [ngClass]="{'disabled': !manageTeamForm.valid}">
         {{getSubmitButtonText()}}
       </a>
       <a (click)="locationService.goBack()"

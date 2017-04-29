@@ -16,10 +16,11 @@ declare var jQuery: any;
   styleUrls: ['./manage.team.component.scss']
 })
 export class ManageTeamComponent implements OnInit {
-  public addTeamForm: FormGroup;
+  public manageTeamForm: FormGroup;
   public oldClasses: OldClass[];
   nameField: Field;
   soccerIdField: Field;
+  orderNumberField: Field;
   private currentTeam: Team;
   private formAction: FormAction;
   private locationService: LocationService;
@@ -40,10 +41,11 @@ export class ManageTeamComponent implements OnInit {
       this.formAction = FormAction.EDIT;
       this.navBarService.changeTitle('Team bearbeiten');
       this.currentTeam = await this.teamService.findById(+snapshot.params['id']);
-      this.addTeamForm = this.formBuilder.group({
+      this.manageTeamForm = this.formBuilder.group({
         name: [this.currentTeam.name, [Validators.required]],
         soccerId: [this.currentTeam.soccerId],
         oldClass: [this.currentTeam.oldClassId, [Validators.required]],
+        orderNumber: [this.currentTeam.orderNumber, [Validators.required]],
         trainingTimes: this.formBuilder.array([
           this.initTrainingTimes()
         ])
@@ -57,10 +59,11 @@ export class ManageTeamComponent implements OnInit {
     } else {
       this.formAction = FormAction.ADD;
       this.navBarService.changeTitle('Team hinzufügen');
-      this.addTeamForm = this.formBuilder.group({
+      this.manageTeamForm = this.formBuilder.group({
         name: ['', [Validators.required]],
         soccerId: [''],
         oldClass: ['', [Validators.required]],
+        orderNumber: ['', Validators.required],
         trainingTimes: this.formBuilder.array([
           this.initTrainingTimes()
         ])
@@ -68,14 +71,21 @@ export class ManageTeamComponent implements OnInit {
     }
 
     this.nameField = Field.create()
-      .setControl(this.addTeamForm.controls['name'])
+      .setControl(this.manageTeamForm.controls['name'])
       .setValidators([FormValidators.REQUIRED, FormValidators.MIN_LENGTH])
       .setMessages(['Ein Name muss angegeben werden', 'Der Name ist zu kurz'])
       .setId('name').setType('text').setFormControlName('name').setPlaceHolder("Teamname").setShouldValidate(true)
       .setIsMandatory(true);
 
+    this.orderNumberField = Field.create()
+      .setControl(this.manageTeamForm.controls['orderNumber'])
+      .setValidators([FormValidators.REQUIRED])
+      .setMessages(['Eine Nummer für die Reihenfolge muss angegeben werden'])
+      .setId('orderNumber').setType('number').setFormControlName('orderNumber').setPlaceHolder('Reihenfolge')
+      .setShouldValidate(true).setIsMandatory(true);
+
     this.soccerIdField = Field.create()
-      .setControl(this.addTeamForm.controls['soccerId'])
+      .setControl(this.manageTeamForm.controls['soccerId'])
       .setId('soccerId').setType('text').setFormControlName('soccerId').setPlaceHolder("Fussball.de Team-ID");
 
     try {
@@ -86,11 +96,11 @@ export class ManageTeamComponent implements OnInit {
   }
 
   updateOldClassValue(newValue: number) {
-    this.addTeamForm.controls['oldClass'].setValue(newValue);
+    this.manageTeamForm.controls['oldClass'].setValue(newValue);
   }
 
   updateDayValue(newValue: number, index: number) {
-    const control = <FormArray>this.addTeamForm.controls['trainingTimes'];
+    const control = <FormArray>this.manageTeamForm.controls['trainingTimes'];
     let formGroup = <FormGroup>control.at(index);
     formGroup.controls['day'].setValue(newValue);
   }
@@ -111,12 +121,12 @@ export class ManageTeamComponent implements OnInit {
   }
 
   addTrainingTime(trainingTime?: TrainingTimes) {
-    const control = <FormArray>this.addTeamForm.controls['trainingTimes'];
+    const control = <FormArray>this.manageTeamForm.controls['trainingTimes'];
     control.push(this.initTrainingTimes(trainingTime));
   }
 
   removeTrainingTime(i: number) {
-    const control = <FormArray>this.addTeamForm.controls['trainingTimes'];
+    const control = <FormArray>this.manageTeamForm.controls['trainingTimes'];
     control.removeAt(i);
   }
 
@@ -129,7 +139,7 @@ export class ManageTeamComponent implements OnInit {
   }
 
   async addTeam(team: Team) {
-    if (this.addTeamForm.valid) {
+    if (this.manageTeamForm.valid) {
       Team.prepareForJson(team);
       if (this.formAction === FormAction.EDIT) {
         team.id = this.currentTeam.id;

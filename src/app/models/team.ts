@@ -8,16 +8,9 @@ export class Team {
   public name: string;
   public oldClassId: number;
   public soccerId: string;
+  public orderNumber: number;
   public trainingTimes: TrainingTimes[] = [];
   public teamPictures: Picture[];
-
-  constructor(id?: number, name?: string, trainingTimes?: TrainingTimes[]) {
-    this.id = id;
-    this.name = name;
-    if (trainingTimes) {
-      this.trainingTimes = trainingTimes
-    }
-  }
 
   static prepareForJson(team: Team): Team {
     for (let trainingTime of team.trainingTimes) {
@@ -31,6 +24,7 @@ export class Team {
     let team = new Team();
     team.id = json.id;
     team.name = json.name;
+    team.orderNumber = json.orderNumber;
     team.oldClassId = json.oldClassId;
     team.soccerId = json.soccerInfoId;
 
