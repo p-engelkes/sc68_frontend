@@ -143,7 +143,7 @@ export class User {
       .setPassword(json.password)
       .setEmail(json.email)
       .setCreated(json.created)
-      .setPosition(json.position)
+      .setPosition(json.positionTranslation)
       .setBackNumber(json.backNumber)
       .setArticleWriter(json.articleWriter)
       .setProfilePicture(json.profilePicture);
