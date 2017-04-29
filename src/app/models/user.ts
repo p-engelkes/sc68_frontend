@@ -155,6 +155,7 @@ export class User {
       user.setProfilePicture(ProfilePicture.get(json.profilePicture))
     }
 
+    console.log(user);
     return user;
   }
 
