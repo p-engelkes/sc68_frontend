@@ -6,7 +6,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register.service";
 import {Field, FormValidators, matchingPasswords} from "../../validators";
 import {User} from "../../models/user";
-import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 declare var jQuery: any;
 declare var Materialize: any;
@@ -21,7 +20,6 @@ export class RegisterComponent {
 
   constructor(private registerService: RegisterService,
               private loginService: LoginService,
-              private router: Router,
               formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({
       email: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
@@ -37,7 +35,8 @@ export class RegisterComponent {
         "Die E-Mail Adresse muss mindestens 3 Zeichen lang sein",
         "Die E-Mail Adresse darf nicht länger als 30 Zeichen lang sein"
       ])
-      .setId('email').setType('email').setFormControlName('email').setPlaceHolder('E-Mail').setShouldValidate(true);
+      .setId('email').setType('email').setFormControlName('email').setPlaceHolder('E-Mail').setShouldValidate(true)
+      .setIsMandatory(true);
 
     this.passwordField = Field.create()
       .setControl(this.registerForm.controls['password'])
@@ -46,7 +45,8 @@ export class RegisterComponent {
         "Ein Passwort muss angegeben werden",
         "Das Passwort muss mindestens 6 Zeichen lang sein"
       ])
-      .setId('password').setType('password').setFormControlName('password').setPlaceHolder('password').setShouldValidate(true);
+      .setId('password').setType('password').setFormControlName('password').setPlaceHolder('Passwort')
+      .setShouldValidate(true).setIsMandatory(true);
   }
 
   async register(value: any) {
@@ -59,7 +59,7 @@ export class RegisterComponent {
         await this.registerService.register(user);
         await this.logIn(email, password);
         jQuery('#register_modal').modal('close');
-        this.router.navigate(["/home"]);
+        location.reload();
       } catch (error) {
         console.log(error);
       }
@@ -70,11 +70,13 @@ export class RegisterComponent {
     try {
       await this.loginService.logIn(email, password);
       await this.loginService.verifyToken(email);
-
-      Materialize.toast('Registration erfolgreich', 4000);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  private abort() {
+    jQuery('#register_modal').modal('close');
   }
 
   getPasswordConfirmationError(): string {

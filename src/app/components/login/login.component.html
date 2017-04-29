@@ -6,20 +6,12 @@
       <form [formGroup]="loginForm" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="text" formControlName="email" placeholder="E-Mail"
-                   class="validate"
-                   [ngClass]="{'invalid':loginForm.controls['email'].invalid && loginForm.controls['email'].touched, 'valid':loginForm.controls['email'].valid && loginForm.controls['email'].touched}"
-            >
-            <label for="email" [attr.data-error]="getEmailError()">E-Mail</label>
+            <edit-input-field [formGroup]="loginForm" [propertyField]="emailField"></edit-input-field>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="password" type="password" formControlName="password" placeholder="Passwort"
-                   class="validate"
-                   [ngClass]="{'invalid':loginForm.controls['password'].invalid && loginForm.controls['password'].touched, 'valid':loginForm.controls['password'].valid && loginForm.controls['password'].touched}"
-            >
-            <label for="password" [attr.data-error]="getPasswordError()">Password</label>
+            <edit-input-field [formGroup]="loginForm" [propertyField]="passwordField"></edit-input-field>
           </div>
         </div>
       </form>
@@ -27,9 +19,14 @@
   </div>
 
   <div class="modal-footer">
-    <a class="waves-effect waves-green btn" (click)="login(loginForm.value)"
-       [ngClass]="{'disabled':!loginForm.valid}">
-      Login
-    </a>
+    <div class="relative">
+      <a class="waves-effect waves-teal btn align-left" (click)="abort()">
+        Abbrechen
+      </a>
+      <a class="waves-effect waves-green btn align-right" (click)="login(loginForm.value)"
+         [ngClass]="{'disabled':!loginForm.valid}">
+        Login
+      </a>
+    </div>
   </div>
 </div>

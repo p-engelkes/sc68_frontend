@@ -4,7 +4,7 @@
 import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Field, FormValidators} from "../../validators";
 
 declare var Materialize: any;
 declare var jQuery: any;
@@ -14,34 +14,30 @@ declare var jQuery: any;
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  emailField: Field;
+  passwordField: Field;
 
   constructor(private loginService: LoginService,
-              private router: Router,
               formBuilder: FormBuilder) {
     this.loginForm = formBuilder.group({
       email: [null, Validators.required],
       password: [null, Validators.required]
-    })
+    });
+
+    this.emailField = Field.create()
+      .setControl(this.loginForm.controls['email'])
+      .setValidators([FormValidators.REQUIRED])
+      .setMessages(["Eine E-Mail oder ein Benutzername muss eingegeben werden"])
+      .setId('email').setType('text').setFormControlName('email').setPlaceHolder("E-Mail").setShouldValidate(true)
+      .setIsMandatory(true);
+
+    this.passwordField = Field.create()
+      .setControl(this.loginForm.controls['password'])
+      .setValidators([FormValidators.REQUIRED])
+      .setMessages(["Ein Password muss eingegbeen werden"])
+      .setId('password').setType('password').setFormControlName('password').setPlaceHolder("Password")
+      .setShouldValidate(true).setIsMandatory(true);
   }
-
-  getEmailError(): string {
-    let error = "";
-    if (this.loginForm.controls['email'].hasError('required')) {
-      error += "Ein Benutzername muss eingegeben werden"
-    }
-
-    return error;
-  }
-
-  getPasswordError(): string {
-    let error = "";
-    if (this.loginForm.controls['password'].hasError('required')) {
-      error += "Ein Password muss eingegeben werden";
-    }
-
-    return error;
-  }
-
 
   async login(value: any) {
     if (this.loginForm.valid) {
@@ -53,11 +49,14 @@ export class LoginComponent {
         await this.loginService.verifyToken(email);
 
         jQuery('#login_modal').modal('close');
-        Materialize.toast("Login erfolgreich", 4000);
         location.reload();
       } catch (error) {
         console.log(error);
       }
     }
+  }
+
+  abort() {
+    jQuery('#login_modal').modal('close');
   }
 }
