@@ -148,3 +148,28 @@ a {
     right: 0;
   }
 }
+
+.simple-notification.success {
+  background: #4caf50 !important;
+}
+
+.simple-notification.error {
+  background: #f44336 !important;
+}
+
+.simple-notification.info {
+  background: #2196f3 !important;
+}
+
+.simple-notification.alert {
+  background: #ffc107 !important;
+}
+
+.simple-notification-svg {
+  display: none;
+}
+
+.sn-title {
+  text-align: center;
+  padding: 0 !important;
+}

@@ -12,6 +12,16 @@ export class Team {
   public trainingTimes: TrainingTimes[] = [];
   public teamPictures: Picture[];
 
+  constructor(id?: number, name?: string, trainingTimes?: TrainingTimes[]) {
+    this.id = id;
+    this.name = name;
+    if (trainingTimes) {
+      this.trainingTimes = trainingTimes;
+    } else {
+      this.trainingTimes = [];
+    }
+  }
+
   static prepareForJson(team: Team): Team {
     for (let trainingTime of team.trainingTimes) {
       trainingTime.day = days[trainingTime.day]

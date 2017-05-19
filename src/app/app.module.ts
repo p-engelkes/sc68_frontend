@@ -61,6 +61,9 @@ import {PictureService} from "./services/picture.service";
 import {ArticleParentComponent} from "./components/article/specific/article.parent.component";
 import {ArticleComponent} from "./components/article/specific/article.component";
 import {ManageUserProfilePictureComponent} from "./components/user/manage.user.profile.picture";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SimpleNotificationsModule} from "angular4-notifications";
+import {NotificationService} from "./services/notification.service";
 
 
 @NgModule({
@@ -117,7 +120,9 @@ import {ManageUserProfilePictureComponent} from "./components/user/manage.user.p
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing
+    routing,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     LoginService,
@@ -132,7 +137,8 @@ import {ManageUserProfilePictureComponent} from "./components/user/manage.user.p
     SeasonTableTeamService,
     GameService,
     LocationService,
-    PictureService
+    PictureService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

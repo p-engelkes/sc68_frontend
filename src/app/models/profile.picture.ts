@@ -9,7 +9,6 @@ export class ProfilePicture {
   public ratio: number;
 
   static get(json): ProfilePicture {
-    console.log(json);
     let profilePicture = new ProfilePicture();
     profilePicture.userId = json.userId;
     profilePicture.data = json.picture;
@@ -31,7 +30,7 @@ export class Picture {
   static get(json: any): Picture {
     let picture = new Picture();
     picture.id = json.id;
-    picture.data = json.data;
+    picture.data = json.picture;
     picture.width = json.width;
     picture.height = json.height;
     picture.ratio = json.ratio;
@@ -51,5 +50,3 @@ export class Picture {
     return pictures;
   }
 }
-
-export let carouselHrefs = ["#one!", "#two!", "#three!", "#four!", "#five!", "#six!", "#seven!"];

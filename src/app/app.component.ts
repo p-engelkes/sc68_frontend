@@ -7,6 +7,15 @@ import {LocalStorage} from "./helper/LocalStorage";
 })
 export class AppComponent implements OnInit {
   isLoggedIn = false;
+  public options = {
+    position: ["top", "right"],
+    timeOut: 5000,
+    lastOnBottom: true,
+    animate: "fromRight",
+    clickToClose: true,
+    pauseOnHover: true,
+    showProgressBar: false
+  };
 
   ngOnInit(): void {
     this.isLoggedIn = !!LocalStorage.getToken();

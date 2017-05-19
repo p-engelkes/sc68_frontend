@@ -74,7 +74,7 @@ export class FakeTeamService {
 }
 
 export class FakeUserService {
-  async getUser(id) {
+  async findById(id) {
     return user;
   }
 

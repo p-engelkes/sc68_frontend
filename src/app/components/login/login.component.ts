@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
+import {Notification, NotificationService, NotificationType} from "../../services/notification.service";
 
 declare var Materialize: any;
 declare var jQuery: any;
@@ -18,6 +19,7 @@ export class LoginComponent {
   passwordField: Field;
 
   constructor(private loginService: LoginService,
+              private notificationService: NotificationService,
               formBuilder: FormBuilder) {
     this.loginForm = formBuilder.group({
       email: [null, Validators.required],
@@ -47,7 +49,7 @@ export class LoginComponent {
       try {
         await this.loginService.logIn(email, password);
         await this.loginService.verifyToken(email);
-
+        this.notificationService.setNotification(new Notification("Login erfolgreich", NotificationType.SUCCESS));
         jQuery('#login_modal').modal('close');
         location.reload();
       } catch (error) {

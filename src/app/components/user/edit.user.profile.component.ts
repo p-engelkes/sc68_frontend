@@ -90,7 +90,8 @@ export class EditUserProfileComponent implements OnInit {
         "Die E-Mail Adresse muss mindestens 3 Zeichen lang sein",
         "Die E-Mail Adresse darf nicht länger als 30 Zeichen lang sein"
       ])
-      .setId('email').setType('email').setFormControlName('email').setPlaceHolder('E-Mail').setShouldValidate(true);
+      .setId('email').setType('email').setFormControlName('email').setPlaceHolder('E-Mail').setShouldValidate(true)
+      .setIsMandatory(true);
 
     this.backNumberField = Field.create()
       .setControl(this.editUserForm.controls['backNumber'])

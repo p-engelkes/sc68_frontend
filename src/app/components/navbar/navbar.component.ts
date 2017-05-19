@@ -53,12 +53,12 @@ export class NavbarComponent implements OnInit {
     if (this.loginService.isLoggedIn()) {
       this.loginService.logOut();
     } else {
-      jQuery('#login_modal').openModal();
+      jQuery('#login_modal').modal('open');
     }
   }
 
   openRegisterModal() {
-    jQuery('#register_modal').openModal();
+    jQuery('#register_modal').modal('open');
   }
 
   currentUserName() {
