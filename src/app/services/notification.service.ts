@@ -16,24 +16,38 @@ export class NotificationService {
     this.setNextNotificationType(notification.getType());
   }
 
+  showNotification(notification: Notification) {
+    this.createNotification(notification.getType(), notification.getMessage());
+  }
+
+  showErrorNotification(jsonError: any) {
+    let response = JSON.parse(JSON.stringify(jsonError))._body;
+    let errorMessage = JSON.parse(response).message;
+    this.notificationsService.error(errorMessage, "");
+  }
+
   notify() {
     let nextNotification = this.getNextNotification();
     if (this.hasNotification()) {
-      switch (this.getNextNotificationType()) {
-        case NotificationType.SUCCESS:
-          this.notificationsService.success(nextNotification, "");
-          break;
-        case NotificationType.INFO:
-          this.notificationsService.info(nextNotification, "");
-          break;
-        case NotificationType.ALERT:
-          this.notificationsService.alert(nextNotification, "");
-          break;
-        case NotificationType.ERROR:
-          this.notificationsService.error(nextNotification, "");
-          break;
-      }
+      this.createNotification(this.getNextNotificationType(), nextNotification);
       this.clearNotification();
+    }
+  }
+
+  private createNotification(notificationType: NotificationType, notification: string) {
+    switch (notificationType) {
+      case NotificationType.SUCCESS:
+        this.notificationsService.success(notification, "");
+        break;
+      case NotificationType.INFO:
+        this.notificationsService.info(notification, "");
+        break;
+      case NotificationType.ALERT:
+        this.notificationsService.alert(notification, "");
+        break;
+      case NotificationType.ERROR:
+        this.notificationsService.error(notification, "");
+        break;
     }
   }
 

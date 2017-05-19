@@ -1,5 +1,5 @@
 import {LoginComponent} from "../../../components/login/login.component";
-import {ComponentFixture, async, TestBed, fakeAsync} from "@angular/core/testing";
+import {async, ComponentFixture, fakeAsync, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {ReactiveFormsModule} from "@angular/forms";
 import {LoginService} from "../../../services/login.service";
@@ -58,16 +58,16 @@ describe('Login Component', () => {
     })
   }));
 
-  it('should call the login action on Login-Button click with the value inside the email and password field',
+  it('should call the submit action on Login-Button click with the value inside the email and password field',
     fakeAsync(() => {
-      spyOn(component, 'login');
+      spyOn(component, 'submit');
 
       let button = fixture.debugElement.query(By.css('.btn'));
       button.triggerEventHandler('click', null);
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(component.login).toHaveBeenCalledWith(component.loginForm.value);
+        expect(component.submit).toHaveBeenCalledWith(component.loginForm.value);
       })
     }));
 });

@@ -7,6 +7,7 @@ import {RegisterService} from "../../services/register.service";
 import {Field, FormValidators, matchingPasswords} from "../../validators";
 import {User} from "../../models/user";
 import {LoginService} from "../../services/login.service";
+import {Notification, NotificationService, NotificationType} from "../../services/notification.service";
 declare var jQuery: any;
 declare var Materialize: any;
 @Component({
@@ -20,6 +21,7 @@ export class RegisterComponent {
 
   constructor(private registerService: RegisterService,
               private loginService: LoginService,
+              private notificationService: NotificationService,
               formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({
       email: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
@@ -49,20 +51,32 @@ export class RegisterComponent {
       .setShouldValidate(true).setIsMandatory(true);
   }
 
-  async register(value: any) {
-    if (this.registerForm.valid) {
-      let email = value.email;
-      let password = value.password;
-      let user = User.registerUser(email, password);
-
-      try {
-        await this.registerService.register(user);
-        await this.logIn(email, password);
-        jQuery('#register_modal').modal('close');
-        location.reload();
-      } catch (error) {
-        console.log(error);
+  async submit(event, value: any) {
+    if (event) {
+      if (event.keyCode == 13 && this.registerForm.valid) {
+        await this.register(value);
       }
+    } else {
+      if (this.registerForm.valid) {
+        await this.register(value)
+      }
+    }
+  }
+
+  private async register(value: any) {
+    let email = value.email;
+    let password = value.password;
+    let user = User.registerUser(email, password);
+
+    try {
+      await this.registerService.register(user);
+      await this.logIn(email, password);
+      this.notificationService.setNotification(new Notification("Registration erfolgreich", NotificationType.SUCCESS));
+      jQuery('#register_modal').modal('close');
+      location.reload();
+    } catch (error) {
+      console.log(error);
+      this.notificationService.showErrorNotification(error);
     }
   }
 

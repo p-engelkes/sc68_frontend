@@ -54,7 +54,7 @@ describe('Navbar Component', () => {
     component = fixture.componentInstance;
   });
 
-  it('should include the login and register modal components', () => {
+  it('should include the submit and register modal components', () => {
     let loginDebugElement = fixture.debugElement.query(By.css('logIn'));
     expect(loginDebugElement).not.toBeNull();
 
@@ -101,8 +101,8 @@ describe('Navbar Component', () => {
       fixture.detectChanges();
     });
 
-    it('should have a login link', () => {
-      let loginDebugElement = queryElement('#login', fixture);
+    it('should have a submit link', () => {
+      let loginDebugElement = queryElement('#submit', fixture);
       expect(loginDebugElement).not.toBeNull();
     });
 
