@@ -14,4 +14,8 @@ export class EditInputFieldComponent {
   @Input() propertyField: Field;
 
   @ViewChild('input') validateInputDirective: ValidateInputDirective;
+
+  focus() {
+    this.validateInputDirective.focus();
+  }
 }

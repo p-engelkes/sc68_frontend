@@ -1,11 +1,12 @@
 /**
  * Created by pengelkes on 30.11.2016.
  */
-import {Component} from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../validators";
 import {Notification, NotificationService, NotificationType} from "../../services/notification.service";
+import {EditInputFieldComponent} from "../ui/input_fields/edit_input_field/edit.input.field.component";
 
 declare var jQuery: any;
 @Component({
@@ -13,6 +14,8 @@ declare var jQuery: any;
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
+  @ViewChild('focusableField') focusableField: EditInputFieldComponent;
+
   loginForm: FormGroup;
   emailField: Field;
   passwordField: Field;

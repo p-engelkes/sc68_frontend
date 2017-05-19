@@ -1,13 +1,14 @@
 /**
  * Created by pengelkes on 30.11.2016.
  */
-import {Component} from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register.service";
 import {Field, FormValidators, matchingPasswords} from "../../validators";
 import {User} from "../../models/user";
 import {LoginService} from "../../services/login.service";
 import {Notification, NotificationService, NotificationType} from "../../services/notification.service";
+import {EditInputFieldComponent} from "../ui/input_fields/edit_input_field/edit.input.field.component";
 declare var jQuery: any;
 declare var Materialize: any;
 @Component({
@@ -15,6 +16,8 @@ declare var Materialize: any;
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {
+  @ViewChild('focusableField') focusableField: EditInputFieldComponent;
+
   registerForm: FormGroup;
   emailField: Field;
   passwordField: Field;

@@ -6,7 +6,7 @@
       <form [formGroup]="loginForm" class="col s12" (keydown)="submit($event, loginForm.value)">
         <div class="row">
           <div class="input-field col s12">
-            <edit-input-field [formGroup]="loginForm" [propertyField]="emailField"></edit-input-field>
+            <edit-input-field #focusableField [formGroup]="loginForm" [propertyField]="emailField"></edit-input-field>
           </div>
         </div>
         <div class="row">

@@ -27,4 +27,8 @@ export class ValidateInputDirective {
 
     return this.validationClass;
   }
+
+  focus() {
+    this.element.nativeElement.focus();
+  }
 }
