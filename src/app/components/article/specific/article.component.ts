@@ -8,6 +8,7 @@ import {PictureService} from "../../../services/picture.service";
 import {Subscription} from "rxjs";
 import {ArticleService} from "../../../services/article.service";
 import {NavBarService} from "../../../services/navbar.service";
+import {NotificationService} from "../../../services/notification.service";
 @Component({
   selector: 'article-component',
   templateUrl: './article.component.html'
@@ -21,14 +22,17 @@ export class ArticleComponent implements OnInit, OnDestroy {
               private articleService: ArticleService,
               private pictureService: PictureService,
               private route: ActivatedRoute,
+              private notificationService: NotificationService,
               private router: Router) {
     let snapshot = this.route.snapshot;
     this.id = +snapshot.params['id'];
   }
 
   async ngOnInit() {
+    this.notificationService.notify();
     this.subscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
+        this.notificationService.notify();
         let urlParts = event.url.split("/");
         let id = +urlParts[urlParts.length - 1];
         if (id) {

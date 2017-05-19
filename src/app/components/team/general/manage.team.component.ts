@@ -9,6 +9,7 @@ import {TeamService} from "../../../services/team.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LocationService} from "../../../services/location.service";
 import {FormAction} from "../../ui/FormEnums";
+import {Notification, NotificationService, NotificationType} from "../../../services/notification.service";
 declare var jQuery: any;
 @Component({
   selector: 'manage-team-component',
@@ -31,6 +32,7 @@ export class ManageTeamComponent implements OnInit {
               private teamService: TeamService,
               private router: Router,
               private route: ActivatedRoute,
+              private notificationService: NotificationService,
               locationService: LocationService) {
     this.locationService = locationService;
   }
@@ -142,12 +144,22 @@ export class ManageTeamComponent implements OnInit {
     if (this.manageTeamForm.valid) {
       Team.prepareForJson(team);
       if (this.formAction === FormAction.EDIT) {
-        team.id = this.currentTeam.id;
-        await this.teamService.update(team);
-        this.router.navigate(['/teams', this.currentTeam.id])
+        try {
+          team.id = this.currentTeam.id;
+          await this.teamService.update(team);
+          this.router.navigate(['/teams', this.currentTeam.id])
+          this.notificationService.setNotification(new Notification("Team erfolgreich geändert", NotificationType.SUCCESS));
+        } catch (e) {
+          this.notificationService.showNotification(new Notification("Team konnte nicht geändert werden", NotificationType.ERROR));
+        }
       } else {
-        let createdTeam = await this.teamService.add(team);
-        this.router.navigate(['/teams', createdTeam.id]);
+        try {
+          let createdTeam = await this.teamService.add(team);
+          this.router.navigate(['/teams', createdTeam.id]);
+          this.notificationService.setNotification(new Notification("Team erfolgreich erstellt", NotificationType.SUCCESS));
+        } catch (e) {
+          this.notificationService.showNotification(new Notification("Team konnte nicht erstellt werden", NotificationType.ERROR));
+        }
       }
     }
   }

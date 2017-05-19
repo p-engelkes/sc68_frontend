@@ -11,6 +11,7 @@ import {LocalStorage} from "../../../../helper/LocalStorage";
 import {PictureClass} from "../../FormEnums";
 import {Article} from "../../../../models/article";
 import {ArticleService} from "../../../../services/article.service";
+import {Notification, NotificationService, NotificationType} from "../../../../services/notification.service";
 @Component({
   selector: 'manage-team-pictures-component',
   templateUrl: './manage.pictures.component.html'
@@ -33,11 +34,13 @@ export class ManagePicturesComponent implements OnInit {
               private navBarService: NavBarService,
               private route: ActivatedRoute,
               private router: Router,
+              private notificationService: NotificationService,
               locationService: LocationService) {
     this.locationService = locationService;
   }
 
   async ngOnInit() {
+    this.notificationService.notify();
     let url = this.router.url;
     if (url.indexOf("teams") != -1) {
       this.pictureClass = PictureClass.TEAM;
@@ -80,6 +83,7 @@ export class ManagePicturesComponent implements OnInit {
         this.progress = +data.progress.percent;
         if (data && data.response) {
           this.uploading = false;
+          this.notificationService.setNotification(new Notification("Bild erfolgreich hinzugefügt", NotificationType.SUCCESS));
           location.reload();
         }
       });
@@ -91,7 +95,7 @@ export class ManagePicturesComponent implements OnInit {
     if (uploadingFile.size > this.sizeLimit) {
       this.uploading = false;
       uploadingFile.setAbort();
-      alert('File is too large');
+      this.notificationService.showNotification(new Notification("Datei ist zu groß um hochgeladen zu werden", NotificationType.ERROR));
     }
   }
 
@@ -100,12 +104,18 @@ export class ManagePicturesComponent implements OnInit {
   }
 
   async deletePicture(pictureId: number) {
-    if (this.pictureClass === PictureClass.TEAM) {
-      await this.pictureService.deleteTeamPicture(pictureId);
-      this.team.teamPictures = this.team.teamPictures.filter(picture => picture.id != pictureId)
-    } else if (this.pictureClass === PictureClass.ARTICLE) {
-      await this.pictureService.deleteArticlePicture(pictureId);
-      this.article.pictures = this.article.pictures.filter(picture => picture.id != pictureId)
+    try {
+      if (this.pictureClass === PictureClass.TEAM) {
+        await this.pictureService.deleteTeamPicture(pictureId);
+        this.team.teamPictures = this.team.teamPictures.filter(picture => picture.id != pictureId)
+      } else if (this.pictureClass === PictureClass.ARTICLE) {
+        await this.pictureService.deleteArticlePicture(pictureId);
+        this.article.pictures = this.article.pictures.filter(picture => picture.id != pictureId)
+      }
+
+      this.notificationService.showNotification(new Notification("Bild erfolgreich gelöscht", NotificationType.SUCCESS));
+    } catch (e) {
+      this.notificationService.showNotification(new Notification("Bild konnte nicht gelöscht werden", NotificationType.ERROR));
     }
   }
 }

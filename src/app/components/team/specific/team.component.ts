@@ -10,6 +10,7 @@ import {GameService} from "../../../services/game.service";
 import {User} from "../../../models/user";
 import {Subscription} from "rxjs";
 import {PictureService} from "../../../services/picture.service";
+import {NotificationService} from "../../../services/notification.service";
 @Component({
   selector: 'team-component',
   templateUrl: './team.component.html',
@@ -30,13 +31,16 @@ export class TeamComponent implements OnInit, OnDestroy {
               private navbarService: NavBarService,
               private seasonTableTeamService: SeasonTableTeamService,
               private gameService: GameService,
+              private notificationService: NotificationService,
               private router: Router) {
     let snapshot = this.route.snapshot;
     this.id = +snapshot.params['id'];
   }
 
   async ngOnInit() {
+    this.notificationService.notify();
     this.subscribtion = this.router.events.subscribe(event => {
+      this.notificationService.notify();
       if (event instanceof NavigationStart) {
         let urlParts = event.url.split("/");
         let id = +urlParts[urlParts.length - 1];

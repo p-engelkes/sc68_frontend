@@ -10,7 +10,6 @@ import {LoginService} from "../../services/login.service";
 import {Notification, NotificationService, NotificationType} from "../../services/notification.service";
 import {EditInputFieldComponent} from "../ui/input_fields/edit_input_field/edit.input.field.component";
 declare var jQuery: any;
-declare var Materialize: any;
 @Component({
   selector: 'register',
   templateUrl: './register.component.html'

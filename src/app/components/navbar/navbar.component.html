@@ -46,7 +46,63 @@
       <a id="register" (click)="openRegisterModal()">Registrieren</a>
     </li>
 
+    <li class="no-padding" id="articles">
+      <ul class="collapsible collapsible-accordion" collapsible-directive>
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-teal" id="article">Artikel</a>
+          <div class="collapsible-body" style="display: block;">
+            <ul>
+              <li>
+                <a id="all-articles" (click)="showAllArticles()">Alle Artikel</a>
+              </li>
+              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithAnArticle"
+                  collapsible-directive>
+                <li>
+                  <a class="collapsible-header waves-effect waves-teal">{{oldClass.name}}</a>
+                  <div class="collapsible-body" style="display: block;">
+                    <ul>
+                      <li *ngFor="let team of oldClass.teams">
+                        <a routerLinkActive="active" id="article-team+{{team.id}}"
+                           (click)="showArticlesForTeam(team.id)">{{team.name}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
 
+    <li class="no-padding" id="teams">
+      <ul class="collapsible collapsible-accordion" collapsible-directive>
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-teal" id="team">Teams</a>
+          <div class="collapsible-body" style="display: block;">
+            <ul>
+              <li>
+                <a id="all-teams" (click)="showAllTeams()">Alle Teams</a>
+              </li>
+              <ul class="collapsible collapsible-accordion" *ngFor="let oldClass of oldClassesWithTeam"
+                  collapsible-directive>
+                <li>
+                  <a class="collapsible-header waves-effect waves-teal">{{oldClass.name}}</a>
+                  <div class="collapsible-body" style="display: block;">
+                    <ul>
+                      <li *ngFor="let team of oldClass.teams">
+                        <a routerLinkActive="active"
+                           (click)="showTeamPage(team.id)">{{team.name}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
 
     <li routerLinkActive="active">
       <a id="about-us" (click)="routerService.navigateTo('/aboutUs')">Über uns</a>

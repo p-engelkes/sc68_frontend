@@ -10,6 +10,7 @@ import {FormAction} from "../../ui/FormEnums";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NavBarService} from "../../../services/navbar.service";
 import {LocationService} from "../../../services/location.service";
+import {Notification, NotificationService, NotificationType} from "../../../services/notification.service";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
@@ -31,6 +32,7 @@ export class ManageArticleComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private oldClassService: OldClassService,
+              private notificationService: NotificationService,
               locationService: LocationService) {
     this.locationService = locationService;
   }
@@ -100,14 +102,22 @@ export class ManageArticleComponent implements OnInit {
       if (this.manageArticleForm.valid) {
         let id = null;
         if (this.formAction == FormAction.EDIT) {
-          article.id = this.currentArticle.id;
-          await this.articleService.update(article);
-          id = this.currentArticle.id;
-          Materialize.toast('Artikel bearbeitet', 4000);
+          try {
+            article.id = this.currentArticle.id;
+            await this.articleService.update(article);
+            id = this.currentArticle.id;
+            this.notificationService.setNotification(new Notification("Artikel erfolgreich geändert", NotificationType.SUCCESS));
+          } catch (e) {
+            this.notificationService.showNotification(new Notification("Artikel konnte nicht geändert werden", NotificationType.ERROR));
+          }
         } else {
-          let createdArticle = await this.articleService.add(article);
-          id = createdArticle.id;
-          Materialize.toast('Artikel veröffentlicht', 4000);
+          try {
+            let createdArticle = await this.articleService.add(article);
+            id = createdArticle.id;
+            this.notificationService.setNotification(new Notification("Artikel erfolgreich veröffentlicht", NotificationType.SUCCESS));
+          } catch (e) {
+            this.notificationService.showNotification(new Notification("Artikel konnte nicht veröffentlicht werden", NotificationType.ERROR));
+          }
         }
 
         this.router.navigate(['/articles', id]);
