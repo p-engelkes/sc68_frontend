@@ -2,7 +2,7 @@
   <form class="col s12" [formGroup]="manageTeamForm">
     <div class="row">
       <div class="input-field col s6">
-        <edit-input-field [formGroup]="manageTeamForm" [propertyField]="nameField"></edit-input-field>
+        <edit-input-field #focusableField [formGroup]="manageTeamForm" [propertyField]="nameField"></edit-input-field>
       </div>
       <div class="input-field col s6">
         <edit-input-field [formGroup]="manageTeamForm" [propertyField]="soccerIdField"></edit-input-field>

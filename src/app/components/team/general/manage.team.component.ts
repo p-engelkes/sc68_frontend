@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from "@angular/core";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {OldClassService} from "../../../services/old.class.service";
 import {OldClass} from "../../../models/old.class";
@@ -10,13 +10,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LocationService} from "../../../services/location.service";
 import {FormAction} from "../../ui/FormEnums";
 import {Notification, NotificationService, NotificationType} from "../../../services/notification.service";
+import {EditInputFieldComponent} from "../../ui/input_fields/edit_input_field/edit.input.field.component";
 declare var jQuery: any;
 @Component({
   selector: 'manage-team-component',
   templateUrl: './manage.team.component.html',
   styleUrls: ['./manage.team.component.scss']
 })
-export class ManageTeamComponent implements OnInit {
+export class ManageTeamComponent implements OnInit, AfterViewInit {
+  @ViewChildren('focusableField') focusableFields: QueryList<EditInputFieldComponent>;
+
   public manageTeamForm: FormGroup;
   public oldClasses: OldClass[];
   nameField: Field;
@@ -35,6 +38,12 @@ export class ManageTeamComponent implements OnInit {
               private notificationService: NotificationService,
               locationService: LocationService) {
     this.locationService = locationService;
+  }
+
+  ngAfterViewInit() {
+    this.focusableFields.changes.subscribe((item: QueryList<EditInputFieldComponent>) => {
+      item.first.focus();
+    })
   }
 
   async ngOnInit() {

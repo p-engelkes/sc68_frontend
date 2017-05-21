@@ -2,7 +2,8 @@
   <form class="col s12" [formGroup]="manageArticleForm">
     <div class="row">
       <div class="input-field col s12">
-        <edit-input-field [formGroup]="manageArticleForm" [propertyField]="titleField"></edit-input-field>
+        <edit-input-field #focusableField [formGroup]="manageArticleForm"
+                          [propertyField]="titleField"></edit-input-field>
       </div>
     </div>
     <div class="row">

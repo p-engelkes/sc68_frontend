@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Field, FormValidators} from "../../../validators";
 import {ArticleService} from "../../../services/article.service";
@@ -11,13 +11,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NavBarService} from "../../../services/navbar.service";
 import {LocationService} from "../../../services/location.service";
 import {Notification, NotificationService, NotificationType} from "../../../services/notification.service";
+import {EditInputFieldComponent} from "../../ui/input_fields/edit_input_field/edit.input.field.component";
 declare var Materialize: any;
 declare var jQuery: any;
 @Component({
   selector: 'manage-article-component',
   templateUrl: './manage.article.component.html'
 })
-export class ManageArticleComponent implements OnInit {
+export class ManageArticleComponent implements OnInit, AfterViewInit {
+  @ViewChildren('focusableField') focusableFields: QueryList<EditInputFieldComponent>;
+
   manageArticleForm: FormGroup;
   titleField: Field;
   contentField: Field;
@@ -35,6 +38,12 @@ export class ManageArticleComponent implements OnInit {
               private notificationService: NotificationService,
               locationService: LocationService) {
     this.locationService = locationService;
+  }
+
+  ngAfterViewInit() {
+    this.focusableFields.changes.subscribe((item: QueryList<EditInputFieldComponent>) => {
+      item.first.focus();
+    })
   }
 
   async ngOnInit() {
